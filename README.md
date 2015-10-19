@@ -19,7 +19,6 @@ Sunny---------------------      Lowpass filter all UP (all the highs) and a soun
 Cloudy————————————--------      Lowpass Filter DOWN (less highs)
 Temperature-Hot(celcius)——      bpm UP
 Temperature-Cold(celsius)—      bpm DOWN
-
 Rain or Snow probability(%)     Delay and a sound set in minor key if > 75%
 Humidity level (%)—————---      Envelope filter level (auto-wah)
 Wind Speed km/h—————------      White noise level or Flanger level
