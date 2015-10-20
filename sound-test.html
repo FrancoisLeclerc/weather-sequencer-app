@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +17,14 @@
 <body>
     
     <script type="text/javascript">
-		var synth = new Tone.SimpleSynth().toMaster();
-		synth.triggerAttackRelease("C4", "8n");
+
+var synth = new Tone.PolySynth(6, Tone.MonoSynth).toMaster();
+//set the attributes using the set interface
+synth.set("detune", -1200);
+//play a chord
+synth.triggerAttackRelease(["C4", "E4", "A4"], "4n");
+//this sounds good on bass notes
+fm.triggerAttackRelease("A1", "8n");
 	</script>
 	
 	
