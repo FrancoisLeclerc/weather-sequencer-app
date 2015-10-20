@@ -1,3 +1,6 @@
+# Weather Sequencer
+
+## The Idea
 -Fetching weather data using forecast.io and assign them in real-time to levels of different audio effects.
 
 -The audio effects are connected to the output of a 16 step-sequencer with predetermined
@@ -30,3 +33,15 @@ Thunder Alert———————------      Distortion level
 
 The output of the effect chain could be connected to some sound visualisation tools from p5.js
 to animate the page in real-time
+
+
+## Installation
+
+1. Clone the repo
+2. run npm install
+3. run bower install
+
+
+## Weather into FX
+
+List of weather datas matched with FX
