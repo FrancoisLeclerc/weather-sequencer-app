@@ -1,10 +1,12 @@
 //load fx
-var FXwind = require("./fx/wind");
+var wind = require("./fx/wind");
+var rain = require("./fx/rain");
 
-function applyFX(soundSource){
+function applyFX(soundSource, weather){
     
     var soundSourceFX = soundSource
-    .connect(FXwind())
+    .connect(wind())
+    .connect(rain(weather))
     .toMaster();
     
     return soundSourceFX;
