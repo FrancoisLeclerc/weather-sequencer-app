@@ -29,7 +29,7 @@ function rain(weather){
         }
     }
 
-    feedback = precipProbability;
+    if (precipProbability) feedback = precipProbability;
     
     var pingPong = new Tone.PingPongDelay(delayTime, feedback).toMaster();
     return pingPong;
