@@ -2,8 +2,8 @@
 var $info = $(".info");
 
 function initialize() {
-    $info.before('<input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>');
-    $("#searchTextField").animate({width: "250px"}, {queue: false,duration: 1000 });
+    // $info.append('<input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>');
+    $("#searchTextField").animate({width: "80%"}, {queue: false,duration: 1000 });
     
     var input = document.getElementById('searchTextField');
     var options = { types: ["(cities)"] };
@@ -26,7 +26,7 @@ function initialize() {
         $info.append("<p>Error: Your browser doesn't support geolocation.</p>");
     }
     
-    $(".main").on("click",".btn-search", function(){
+    $(".input").on("click",".btn-search", function(){
         var value = $("#searchTextField").val();
         getPosition(value);
     });
@@ -51,7 +51,7 @@ function getPosition(data){
         datatype: "jsonp",
         success: function(city){
             if(city.status === "OK" && ( typeof data === "object" || data.toLowerCase() === city.results[x].formatted_address.toLowerCase() || data.toLowerCase() === city.results[x].address_components[0].long_name.toLowerCase())) {
-                $info.text("");
+                $(".data").text("");
                 var position = city.results[0].geometry.location;
                 var currentCity = city.results[x].address_components[0].long_name;
                 var randNum = Math.floor(Math.random() * 5) + 1;
@@ -67,7 +67,8 @@ function getPosition(data){
                 var dayToday = new Date;
                 var dateFormat = dayToday.customFormat("#DDDD# #MMMM# the #DD##th#, #YYYY# #h#:#mm##AMPM#");
                 
-                $info.append("<h2>"+randMessage+"</h2>").append("<h3>"+dateFormat+"</h3>");
+                $(".data").append("<h2>"+city.results[x].formatted_address+"</h2>");
+                // .append("<h3>"+dateFormat+"</h3>");
                 getWeather(position);
                 
             } else {
@@ -87,7 +88,7 @@ function getWeather(pos){
             var temperature = forecastInfo.currently.temperature;
             var tempF = Math.round(temperature)+"°F";
             var tempC = Math.round((temperature-32)*(5/9))+"°C";
-            $info.append("<h3>"+tempF+" / "+tempC+"</h3>").append("<h4>"+forecastInfo.currently.summary+"</h4>");
+            // $(".data").append("<h3>"+tempF+" / "+tempC+"</h3>").append("<h4>"+forecastInfo.currently.summary+"</h4>");
         }
     });
 }
