@@ -6,6 +6,7 @@
     <title>Weather Sequencer App</title>
     <!--<link rel="stylesheet" href="css/app.css" />-->
     <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="nexus/nexusUI.js"></script>
   </head>
   <body>
     <div class="main">
@@ -61,9 +62,24 @@
               $info.append("<p>Error: Your browser doesn't support geolocation.</p>");
           }
           $search.append("<input class='search-input' placeholder='Search for a different city' /><button>Go</button>");
-          $(".sequencer").append("<p>THE SEQUENCER GOES HERE</p>");
+          $(".sequencer").append("<canvas nx='matrix'></canvas>");
       }
+    
+    
     </script>
+    
+    <script type="text/javascript">
+		nx.onload = function(){
+			nx.colorize("#0cf4c7");
+			
+			matrix1.col = 16;
+			matrix1.init();
+			matrix1.resize($("#Content").width(), 250);
+			matrix1.draw();
+		}
+    </script>
+    
+    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&signed_in=true&callback=initMap"
