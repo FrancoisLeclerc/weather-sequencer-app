@@ -1,13 +1,16 @@
 //load fx
-var FXwind = require("./fx/wind");
+var wind = require("./fx/wind");
+var rain = require("./fx/rain");
+var humidity = require("./fx/humidity");
 
-function applyFX(soundSource){
+function connectFX(instrument, weather){
     
-    var soundSourceFX = soundSource
-    .connect(FXwind())
-    .toMaster();
+    var intrumentWithFX = instrument
+    .connect(wind())
+    .connect(rain(weather))
+    .connect(humidity(weather))
     
-    return soundSourceFX;
+    return intrumentWithFX;
 }
 
-module.exports = applyFX;
+module.exports = connectFX;

@@ -1,8 +1,8 @@
 var Tone = require("tone");
 
 function instrument() {
-    //setup a polyphonic sampler
-    var keys = new Tone.PolySynth(4, Tone.Sampler, {
+    
+    var instru = new Tone.PolySynth(4, Tone.Sampler, {
     	"A" : "./Audio/casio/A1.mp3",
     	"C#" : "./Audio/casio/Cs2.mp3",
     	"E" : "./Audio/casio/E2.mp3",
@@ -12,10 +12,8 @@ function instrument() {
     		"release" : 0.2
     	}
     })
-    
-    keys.volume.value = 0;
-    return keys;
 
+    return instru;
 }
 
 module.exports = instrument;

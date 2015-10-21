@@ -1,8 +1,7 @@
 var Tone = require("tone");
 
 
-function sequencerOutput(instrument){
-
+function sequencer(instrument){
 
 //keep track of steps and notes
 var stepNumber = 0;
@@ -11,11 +10,10 @@ var noteNames = ["A", "C#", "E", "F#"];
 
 //the repeated callback
 Tone.Transport.setInterval(function(time){
-	//get the notes at the step
+	// get the notes at the step
 	var column = matrix1.matrix[stepNumber];
 	for (var i = 0; i < 4; i++){
 		if (column[i] === 1){
-			instrument.triggerAttackRelease(noteNames[i], "32n", time);
 		}
 	}
 	stepNumber++;
@@ -30,4 +28,4 @@ Tone.Transport.start();
 
 }
 
-module.exports = sequencerOutput;
+module.exports = sequencer;
