@@ -14,6 +14,7 @@ Tone.Transport.setInterval(function(time){
 	var column = matrix1.matrix[stepNumber];
 	for (var i = 0; i < 4; i++){
 		if (column[i] === 1){
+			instrument.triggerAttackRelease(noteNames[i], "32n", time);
 		}
 	}
 	stepNumber++;
