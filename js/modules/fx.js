@@ -3,15 +3,14 @@ var wind = require("./fx/wind");
 var rain = require("./fx/rain");
 var humidity = require("./fx/humidity");
 
-function applyFX(soundSource, weather){
+function connectFX(instrument, weather){
     
-    var soundSourceFX = soundSource
+    var intrumentWithFX = instrument
     .connect(wind())
     .connect(rain(weather))
     .connect(humidity(weather))
-    .toMaster();
     
-    return soundSourceFX;
+    return intrumentWithFX;
 }
 
-module.exports = applyFX;
+module.exports = connectFX;
