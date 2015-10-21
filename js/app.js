@@ -1,5 +1,7 @@
 $(document).foundation();
 
+window.initialize = require("./modules/initialize");
+
 var Tone = require("tone");
 var connectFX = require("./modules/fx");
 var sequencer = require("./modules/sequencer");
@@ -38,4 +40,3 @@ sequencer(instru);
 
 // then we connect the instrument + effect to the master Output
 intrumentWithFX.toMaster();
-

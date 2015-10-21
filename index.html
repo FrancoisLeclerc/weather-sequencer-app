@@ -4,87 +4,54 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Sequencer App</title>
-    <!--<link rel="stylesheet" href="css/app.css" />-->
+    <link rel="stylesheet" href="css/app.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="nexus/nexusUI.js"></script>
   </head>
   <body>
-    <div class="main">
-        <div class="info"></div>
-        <div class="search"></div>
-        <div class="sequencer"></div>
-    </div>
-    <script>
-      function initMap() {
-          var $info = $(".info");
-          var $search = $(".search");
-          if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position){
-                  
-                  var pos = {
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude
-                  };
-                  
-                  $.ajax({
-                      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+pos.lat+","+pos.lng+"&key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE",
-                      datatype: "jsonp",
-                      success: function(city){
-                          var currentCity = city.results[4].address_components[0].long_name;
-                          var randNum = Math.floor(Math.random() * 5) + 1;
-                          var randMessage;
-                          
-                          switch(randNum){
-                              case 1: randMessage = "Oh, beautiful "+currentCity+"!"; break;
-                              case 2: randMessage = currentCity+", what a nice city!"; break;
-                              case 3: randMessage = "We have a visitor from "+currentCity+"!"; break;
-                              case 4: randMessage = "You, from "+currentCity+", have fun!"; break;
-                              case 5: randMessage = currentCity+", eh? Enjoy!"; break;
-                          }
-                          $info.append("<h2>"+randMessage+"</h2>");
-                      }
-                  });
-                  
-                  $.ajax({
-                        url: "https://api.forecast.io/forecast/9cefef474c591d3e1ae766e338942cd9/"+pos.lat+","+pos.lng,
-                        dataType: "jsonp",
-                        success: function (forecastInfo) {
-                            var temperature = forecastInfo.currently.temperature;
-                            var tempF = Math.round(temperature)+"°F";
-                            var tempC = Math.round((temperature-32)*(5/9))+"°C";
-                            $info.append("<h3>"+tempF+" / "+tempC+"</h3>").append("<h4>"+forecastInfo.currently.summary+"</h4>");
-                      }
-                  });
-              }, function(){
-                  $info.append("<p>Error: The geolocation service failed.</p>");
-              });
-          } else {
-              $info.append("<p>Error: Your browser doesn't support geolocation.</p>");
-          }
-          $search.append("<input class='search-input' placeholder='Search for a different city' /><button>Go</button>");
-          $(".sequencer").append("<canvas nx='matrix'></canvas>");
-      }
-    
-    
-    </script>
+
+    <main class="main-container">
+      <header class="info content">
+        <div class="title">
+          <h1>Weather Sequencer App</h1>
+          <p>Create a nice sequence that represents yourself, influenced by the weather of your location for the current day.</p>
+        </div>
+        <div class="input">
+          <input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>
+        </div>
+      </header>
+      <section class="settings content">
+        <div class="data"></div>
+        <div class="console">
+          <div class="effect"><p>Button 1</p><div class="btn-1 btn"></div></div>
+          <div class="effect"><p>Button 2</p><div class="btn-2 btn"></div></div>
+          <div class="effect"><p>Button 3</p><div class="btn-3 btn"></div></div>
+          <div class="effect"><p>Button 4</p><div class="btn-4 btn"></div></div>
+          <div class="effect"><p>Button 5</p><div class="btn-5 btn"></div></div>
+          <div class="effect"><p>Button 6</p><div class="btn-6 btn"></div></div>
+          <div class="effect"><p>Button 7</p><div class="btn-7 btn"></div></div>
+        </div>
+      </section>
+      <section class="sequencer content">
+        <h1>Sequencer</h1>
+        <canvas nx='matrix'></canvas>
+      </section> 
+    </main>
     
     <script type="text/javascript">
-		nx.onload = function(){
-			nx.colorize("#0cf4c7");
-			
-			matrix1.col = 16;
-			matrix1.init();
-			matrix1.resize($("#Content").width(), 250);
-			matrix1.draw();
-		}
+    	nx.onload = function(){
+    		nx.colorize("#0cf4c7");
+    		
+    		matrix1.col = 16;
+    		matrix1.init();
+    		matrix1.resize($("#Content").width(), 250);
+    		matrix1.draw();
+    	}
     </script>
-    
     
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&signed_in=true&callback=initMap"
-        async defer>
-    </script>
     <script src="js/app-bundle.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&signed_in=true&callback=initialize&v=3.exp&sensor=false&libraries=places" async defer></script>
   </body>
 </html>

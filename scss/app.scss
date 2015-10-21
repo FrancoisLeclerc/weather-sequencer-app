@@ -1,5 +1,5 @@
-@import "settings";
-@import "foundation";
+// @import "settings";
+// @import "foundation";
 
 // Or selectively include components
 // @import
@@ -38,3 +38,101 @@
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+
+body, html {
+    
+    margin:0;
+    padding:0;
+    height:100%;
+
+    .main-container {
+        display:flex;
+        min-height:100vh;
+        flex-direction:column;
+        
+        .content {
+            width:100vw;
+        }
+        .info {
+            
+            height:15vh;
+            order:0;
+            display:flex;
+            flex-direction:row;
+            
+            .title {
+                padding:0.5em 0 0.25em 1em;
+                width:75vw;
+                h1{
+                    margin:-5px 0 0 0;
+                }
+                p {
+                    text-align:justify;
+                    margin:auto;
+                }
+            }
+            .input {
+                text-align:right;
+                padding:10px 1em 0 0;
+                width:25vw;
+                
+            }
+            
+        }
+        .settings {
+            height:30vh;
+            order:1;
+            display:flex;
+            flex-direction:column;
+            align-items: center;
+            .data {
+                width:30vw;
+                height:25%;
+                text-align:center;
+                h2 {
+                    margin:0.5em;
+                }
+            }
+            .console {
+                display:flex;
+                width:100vw;
+                height:75%;
+                .effect {
+                    height:100%;
+                    margin:auto;
+                    .btn {
+                        // margin:auto;
+                        margin-top:0.25em;
+                        height:100px;
+                        width:100px;
+                        border-radius:50%;
+                        background-color:red;
+                        // border:5px dotted goldenrod;
+                    }
+                    p {
+                        margin:0;
+                        padding:0.25em;
+                        text-align:center;
+                    }
+                }
+            }
+        }
+        .sequencer {
+            height:55vh;
+            order:2;
+            h1 {
+                font-size:7em;
+                margin:0.9em 0 0 0;
+                padding:0;
+                text-align:center;
+            }
+        }
+    
+        .pac-icon {
+            display:none;
+        }
+        #searchTextField {
+            width:0px;
+        }
+    }
+}
