@@ -1,13 +1,5 @@
 var getPosition = require("./position-data");
 
-var widthInput = $(".input").width() - $(".btn-search").width() - 21;
-
-$("#searchTextField").animate({width: widthInput+"px"}, {queue: false,duration: 1000 });
-
-$(window).on("resize",function(){
-   $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 21+"px");
-});
-
 nx.onload = function() {
     var dialResponsivity = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
     for(var i = 0 ; i < 7 ; i++){ dialResponsivity[i].responsivity = 0; }
@@ -19,6 +11,19 @@ function initialize() {
     var input = document.getElementById('searchTextField');
     var options = { types: ["(cities)"] };
     var autocomplete = new google.maps.places.Autocomplete(input,options);
+    
+    var widthInput = $(".input").width() - $(".btn-search").width() - 21;
+
+    $("#searchTextField").animate({width: widthInput+"px"}, {queue: false,duration: 1000 });
+    
+    $(window).on("resize",function(){
+       $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 21+"px");
+    });
+    
+    $(".input").on("click", ".switch", function(){
+        $(".switch").toggleClass("nodisplay");
+        $(".system").toggleClass("inline");
+    });
     
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
