@@ -1,16 +1,20 @@
 //load fx
-var wind = require("./fx/wind");
-var rain = require("./fx/rain");
-var humidity = require("./fx/humidity");
+var Tone = require("tone");
+
+// var windFX = require("./fx/wind");
+var rainFX = require("./fx/rain");
+var humidityFX = require("./fx/humidity");
+var visibilityFX = require("./fx/visibility");
+var cloudFX = require("./fx/cloud");
 
 function connectFX(instrument, weather){
-    
-    var intrumentWithFX = instrument
-    .connect(wind())
-    .connect(rain(weather))
-    .connect(humidity(weather))
-    
-    return intrumentWithFX;
+    return instrument.chain(
+    rainFX(weather),
+    humidityFX(weather),
+    visibilityFX(weather),
+    cloudFX(weather),
+    Tone.Master
+    );
 }
 
 module.exports = connectFX;
