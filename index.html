@@ -4,25 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Sequencer App</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
     <main class="main-container">
-      <header class="info content">
-        <div class="title">
-          <h1>Weather Sequencer App</h1>
+      <header>
+        <div class="main-title">
+          <h1>WEATHER SEQUENCER</h1>
           <p>Create a nice sequence that represents yourself, influenced by the weather of your location for the current day.</p>
         </div>
         <div class="input">
-          <div><input id="searchTextField" type="text" placeholder="Search for another city"><button id="test" class="btn-search">Go</button></div>
+          <div>
+            <input id="searchTextField" type="text" placeholder="Search for another city"><button id="test" class="btn-search">Go</button>
+          </div>
           <p class="switch system inline">Switch to metric system</p><p class="switch system nodisplay">Switch to imperial system</p>
         </div>
       </header>
-      <section class="settings content">
-        <div class="city"></div>
+      <section class="settings">
+        <!--<div class="city"></div>-->
         <div class="console">
-          <div class="effect"><div class="btn-onoff"><canvas nx="toggle"></canvas></div></div>
           <div class="effect"><p>Temperature</p><p class="data1 switch"></p><p class="data1m switch nodisplay"></p><div class="btn-1 btn"><canvas nx="dial"></canvas></div><p>BPM</p></div>
           <div class="effect"><p>Precipitation</p><p class="data2 switch"></p><p class="data2m switch nodisplay"></p><div class="btn-2 btn"><canvas nx="dial"></canvas></div><p>Delay</p></div>
           <div class="effect"><p>Humidity</p><p class="data3"></p><div class="btn-3 btn"><canvas nx="dial"></canvas></div><p>Auto Filter</p></div>
@@ -32,9 +36,11 @@
           <div class="effect"><p>Pressure</p><p class="data7"></p><div class="btn-7 btn"><canvas nx="dial"></canvas></div><p>Compressor</p></div>
         </div>
       </section>
-      <section class="sequencer content">
-        <h1>Sequencer</h1>
-      </section> 
+      <section class="sequencer">
+      </section>
+      <footer>
+        <canvas nx="toggle"></canvas>
+      </footer>
     </main>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="./node_modules/nexusui/dist/nexusUI.js"></script>

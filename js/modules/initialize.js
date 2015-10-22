@@ -11,8 +11,8 @@ $(window).on("resize",function(){
 nx.onload = function() {
     var dialResponsivity = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
     for(var i = 0 ; i < 7 ; i++){ dialResponsivity[i].responsivity = 0; }
-    nx.colorize("#6666ff");
-    nx.colorize("fill", "#ddd");
+    nx.colorize("#0affea");
+    nx.colorize("fill", "#424242");
 };
 
 function initialize() {
