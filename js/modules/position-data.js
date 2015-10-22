@@ -11,23 +11,22 @@ function getPosition(data){
         datatype: "jsonp",
         success: function(city){
             if(city.status === "OK" && ( typeof data === "object" || data.toLowerCase() === city.results[x].formatted_address.toLowerCase() || data.toLowerCase() === city.results[x].address_components[0].long_name.toLowerCase())) {
-                $(".data").text("");
                 var position = city.results[0].geometry.location;
-                var currentCity = city.results[x].address_components[0].long_name;
-                var randNum = Math.floor(Math.random() * 5) + 1;
-                var randMessage;
+                // var currentCity = city.results[x].address_components[0].long_name;
+                // var randNum = Math.floor(Math.random() * 5) + 1;
+                // var randMessage;
                 
-                switch(randNum){
-                    case 1: randMessage = "Aww, beautiful "+currentCity+"!"; break;
-                    case 2: randMessage = currentCity+", what a nice city!"; break;
-                    case 3: randMessage = "Do people actually live in "+currentCity+"?"; break;
-                    case 4: randMessage = currentCity+", eh? Enjoy!"; break;
-                    case 5: randMessage = currentCity+", I should travel there"; break;
-                }
+                // switch(randNum){
+                //     case 1: randMessage = "Aww, beautiful "+currentCity+"!"; break;
+                //     case 2: randMessage = currentCity+", what a nice city!"; break;
+                //     case 3: randMessage = "Do people actually live in "+currentCity+"?"; break;
+                //     case 4: randMessage = currentCity+", eh? Enjoy!"; break;
+                //     case 5: randMessage = currentCity+", I should travel there"; break;
+                // }
                 var dayToday = new Date;
                 var dateFormat = dayToday.customFormat("#DDDD# #MMMM# the #DD##th#, #YYYY# #h#:#mm##AMPM#");
                 
-                $(".data").append("<h2>"+city.results[x].formatted_address+"</h2>");
+                $(".city").text("").append("<h2>"+city.results[x].formatted_address+"</h2>");
                 // .append("<h3>"+dateFormat+"</h3>");
                 getWeather(position);
                 

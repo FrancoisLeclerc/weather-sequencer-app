@@ -15,19 +15,21 @@
           <p>Create a nice sequence that represents yourself, influenced by the weather of your location for the current day.</p>
         </div>
         <div class="input">
-          <input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>
+          <div><input id="searchTextField" type="text" placeholder="Search for another city"><button id="test" class="btn-search">Go</button></div>
+          <p class="switch system inline">Switch to metric system</p><p class="switch system nodisplay">Switch to imperial system</p>
         </div>
       </header>
       <section class="settings content">
-        <div class="data"></div>
+        <div class="city"></div>
         <div class="console">
-          <div class="effect"><p>Temperature</p><p>(BPM)</p><div class="btn-1 btn"><canvas nx="dial"></canvas></div></div>
-          <div class="effect"><p>Precipitation</p><p>(Delay)</p><div class="btn-2 btn"><canvas nx="dial"></canvas></div></div>
-          <div class="effect"><p>Humidity</p><p>(Autofilter)</p><div class="btn-3 btn"><canvas nx="dial"></canvas></div></div>
-          <div class="effect"><p>Wind Speed</p><p>(Phaser)</p><div class="btn-4 btn"><canvas nx="dial"></canvas></div></div>
-          <div class="effect"><p>Visibility</p><p>(Chorus)</p><div class="btn-5 btn"><canvas nx="dial"></canvas></div></div>
-          <div class="effect"><p>Cloud Cover</p><p>(Lowpass Filter)</p><div class="btn-6 btn"><canvas nx="dial"></canvas></div></div>
-          <div class="effect"><p>Pressure</p><p>(Compressor)</p><div class="btn-7 btn"><canvas nx="dial"></canvas></div></div>
+          <div class="effect"><div class="btn-onoff"><canvas nx="toggle"></canvas></div></div>
+          <div class="effect"><p>Temperature</p><p class="data1 switch"></p><p class="data1m switch nodisplay"></p><div class="btn-1 btn"><canvas nx="dial"></canvas></div><p>BPM</p></div>
+          <div class="effect"><p>Precipitation</p><p class="data2 switch"></p><p class="data2m switch nodisplay"></p><div class="btn-2 btn"><canvas nx="dial"></canvas></div><p>Delay</p></div>
+          <div class="effect"><p>Humidity</p><p class="data3"></p><div class="btn-3 btn"><canvas nx="dial"></canvas></div><p>Auto Filter</p></div>
+          <div class="effect"><p>Wind Speed</p><p class="data4 switch"></p><p class="data4m switch nodisplay"></p><div class="btn-4 btn"><canvas nx="dial"></canvas></div><p>Phaser</p></div>
+          <div class="effect"><p>Visibility</p><p class="data5 switch"></p><p class="data5m switch nodisplay"></p><div class="btn-5 btn"><canvas nx="dial"></canvas></div><p>Chorus</p></div>
+          <div class="effect"><p>Cloud Cover</p><p class="data6"></p><div class="btn-6 btn"><canvas nx="dial"></canvas></div><p>Low Pass Filter</p></div>
+          <div class="effect"><p>Pressure</p><p class="data7"></p><div class="btn-7 btn"><canvas nx="dial"></canvas></div><p>Compressor</p></div>
         </div>
       </section>
       <section class="sequencer content">
