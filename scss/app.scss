@@ -86,7 +86,7 @@ body, html {
             flex-direction:column;
             align-items: center;
             .data {
-                width:30vw;
+                width:100vw;
                 height:25%;
                 text-align:center;
                 h2 {
@@ -105,9 +105,10 @@ body, html {
                         margin-top:0.25em;
                         height:100px;
                         width:100px;
-                        border-radius:50%;
-                        background-color:red;
-                        // border:5px dotted goldenrod;
+                        canvas {
+                            height:100%;
+                            width:100%;
+                        }
                     }
                     p {
                         margin:0;

@@ -6,6 +6,34 @@
     <title>Weather Sequencer App</title>
     <link rel="stylesheet" href="css/app.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="./node_modules/nexusui/dist/nexusUI.js"></script>
+    <script>
+    
+    
+    
+  	nx.onload = function() {
+  		
+  	 // nx.colorize("#00CCFF"); // sets accent (default)
+  	 // nx.colorize("border", "#222222");
+  	 // nx.colorize("fill", "#222222");
+  		dial1.val.value = 0;
+  		dial1.init();
+  	 // dial1.colors.accent = "#FF00CC";
+  	 // dial1.draw();
+  	 //var value = 0.75;
+  	 //var x = 0;
+    //   var intDial1 = setInterval(function(){
+        
+    //     if(dial1.val.value >= value){
+    //       clearInterval(intDial1);
+    //     } else {
+    //       dial1.val.value = x;
+    //       dial1.init();
+    //       x += 0.0015;
+    //     }
+    //   }, 1);
+  	};
+  </script>
   </head>
   <body>
     <main class="main-container">
@@ -21,13 +49,13 @@
       <section class="settings content">
         <div class="data"></div>
         <div class="console">
-          <div class="effect"><p>Button 1</p><div class="btn-1 btn"></div></div>
-          <div class="effect"><p>Button 2</p><div class="btn-2 btn"></div></div>
-          <div class="effect"><p>Button 3</p><div class="btn-3 btn"></div></div>
-          <div class="effect"><p>Button 4</p><div class="btn-4 btn"></div></div>
-          <div class="effect"><p>Button 5</p><div class="btn-5 btn"></div></div>
-          <div class="effect"><p>Button 6</p><div class="btn-6 btn"></div></div>
-          <div class="effect"><p>Button 7</p><div class="btn-7 btn"></div></div>
+          <div class="effect"><p>Humidity</p><div class="btn-1 btn"><canvas id="dial1" nx="dial" class="nx"></canvas></div></div>
+          <div class="effect"><p>Cloud Cover</p><div class="btn-2 btn"><canvas nx="dial"></canvas></div></div>
+          <div class="effect"><p>Precipitation Prob.</p><div class="btn-3 btn"><canvas nx="dial"></canvas></div></div>
+          <div class="effect"><p>Button 4</p><div class="btn-4 btn"><canvas nx="dial"></canvas></div></div>
+          <div class="effect"><p>Button 5</p><div class="btn-5 btn"><canvas nx="dial"></canvas></div></div>
+          <div class="effect"><p>Button 6</p><div class="btn-6 btn"><canvas nx="dial"></canvas></div></div>
+          <div class="effect"><p>Button 7</p><div class="btn-7 btn"><canvas nx="dial"></canvas></div></div>
         </div>
       </section>
       <section class="sequencer content">

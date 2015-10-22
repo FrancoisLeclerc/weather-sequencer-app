@@ -28,6 +28,9 @@ function initialize() {
     
     $(".input").on("click",".btn-search", function(){
         var value = $("#searchTextField").val();
+        dial1.val.value = 0;
+        dial2.val.value = 0;
+        dial3.val.value = 0;
         getPosition(value);
     });
     
