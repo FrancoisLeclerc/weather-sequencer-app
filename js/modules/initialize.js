@@ -31,6 +31,10 @@ function initialize() {
         dial1.val.value = 0;
         dial2.val.value = 0;
         dial3.val.value = 0;
+        dial4.val.value = 0;
+        dial5.val.value = 0;
+        dial6.val.value = 0;
+        dial7.val.value = 0;
         getPosition(value);
     });
     
