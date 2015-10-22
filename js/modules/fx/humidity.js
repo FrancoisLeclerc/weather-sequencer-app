@@ -3,11 +3,10 @@
 
 var Tone = require("tone");
 
-function humidity(weather){
+function humidityFx(weather){
     
     var humidity = weather.humidity;
-    console.log("humidity");
-    console.log(humidity);
+    console.log("humidity: "+humidity);
     var frequency = 0;
 
     if (humidity) {
@@ -27,9 +26,12 @@ function humidity(weather){
             frequency = "16n";
         }
     }
-
-    var autoFilter = new Tone.AutoFilter(frequency).toMaster().start();
+    
+    console.log("--autoFilter");
+    console.log("frequency: "+frequency);
+    
+    var autoFilter = new Tone.AutoFilter(frequency);
     return autoFilter;
 }
 
-module.exports = humidity;
+module.exports = humidityFx;
