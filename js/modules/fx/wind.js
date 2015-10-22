@@ -15,7 +15,7 @@ function windFx(weather){
     
     var noiseVol = -60;
     
-    if (wind > 5) noiseVol = -20;
+    if (wind > 10) noiseVol = -20;
     
     //initialize the noise and start
     var noise = new Tone.Noise("pink").start();
