@@ -38,101 +38,146 @@
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+@font-face {
+   font-family:Lombok;
+   src: url(../fonts/Lombok.otf)
+}
 
-body, html {
-    
+body, html { 
     margin:0;
     padding:0;
-    height:100%;
-
+    height:100vh;
+    width:100vw;
+    background-color:black;
     .main-container {
         display:flex;
         min-height:100vh;
         flex-direction:column;
-        
-        .content {
-            width:100vw;
-        }
-        .info {
-            
-            height:15vh;
+        header {
+            height:10vh;
             order:0;
             display:flex;
             flex-direction:row;
-            
-            .title {
-                padding:0.5em 0 0.25em 1em;
+            .main-title {
+                padding:0.5em 0 0.25em 15px;
                 width:75vw;
                 h1{
-                    margin:-5px 0 0 0;
+                    margin:-5px 0 0.2em 0;
+                    font-family:'Lombok',sans-serif;
+                    color:#fff;
                 }
                 p {
                     text-align:justify;
                     margin:auto;
+                    font-family: 'Raleway',sans-serif;
+                    color:#e5e5e5;
                 }
             }
             .input {
                 text-align:right;
-                padding:10px 1em 0 0;
+                padding:10px 15px 0 0;
                 width:25vw;
-                
+                p {
+                    margin:0.2em 0 0 0;
+                    cursor:pointer;
+                    font-family:'Abel', sans-serif;
+                    color:#e5e5e5;
+                    font-size:0.85em;
+                    &:hover {
+                        opacity:0.5;
+                    }
+                }
+                .nodisplay {
+                    display:none;
+                }
+                .inline {
+                    display:inline-block
+                }
+                #searchTextField {
+                    width:0px;
+                }
             }
-            
         }
         .settings {
             height:30vh;
             order:1;
             display:flex;
             flex-direction:column;
-            align-items: center;
-            .data {
-                width:30vw;
-                height:25%;
-                text-align:center;
-                h2 {
-                    margin:0.5em;
-                }
-            }
+            // align-items: center;
+            // background-color:#ccc;
             .console {
                 display:flex;
-                width:100vw;
-                height:75%;
+                width:80vw;
+                // background-color:white;
+                margin:auto;
+                font-family:'Abel',sans-serif;
+                color:#e5e5e5;
                 .effect {
                     height:100%;
                     margin:auto;
                     .btn {
                         // margin:auto;
-                        margin-top:0.25em;
+                        margin:0.2em 0 0.2em 0;
                         height:100px;
                         width:100px;
-                        border-radius:50%;
-                        background-color:red;
-                        // border:5px dotted goldenrod;
+                        canvas {
+                            height:100%;
+                            width:100%;
+                            cursor:default;
+                        }
                     }
                     p {
                         margin:0;
-                        padding:0.25em;
+                        // padding:0.25em;
                         text-align:center;
+                    }
+                    .nodisplay {
+                        display:none;
                     }
                 }
             }
         }
         .sequencer {
-            height:55vh;
+            height:50vh;
             order:2;
             h1 {
                 font-size:7em;
-                margin:0.9em 0 0 0;
+                margin:0;
                 padding:0;
                 text-align:center;
             }
         }
-    
-        .pac-icon {
-            display:none;
-        }
-        #searchTextField {
-            width:0px;
+        footer {
+            height:10vh;
+            display:flex;
+            order:3;
+            width:100vw;
+            canvas {
+                width:100%;
+                margin:0.2em;
+            }
         }
     }
+    .pac-icon {
+        display:none;
+    }
 }
+
+// input[type=text] {
+// cursor:text;
+// border-radius:0;
+// moz-border-radius:0;
+// webkit-border-radius:0;
+// box-sizing:initial;
+// -moz-box-sizing:initial;
+// -webkit-box-sizing:initial;
+// &::-moz-selection {
+//     background: #ddd;
+// }
+// &::selection {
+//     background: #ddd;
+// }
+// &::-webkit-selection {
+//     background: #ddd;
+// }
+// }

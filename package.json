@@ -17,6 +17,7 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "jquery": "^2.1.4",
+    "nexusui": "^1.0.8",
     "tone": "^0.5.1"
   }
 }

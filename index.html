@@ -4,56 +4,51 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Sequencer App</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/app.css" />
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="nexus/nexusUI.js"></script>
+
   </head>
   <body>
 
     <main class="main-container">
-      <header class="info content">
-        <div class="title">
-          <h1>Weather Sequencer App</h1>
+      <header>
+        <div class="main-title">
+          <h1>WEATHER SEQUENCER</h1>
           <p>Create a nice sequence that represents yourself, influenced by the weather of your location for the current day.</p>
         </div>
         <div class="input">
-          <input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>
+          <div>
+            <input id="searchTextField" type="text" placeholder="Search for another city"><button id="test" class="btn-search">Go</button>
+          </div>
+          <p class="switch system inline">Switch to metric system</p><p class="switch system nodisplay">Switch to imperial system</p>
         </div>
       </header>
-      <section class="settings content">
-        <div class="data"></div>
+      <section class="settings">
         <div class="console">
-          <div class="effect"><p>Button 1</p><div class="btn-1 btn"></div></div>
-          <div class="effect"><p>Button 2</p><div class="btn-2 btn"></div></div>
-          <div class="effect"><p>Button 3</p><div class="btn-3 btn"></div></div>
-          <div class="effect"><p>Button 4</p><div class="btn-4 btn"></div></div>
-          <div class="effect"><p>Button 5</p><div class="btn-5 btn"></div></div>
-          <div class="effect"><p>Button 6</p><div class="btn-6 btn"></div></div>
-          <div class="effect"><p>Button 7</p><div class="btn-7 btn"></div></div>
+          <div class="effect"><p>Temperature</p><p class="data1 switch"></p><p class="data1m switch nodisplay"></p><div class="btn-1 btn"><canvas nx="dial"></canvas></div><p>BPM</p></div>
+          <div class="effect"><p>Precipitation</p><p class="data2 switch"></p><p class="data2m switch nodisplay"></p><div class="btn-2 btn"><canvas nx="dial"></canvas></div><p>Delay</p></div>
+          <div class="effect"><p>Humidity</p><p class="data3"></p><div class="btn-3 btn"><canvas nx="dial"></canvas></div><p>Auto Filter</p></div>
+          <div class="effect"><p>Wind Speed</p><p class="data4 switch"></p><p class="data4m switch nodisplay"></p><div class="btn-4 btn"><canvas nx="dial"></canvas></div><p>Phaser</p></div>
+          <div class="effect"><p>Visibility</p><p class="data5 switch"></p><p class="data5m switch nodisplay"></p><div class="btn-5 btn"><canvas nx="dial"></canvas></div><p>Chorus</p></div>
+          <div class="effect"><p>Cloud Cover</p><p class="data6"></p><div class="btn-6 btn"><canvas nx="dial"></canvas></div><p>Low Pass Filter</p></div>
+          <div class="effect"><p>Pressure</p><p class="data7"></p><div class="btn-7 btn"><canvas nx="dial"></canvas></div><p>Compressor</p></div>
         </div>
       </section>
-      <section class="sequencer content">
-        <h1>Sequencer</h1>
+      <section class="sequencer">
         <canvas nx='matrix'></canvas>
-      </section> 
+      </section>
+      <footer>
+        <canvas nx="toggle"></canvas>
+      </footer>
     </main>
     
-    <script type="text/javascript">
-    	nx.onload = function(){
-    		nx.colorize("#0cf4c7");
-    		
-    		matrix1.col = 16;
-    		matrix1.row = 8;
-    		matrix1.init();
-    		// matrix1.resize($("#Content").width(), 250);
-    		matrix1.resize(1250, 250);
-    		matrix1.draw();
-    	}
-    </script>
-    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="js/app-bundle.js"></script>
+    <script type="text/javascript" src="./library/nexusUI.js"></script>
+    <!--<script src="bower_components/foundation/js/foundation.min.js"></script>-->
+    <script src="./js/app-bundle.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&signed_in=true&callback=initialize&v=3.exp&sensor=false&libraries=places" async defer></script>
   </body>
 </html>

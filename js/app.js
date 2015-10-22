@@ -1,6 +1,6 @@
-$(document).foundation();
-
+// $(document).foundation();
 window.initialize = require("./modules/initialize");
+
 
 var Tone = require("tone");
 var connectFX = require("./modules/fx");
