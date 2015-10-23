@@ -40,3 +40,13 @@ sequencer(instru);
 
 // then we connect the instrument + effect to the master Output
 intrumentWithFX.toMaster();
+
+
+//REFACTORE
+
+//fetch location + weather
+
+//loal sequencer 
+
+//connect fx when weather fetched
+
