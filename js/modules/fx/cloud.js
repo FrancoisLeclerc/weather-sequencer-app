@@ -29,19 +29,16 @@ function cloudFx(weather){
             frequency = 5000;
         }
         else if (cloudCover < 0.5){
-            frequency = 4250;
+            frequency = 4100;
         }
         else if (cloudCover < 0.6){
-            frequency = 3500;
+            frequency = 3200;
         }
         else if (cloudCover < 0.7){
-            frequency = 2750;
+            frequency = 2300;
         }
         else if (cloudCover < 0.8){
-            frequency = 2000;
-        }
-        else if (cloudCover < 0.9){
-            frequency = 1250;
+            frequency = 1400;
         }
         else {
             frequency = 500;

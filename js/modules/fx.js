@@ -6,13 +6,16 @@ var rainFX = require("./fx/rain");
 var humidityFX = require("./fx/humidity");
 var visibilityFX = require("./fx/visibility");
 var cloudFX = require("./fx/cloud");
+var stormFX = require("./fx/storm");
+
 
 function connectFX(instrument, weather){
     return instrument.chain(
     rainFX(weather),
-    humidityFX(weather),
+    // humidityFX(weather),
     visibilityFX(weather),
     cloudFX(weather),
+    stormFX(weather),
     Tone.Master
     );
 }
