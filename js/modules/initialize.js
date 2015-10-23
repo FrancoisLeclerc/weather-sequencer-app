@@ -9,7 +9,7 @@ nx.onload = function() {
     matrix1.row = 8;
     matrix1.init();
     // matrix1.resize($("#Content").width(), 250);
-    matrix1.resize(1250, 250);
+    // matrix1.resize(1250, 250);
     matrix1.draw();
 };
 
