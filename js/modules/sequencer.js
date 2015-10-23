@@ -1,6 +1,5 @@
 var Tone = require("tone");
 
-
 function sequencer(instrument){
 
 //keep track of steps and notes
