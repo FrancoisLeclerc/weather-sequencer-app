@@ -24,12 +24,14 @@ $(window).on("keydown",function(e){
     if(e.keyCode === 32){
         if (!playButton.active){
             toggle1.val.value = 1;
+            toggle1.colors.fill = "#0affea";
             toggle1.draw();
             playButton.active = true;
             playButton.start();
         }
         else {
             toggle1.val.value = 0;
+            toggle1.colors.fill = "#424242";
             toggle1.draw();
             playButton.active = false;
             playButton.stop();

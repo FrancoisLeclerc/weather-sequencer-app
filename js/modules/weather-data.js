@@ -24,9 +24,9 @@ function getWeather(pos){
             //CLOUD COVER
             if(typeof data.cloudCover !== "number"){ $(".data6").text("n/a"); }
             else { $(".data6").text(Math.round(data.cloudCover*100)+"%"); }
-            //PRESSURE
-            if(typeof data.pressure !== "number"){ $(".data7").text("n/a"); }
-            else { $(".data7").text(Math.round(data.pressure)+" mb"); }
+            //NEAREST STROM
+            if(typeof data.nearestStormDistance !== "number"){ $(".data7").text("n/a"); $(".data7m").text("n/a"); }
+            else { $(".data7").text(Math.round(data.nearestStormDistance)+" mi"); $(".data7m").text(Math.round(data.nearestStormDistance*1.609344)+" km"); }
             getDial(data);
         }
     });

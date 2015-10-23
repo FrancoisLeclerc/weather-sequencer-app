@@ -49,10 +49,9 @@ function getDial(data){
       if(dial6.val.value >= val6){ clearInterval(intDial6); }
       else { dial6.val.value += speed[5]; dial6.init(); }
   }, 20);
-  //PRESSURE
-  var val7 = (data.pressure-980)/66;
-  if(data.pressure < 980 || typeof data.pressure !== "number"){ val7 = 0; dial7.val.value = 0; dial7.init(); }
-  else if(data.pressure > 1046){ val7 = 1; }
+  //NEAREST STORM 0 600
+  var val7 = 1-(data.nearestStormDistance/600);
+  if(data.nearestStormDistance > 600 || typeof data.nearestStormDistance !== "number"){ val7 = 0; dial7.val.value = 0; dial7.init(); }
   var intDial7 = setInterval(function(){
       if(dial7.val.value >= val7){ clearInterval(intDial7); }
       else { dial7.val.value +=speed[6]; dial7.init(); }

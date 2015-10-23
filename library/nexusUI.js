@@ -927,7 +927,7 @@ widget.prototype.setFont = function() {
         textAlign = "center";
         textBaseline = "middle";
         font = this.fontWeight+" 2em 'Abel'";
-        fillStyle = this.colors.black;
+        fillStyle = "#0affea";
         globalAlpha = 0.7;
   }
 }
@@ -6437,14 +6437,14 @@ toggle.prototype.draw = function() {
 
 	with (this.context) {
 		if (this.val.value) {
-			fillStyle = this.colors.accent;
+			fillStyle = this.colors.fill;
 		} else {
 			fillStyle = this.colors.fill;
 		}
 		fillRect(0,0,this.width,this.height);
 		if (this.val.value) {
 			this.setFont();
-			fillStyle = this.colors.white
+			fillStyle = "#424242";
 			globalAlpha = 1;
 			fillText("STOP", this.width/2, this.height/2);	
 		} else { //MODIFIED BY KARL
