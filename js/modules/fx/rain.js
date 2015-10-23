@@ -28,13 +28,15 @@ function rainFx(weather){
         }
     }
 
-    if (precipProbability) feedback = precipProbability;
+    // if (precipProbability) feedback = precipProbability;
     
     console.log("--pingPong");
     console.log("delayTime: "+delayTime);
     console.log("feedback: "+feedback);
     
     var pingPong = new Tone.PingPongDelay(delayTime, feedback);
+    pingPong.wet.value = 0.35;
+    if (precipIntensity === 0) pingPong.wet.value=0;
     return pingPong;
 }
 
