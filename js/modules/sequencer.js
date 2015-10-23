@@ -24,7 +24,7 @@ Tone.Transport.setInterval(function(time){
 //transport settings
 Tone.Transport.loopEnd = "1m";
 Tone.Transport.loop = true;
-Tone.Transport.start();
+// Tone.Transport.start();
 
 }
 
