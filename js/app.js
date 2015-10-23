@@ -6,6 +6,8 @@ var Tone = require("tone");
 var connectFX = require("./modules/fx");
 var sequencer = require("./modules/sequencer");
 var instrument = require("./modules/instrument");
+require('./modules/interface');
+
 
 //weather test example
 var weather = {
@@ -42,6 +44,9 @@ sequencer(instru);
 intrumentWithFX.toMaster();
 
 
+
+
+
 //REFACTORE
 
 //fetch location + weather
@@ -49,4 +54,3 @@ intrumentWithFX.toMaster();
 //loal sequencer 
 
 //connect fx when weather fetched
-
