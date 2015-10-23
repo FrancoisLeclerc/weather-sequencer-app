@@ -18,6 +18,7 @@ function initialize() {
     
     $(window).on("resize",function(){
        $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 21+"px");
+       $('#toggle1').css("width",$("body").width()-20+"px");
     });
     
     $(".input").on("click", ".switch", function(){
