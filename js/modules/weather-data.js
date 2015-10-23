@@ -44,16 +44,16 @@ function getWeather(pos){
 //     "icon":"partly-cloudy-day",
 //     "nearestStormDistance":55,
 //     "nearestStormBearing":186,
-//     "precipIntensity":0.05,
-//     "precipProbability":0.5,
+//     "precipIntensity":0.09,
+//     "precipProbability":0,
 //     "temperature":55.25,
 //     "apparentTemperature":55.25,
 //     "dewPoint":45.73,
-//     "humidity":0.7,
+//     "humidity":0.6,
 //     "windSpeed":10.74,
 //     "windBearing":242,
-//     "visibility":10,
-//     "cloudCover":0.6,
+//     "visibility":0.5,
+//     "cloudCover":0.5,
 //     "pressure":1013.74,
 //     "ozone":284.23
 // };      
@@ -70,7 +70,7 @@ function getWeather(pos){
             sequencer(instru);
             
             // then we connect the instrument + effect to the master Output
-            intrumentWithFX.toMaster();
+            // intrumentWithFX.toMaster();
 
 
         }
