@@ -30,8 +30,8 @@ function getDial(data){
   }, 1);
   
   var x4 = 0;
-  var val4 = data.windSpeed/100;
-  if(data.windSpeed > 100){ val4 = 1; }
+  var val4 = data.windSpeed/40;
+  if(data.windSpeed > 40){ val4 = 1; }
   var intDial4 = setInterval(function(){
       if(dial4.val.value >= val4){ clearInterval(intDial4); }
       else { dial4.val.value = x4; dial4.init(); x4 += speed[3]; }
