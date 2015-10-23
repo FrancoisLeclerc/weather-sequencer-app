@@ -368,7 +368,7 @@ manager.prototype.addStylesheet = function() {
     + '-webkit-box-sizing:border-box;'
     + '}'
     + ''
-    + 'input[type=text] { '
+    // + 'input[type=text] { '
     // + 'cursor:pointer;'
     // + 'border-radius:5px;'
     // + 'moz-border-radius:5px;'
@@ -376,7 +376,7 @@ manager.prototype.addStylesheet = function() {
     // + 'box-sizing:border-box;'
     // + '-moz-box-sizing:border-box;'
     // + '-webkit-box-sizing:border-box;'
-    + '}'
+    // + '}'
     + '</style>';
 
   document.head.innerHTML = document.head.innerHTML + htmlstr

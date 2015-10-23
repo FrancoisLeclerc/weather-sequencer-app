@@ -8,9 +8,7 @@ nx.onload = function() {
     matrix1.col = 16;
     matrix1.row = 8;
     matrix1.init();
-    // matrix1.resize($("#Content").width(), 250);
-    // matrix1.resize(1250, 250);
-    matrix1.draw();
+    // matrix1.draw();
 };
 
 function initialize() {
@@ -18,14 +16,14 @@ function initialize() {
     var options = { types: ["(cities)"] };
     var autocomplete = new google.maps.places.Autocomplete(input,options);
     
-    var widthInput = $(".input").width() - $(".btn-search").width() - 21;
+    var widthInput = $(".input").width() - $(".btn-search").width() - 20;
 
     $("#searchTextField").animate({width: widthInput+"px"}, {queue: false,duration: 1000 });
     
     $(window).on("resize",function(){
        $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 21+"px");
-       $('#toggle1').css("width",$("body").width()-16+"px");
-       $('#matrix1').css("width",$("body").width()-16+"px");
+       $('#toggle1').css("width",$("body").width()-10+"px").css("height",$("footer").height()+"px");
+       $('#matrix1').css("width",$("body").width()-10+"px").css("height",$(".sequencer").height()+"px");
     });
     
     $(".input").on("click", ".switch", function(){
