@@ -1,11 +1,20 @@
 var getDial = require("./dial-data");
 
+var connectFX = require("./fx");
+var sequencer = require("./sequencer");
+var instrument = require("./instrument");
+
+
 function getWeather(pos){
     $.ajax({
         url: "https://api.forecast.io/forecast/9cefef474c591d3e1ae766e338942cd9/"+pos.lat+","+pos.lng,
         dataType: "jsonp",
         success: function (forecastInfo) {
+            
             var data = forecastInfo.currently;
+            console.log(data);
+            
+            
             // TEMPERATURE
             if(typeof data.temperature !== "number"){ $(".data1").text("n/a"); $(".data1m").text("n/a"); }
             else { $(".data1").text(Math.round(data.temperature)+"°F"); $(".data1m").text(Math.round((data.temperature-32)*(5/9))+"°C"); }
@@ -28,6 +37,42 @@ function getWeather(pos){
             if(typeof data.pressure !== "number"){ $(".data7").text("n/a"); }
             else { $(".data7").text(Math.round(data.pressure)+" mb"); }
             getDial(data);
+            
+// var weather = {
+//     "time":1445351823,
+//     "summary":"Mostly Cloudy",
+//     "icon":"partly-cloudy-day",
+//     "nearestStormDistance":55,
+//     "nearestStormBearing":186,
+//     "precipIntensity":0.05,
+//     "precipProbability":0.5,
+//     "temperature":55.25,
+//     "apparentTemperature":55.25,
+//     "dewPoint":45.73,
+//     "humidity":0.7,
+//     "windSpeed":10.74,
+//     "windBearing":242,
+//     "visibility":10,
+//     "cloudCover":0.6,
+//     "pressure":1013.74,
+//     "ozone":284.23
+// };      
+
+/// we load all the effects and sequencer once we get the weather
+
+            // first we create an instrument
+            var instru = instrument();
+            
+            // then we connect the instrument to the effects
+            var intrumentWithFX = connectFX(instru,data);
+            
+            // then we call the sequencer to trigger a signal 
+            sequencer(instru);
+            
+            // then we connect the instrument + effect to the master Output
+            intrumentWithFX.toMaster();
+
+
         }
     });
 }
