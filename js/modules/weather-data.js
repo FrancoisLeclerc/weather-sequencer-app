@@ -20,7 +20,7 @@ function getWeather(pos){
             else { $(".data1").text(Math.round(data.temperature)+"°F"); $(".data1m").text(Math.round((data.temperature-32)*(5/9))+"°C"); }
             //PRECIPITATION
             if(typeof data.precipIntensity !== "number"){ $(".data2").text("n/a"); $(".data2m").text("n/a"); }
-            else { $(".data2").text(data.precipIntensity+" in/h"); $(".data2m").text((data.precipIntensity*25.4)+" mm/h"); }
+            else { $(".data2").text(Math.round(data.precipIntensity*100)/100+" in/h"); $(".data2m").text(Math.round((data.precipIntensity*25.4))+" mm/h"); }
             //HUMIDITY
             if(typeof data.humidity !== "number"){ $(".data3").text("n/a"); }
             else { $(".data3").text(Math.round(data.humidity*100)+"%"); }
