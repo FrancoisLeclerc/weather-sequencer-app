@@ -16,12 +16,12 @@ function initialize() {
     var options = { types: ["(cities)"] };
     var autocomplete = new google.maps.places.Autocomplete(input,options);
     
-    var widthInput = $(".input").width() - $(".btn-search").width() - 20;
+    var widthInput = $(".input").width() - $(".btn-search").width() - 50;
 
     $("#searchTextField").animate({width: widthInput+"px"}, {queue: false,duration: 1000 });
     
     $(window).on("resize",function(){
-       $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 21+"px");
+       $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 50+"px");
        $('#toggle1').css("width",$("body").width()-10+"px").css("height",$("footer").height()+"px");
        $('#matrix1').css("width",$("body").width()-10+"px").css("height",$(".sequencer").height()+"px");
     });

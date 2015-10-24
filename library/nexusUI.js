@@ -6437,7 +6437,7 @@ toggle.prototype.draw = function() {
 
 	with (this.context) {
 		if (this.val.value) {
-			fillStyle = this.colors.fill;
+			fillStyle = this.colors.accent;
 		} else {
 			fillStyle = this.colors.fill;
 		}

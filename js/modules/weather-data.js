@@ -14,7 +14,6 @@ function getWeather(pos){
             var data = forecastInfo.currently;
             console.log(data);
             
-            
             // TEMPERATURE
             if(typeof data.temperature !== "number"){ $(".data1").text("n/a"); $(".data1m").text("n/a"); }
             else { $(".data1").text(Math.round(data.temperature)+"°F"); $(".data1m").text(Math.round((data.temperature-32)*(5/9))+"°C"); }
