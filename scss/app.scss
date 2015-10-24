@@ -43,6 +43,13 @@
    src: url(../fonts/Lombok.otf)
 }
 
+@-webkit-keyframes bounce {
+  0%       { bottom:1px; }
+  25%, 75% { bottom:3px; }
+  50%      { bottom:4px; }
+  100%     {bottom:0;}
+}
+
 html {
     font-size: 100%;
     -ms-text-size-adjust: 100%; 
@@ -60,66 +67,53 @@ html {
 
 body { 
     margin:0;
-    padding:0;
-    height:100vh;
-    width:auto;
     background-color:black;
-    #intro {
+    span {
+        color:#0affea;
+    }
+    header {
         display:flex;
-        height:100%;
+        height:100vh;
         color:white;
         flex-direction:column;
         .ws {
-            display:flex;
-            order:0;
-            height:60vh;
-            width:100%;
+            height:90vh;
+            padding:0 2em;
             h1 {
-                font-family:'Lombok',sans-serif;
                 font-size:11em;
-                text-align:center;
-                margin:auto;
-                padding-bottom:0.2em;
-                span {
-                    color:#0affea;
-                }
+                font-family:'Lombok', sans-serif;
+                text-align:left;
+                margin:0;
             }
-        }
-        .intro-text {
-            display:flex;
-            order:1;
-            width:100%;
-            height:35vh;
             p {
-                margin:0.5em;
-                text-align:center;
-                padding:0;
-                font-size:2em;
+                font-size:2.5em;
                 font-family:'Raleway', sans-serif;
+                text-align:justify;
+                margin:0.5em 0;
             }
         }
         .slider {
-            display:flex;
-            order:2;
-            text-align:center;
-            height:5vh;
-            width:100%;
+            height:10vh;
             padding:0.5em;
-            p {
-                 margin:auto;
+            img {
+                display: block;
+                margin:auto;
+                height:100%;
+                position:relative;
+                -webkit-animation:bounce 750ms infinite;
             }
         }
     }
     .main-container {
         display:flex;
-        height:100%;
+        height:100vh;
         flex-direction:column;
-        header, .settings, .sequencer, footer {
+        .main-head, .settings, .sequencer, footer {
             display:flex;
             width:auto;
             padding:5px;
         }
-        header {
+        .main-head {
             height:10vh;
             order:0;
             flex-direction:row;
@@ -135,10 +129,16 @@ body {
             .input {
                 width:25vw;
                 text-align:right;
-                p:hover {
-                        opacity:0.5;
-                        cursor:pointer;
-                }
+                p {
+                    color:#e5e5e5;
+                    font-family:'Raleway', sans-serif;
+                    font-size:0.8em;
+                    margin: 0.5em 0 0 0;
+                    &:hover {
+                            opacity:0.5;
+                            cursor:pointer;
+                    }
+                }    
                 .inline {
                     display:inline-block
                 }

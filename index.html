@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather Sequencer App</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/png" href="./image/favicon.png" />
   <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -14,21 +14,22 @@
 </head>
 
 <body>
-  <div id="intro">
+  <header>
     <div class="ws">
       <h1>WEATHER SE<span>Q</span>UENCER</h1>
-    </div>
-    <div class="intro-text">
-      <p>Create a nice sequence that represents yourself, influenced by the weather of your location for the current day.</p>
+    <!--</div>-->
+    <!--<div class="intro-text">-->
+    <!--  <h1>WEATHER SE<span>Q</span>UENCER</h1>-->
+      <p>Use the sequencer below to create a nice beat that represents yourself and let the current weather of your location influence it with multiple effects. You can also find out how every cities in the world sound right now!</p>
     </div>
     <div class="slider">
-      <p><a href="#main">CLICKY</a></p>
+      <a href="#main"><img src="./image/arrow.png" alt="Go to the sequencer!"></a>
     </div>
-  </div>
+  </header>
   <main class="main-container" id="main">
-    <header>
+    <div class="main-head">
       <div class="main-title">
-        <h1>WEATHER SEQUENCER</h1>
+        <h1>WEATHER SE<span>Q</span>UENCER</h1>
       </div>
       <div class="input">
         <div>
@@ -37,53 +38,53 @@
         <p class="switch system inline">Switch to metric system</p>
         <p class="switch system nodisplay">Switch to imperial system</p>
       </div>
-    </header>
+    </div>
     <section class="settings">
       <div class="console">
         <div class="effect">
           <p>Temperature</p>
-          <p class="data1 switch"></p>
-          <p class="data1m switch nodisplay"></p>
+          <p class="data1 switch">0°F</p>
+          <p class="data1m switch nodisplay">0°C</p>
           <canvas nx="dial"></canvas>
           <p>BPM</p>
         </div>
         <div class="effect">
           <p>Precipitation</p>
-          <p class="data2 switch"></p>
-          <p class="data2m switch nodisplay"></p>
+          <p class="data2 switch">0 in/h</p>
+          <p class="data2m switch nodisplay">0 mm/h</p>
           <canvas nx="dial"></canvas>
           <p>Delay</p>
         </div>
         <div class="effect">
           <p>Humidity</p>
-          <p class="data3"></p>
+          <p class="data3">0%</p>
           <canvas nx="dial"></canvas>
           <p>TO DECIDE</p>
         </div>
         <div class="effect">
           <p>Wind Speed</p>
-          <p class="data4 switch"></p>
-          <p class="data4m switch nodisplay"></p>
+          <p class="data4 switch">0 mph</p>
+          <p class="data4m switch nodisplay">0 km/h</p>
           <canvas nx="dial"></canvas>
           <p>Noise</p>
         </div>
         <div class="effect">
           <p>Visibility</p>
-          <p class="data5 switch"></p>
-          <p class="data5m switch nodisplay"></p>
+          <p class="data5 switch">0 mi</p>
+          <p class="data5m switch nodisplay">0 km</p>
           <canvas nx="dial"></canvas>
           <p>Chorus</p>
         </div>
         <div class="effect">
           <p>Cloud Cover</p>
-          <p class="data6"></p>
+          <p class="data6">0%</p>
           <canvas nx="dial"></canvas>
           <p>Low Pass Filter</p>
         </div>
         <div class="effect">
           <p>Nearest Storm</p>
-          <p class="data7 switch"></p>
-          <p class="data7m switch nodisplay"></p>
+          <p class="data7 switch">0 mi</p>
+          <p class="data7m switch nodisplay">0 km</p>
           <canvas nx="dial"></canvas>
           <p>Distorsion</p>
         </div>

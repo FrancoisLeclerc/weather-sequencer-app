@@ -1,5 +1,63 @@
 var Tone = require("tone");
+var getPosition = require("./position-data");
 
+//// NEXUS UI SET UP
+nx.onload = function() {
+    var dialResponsivity = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+    for(var i = 0 ; i < 7 ; i++){ dialResponsivity[i].responsivity = 0; }
+    nx.colorize("#0affea");
+    nx.colorize("fill", "#424242");
+    matrix1.col = 16;
+    matrix1.row = 8;
+    matrix1.init();
+};
+
+//// TOGGLE IMPERIAL-METRIC
+$(".input").on("click", ".switch", function(){
+    $(".switch").toggleClass("nodisplay");
+    $(".system").toggleClass("inline");
+});
+
+//// ON RESIZE
+$(window).on("resize",function(){
+   $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 50+"px");
+   $('#toggle1').css("width",$("body").width()-10+"px").css("height",$("footer").height()+"px");
+   $('#matrix1').css("width",$("body").width()-10+"px").css("height",$(".sequencer").height()+"px");
+});
+
+//// ACTION SEARCH INPUT
+$(".input").on("click",".btn-search", function(){
+    var valueInput = $("#searchTextField").val();
+    var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+    for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
+    getPosition(valueInput);
+});
+
+$('#searchTextField').on('keypress', function(e) {
+    var keyCode = e.keyCode;
+    if (keyCode === 13) {
+        var valueInput = $("#searchTextField").val();
+        var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+        for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
+        getPosition(valueInput);
+    }
+});
+
+//// SCROLL EFFECT
+$('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+        || location.hostname == this.hostname) {
+
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+           if (target.length) {
+             $('html,body').animate({
+                 scrollTop: target.offset().top
+            }, 1000);
+            return false;
+        }
+    }
+});
 
 //// PLAY BUTTON
 var playButton = $('#toggle1');
@@ -22,32 +80,23 @@ playButton.on('mousedown touchstart',function(e){
 
 $(window).on("keydown",function(e){
     if(e.keyCode === 32){
-        if (!playButton.active){
-            toggle1.val.value = 1;
-            toggle1.draw();
-            playButton.active = true;
-            playButton.start();
+        
+        if($(window).scrollTop() <= 580){
+            $(".arrow").trigger("click");
         }
         else {
-            toggle1.val.value = 0;
-            toggle1.draw();
-            playButton.active = false;
-            playButton.stop();
-        }
-    }
-});
-
-$('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
-        || location.hostname == this.hostname) {
-
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-           if (target.length) {
-             $('html,body').animate({
-                 scrollTop: target.offset().top
-            }, 1000);
-            return false;
+            if (!playButton.active){
+                toggle1.val.value = 1;
+                toggle1.draw();
+                playButton.active = true;
+                playButton.start();
+            }
+            else {
+                toggle1.val.value = 0;
+                toggle1.draw();
+                playButton.active = false;
+                playButton.stop();
+            }
         }
     }
 });

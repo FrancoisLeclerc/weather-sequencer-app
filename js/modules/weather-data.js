@@ -10,16 +10,13 @@ function getWeather(pos){
         url: "https://api.forecast.io/forecast/9cefef474c591d3e1ae766e338942cd9/"+pos.lat+","+pos.lng,
         dataType: "jsonp",
         success: function (forecastInfo) {
-            
             var data = forecastInfo.currently;
-            console.log(data);
-            
             // TEMPERATURE
             if(typeof data.temperature !== "number"){ $(".data1").text("n/a"); $(".data1m").text("n/a"); }
             else { $(".data1").text(Math.round(data.temperature)+"°F"); $(".data1m").text(Math.round((data.temperature-32)*(5/9))+"°C"); }
             //PRECIPITATION
             if(typeof data.precipIntensity !== "number"){ $(".data2").text("n/a"); $(".data2m").text("n/a"); }
-            else { $(".data2").text(Math.round(data.precipIntensity*100)/100+" in/h"); $(".data2m").text(Math.round((data.precipIntensity*25.4))+" mm/h"); }
+            else { $(".data2").text(Math.round(data.precipIntensity*1000)/1000+" in/h"); $(".data2m").text(Math.round((data.precipIntensity*25.4))+" mm/h"); }
             //HUMIDITY
             if(typeof data.humidity !== "number"){ $(".data3").text("n/a"); }
             else { $(".data3").text(Math.round(data.humidity*100)+"%"); }
