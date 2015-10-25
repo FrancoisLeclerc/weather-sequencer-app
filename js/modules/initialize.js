@@ -6,18 +6,20 @@ function initialize() {
     var autocomplete = new google.maps.places.Autocomplete(input,options);
     
     //// WHEN SCROLL IS AT END OF PAGE
-    $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() === $(document).height()) {
+    var scroll = true;
+    $(window).on("scroll load", function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && scroll) {
+            scroll = false;
             //// INPUT ANIMATION
-            var widthInput = $(".input").width() - $(".btn-search").width() - 50;
-            $("#searchTextField").animate({width: widthInput+"px"}, {queue: false,duration: 1000 });
+            // var widthInput = $(".input").width();
+            $("#searchTextField").animate({width: "100%"}, {queue: false,duration: 1000 });
             
             //// 2ND TITLE ANIMATION
             $( ".title h1" ).animate({opacity: 1},{queue: false, duration: 2000});
             
             //// TRACK NAMES ANIMATION
             for(var i = 0 ; i <= 8 ; i++){
-                var duration = Math.floor(Math.random() * 2001) + 500;
+                var duration = Math.floor(Math.random() * 1001) + 2000;
                 $( ".track-names p:nth-child("+i+")" ).animate({opacity: 1},{queue: false, duration: duration});
             }
             

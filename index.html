@@ -29,23 +29,26 @@
         <h1>WEATHER SE<span>Q</span>UENCER</h1>
       </div>
       <div class="input">
-        <input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>
-        <p>Switch to metric system</p>
+        <div>
+          <input id="searchTextField" type="text" placeholder="Search for another city">
+          <!--<button class="btn-search">Go</button>-->
+        </div>
+        <p class="system">Switch to imperial system</p><p> | </p><p class="send">Send to a friend</p>
       </div>
     </section>
     <section class="settings">
       <div class="console">
         <div class="effect">
           <p>Temperature</p>
-          <p class="data1 switch">0°F</p>
-          <p class="data1m switch nodisplay">0°C</p>
+          <p class="data1 switch nodisplay">0°F</p>
+          <p class="data1m switch">0°C</p>
           <canvas nx="dial"></canvas>
           <p>BPM</p>
         </div>
         <div class="effect">
           <p>Precipitation</p>
-          <p class="data2 switch">0 in/h</p>
-          <p class="data2m switch nodisplay">0 mm/h</p>
+          <p class="data2 switch nodisplay">0 in/h</p>
+          <p class="data2m switch">0 mm/h</p>
           <canvas nx="dial"></canvas>
           <p>Delay</p>
         </div>
@@ -57,15 +60,15 @@
         </div>
         <div class="effect">
           <p>Wind Speed</p>
-          <p class="data4 switch">0 mph</p>
-          <p class="data4m switch nodisplay">0 km/h</p>
+          <p class="data4 switch nodisplay">0 mph</p>
+          <p class="data4m switch">0 km/h</p>
           <canvas nx="dial"></canvas>
           <p>Noise</p>
         </div>
         <div class="effect">
           <p>Visibility</p>
-          <p class="data5 switch">0 mi</p>
-          <p class="data5m switch nodisplay">0 km</p>
+          <p class="data5 switch nodisplay">0 mi</p>
+          <p class="data5m switch">0 km</p>
           <canvas nx="dial"></canvas>
           <p>Chorus</p>
         </div>
@@ -77,8 +80,8 @@
         </div>
         <div class="effect">
           <p>Nearest Storm</p>
-          <p class="data7 switch">0 mi</p>
-          <p class="data7m switch nodisplay">0 km</p>
+          <p class="data7 switch nodisplay">0 mi</p>
+          <p class="data7m switch">0 km</p>
           <canvas nx="dial"></canvas>
           <p>Distorsion</p>
         </div>

@@ -13,34 +13,43 @@ nx.onload = function() {
 };
 
 //// TOGGLE IMPERIAL-METRIC
-$(".input").on("click", "p", function(){
+$(".input").on("click", ".system", function(){
     $(".switch").toggleClass("nodisplay");
-    ($(".input p").text() === "Switch to metric system")?$(".input p").text("Switch to imperial system"):$(".input p").text("Switch to metric system");
+    ($(".system").text() === "Switch to metric system")?$(".system").text("Switch to imperial system"):$(".system").text("Switch to metric system");
 });
 
 //// ON RESIZE
 $(window).on("resize",function(){
-    $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 50+"px");
+    $('#searchTextField').css("width","100%");
     $('#toggle1').css("width",$("body").width()-15+"px").css("height",$("footer").height()+"px");
     $('#matrix1').css("width",$("body").width()-$(".track-names").width()-40+"px").css("height",$(".sequencer").height()+"px");
 });
 
 //// ACTION SEARCH INPUT
-$(".input").on("click",".btn-search", function(){
-    var valueInput = $("#searchTextField").val();
-    var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
-    for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
-    getPosition(valueInput);
-});
+// $(".input").on("click",".btn-search", function(){
+//     var valueInput = $("#searchTextField").val();
+//     var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+//     for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
+//     getPosition(valueInput);
+// });
 
-$('#searchTextField').on('keypress', function(e) {
-    var keyCode = e.keyCode;
-    if (keyCode === 13) {
+// $('#searchTextField').on('keypress', function(e) {
+//     var keyCode = e.keyCode;
+//     if (keyCode === 13) {
+//         var valueInput = $("#searchTextField").val();
+//         var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+//         for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
+//         getPosition(valueInput);
+//     }
+// });
+
+$("body").on("mousedown",".pac-container", function(){
+    setTimeout(function(){
         var valueInput = $("#searchTextField").val();
         var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
         for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
         getPosition(valueInput);
-    }
+    }, 500);
 });
 
 //// SCROLL EFFECT
