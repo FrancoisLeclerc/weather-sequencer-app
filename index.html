@@ -17,28 +17,22 @@
   <header>
     <div class="ws">
       <h1>WEATHER SE<span>Q</span>UENCER</h1>
-    <!--</div>-->
-    <!--<div class="intro-text">-->
-    <!--  <h1>WEATHER SE<span>Q</span>UENCER</h1>-->
       <p>Use the sequencer below to create a nice beat that represents yourself and let the current weather of your location influence it with multiple effects. You can also find out how every cities in the world sound right now!</p>
     </div>
     <div class="slider">
-      <a href="#main"><img src="./image/arrow.png" alt="Go to the sequencer!"></a>
+      <a href="#container"><img class="arrow" src="./image/arrow.png" alt="Go to the sequencer!"></a>
     </div>
   </header>
-  <main class="main-container" id="main">
-    <div class="main-head">
-      <div class="main-title">
+  <main id="container">
+    <section class="head">
+      <div class="title">
         <h1>WEATHER SE<span>Q</span>UENCER</h1>
       </div>
       <div class="input">
-        <div>
-          <input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>
-        </div>
-        <p class="switch system inline">Switch to metric system</p>
-        <p class="switch system nodisplay">Switch to imperial system</p>
+        <input id="searchTextField" type="text" placeholder="Search for another city"><button class="btn-search">Go</button>
+        <p>Switch to metric system</p>
       </div>
-    </div>
+    </section>
     <section class="settings">
       <div class="console">
         <div class="effect">
@@ -91,7 +85,17 @@
       </div>
     </section>
     <section class="sequencer">
-        <canvas nx='matrix' id="matrix1"></canvas>
+      <div class="track-names">
+        <p>Track 1</p>
+        <p>Track 2</p>
+        <p>Track 3</p>
+        <p>Track 4</p>
+        <p>Track 5</p>
+        <p>Track 6</p>
+        <p>Track 7</p>
+        <p>Track 8</p>
+      </div>
+      <canvas nx='matrix' id="matrix1"></canvas>
     </section>
     <footer>
         <canvas nx="toggle" id="toggle1"></canvas>

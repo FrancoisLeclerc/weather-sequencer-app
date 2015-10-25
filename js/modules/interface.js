@@ -13,9 +13,9 @@ nx.onload = function() {
 };
 
 //// TOGGLE IMPERIAL-METRIC
-$(".input").on("click", ".switch", function(){
+$(".input").on("click", "p", function(){
     $(".switch").toggleClass("nodisplay");
-    $(".system").toggleClass("inline");
+    ($(".input p").text() === "Switch to metric system")?$(".input p").text("Switch to imperial system"):$(".input p").text("Switch to metric system");
 });
 
 //// ON RESIZE
