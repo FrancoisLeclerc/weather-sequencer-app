@@ -20,9 +20,9 @@ $(".input").on("click", "p", function(){
 
 //// ON RESIZE
 $(window).on("resize",function(){
-   $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 50+"px");
-   $('#toggle1').css("width",$("body").width()-10+"px").css("height",$("footer").height()+"px");
-   $('#matrix1').css("width",$("body").width()-10+"px").css("height",$(".sequencer").height()+"px");
+    $('#searchTextField').css("width",$(".input").width() - $(".btn-search").width() - 50+"px");
+    $('#toggle1').css("width",$("body").width()-15+"px").css("height",$("footer").height()+"px");
+    $('#matrix1').css("width",$("body").width()-$(".track-names").width()-40+"px").css("height",$(".sequencer").height()+"px");
 });
 
 //// ACTION SEARCH INPUT

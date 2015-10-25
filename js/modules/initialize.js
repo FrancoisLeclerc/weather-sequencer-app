@@ -12,15 +12,27 @@ function initialize() {
             var widthInput = $(".input").width() - $(".btn-search").width() - 50;
             $("#searchTextField").animate({width: widthInput+"px"}, {queue: false,duration: 1000 });
             
+            //// 2ND TITLE ANIMATION
+            $( ".title h1" ).animate({opacity: 1},{queue: false, duration: 2000});
+            
+            //// TRACK NAMES ANIMATION
+            for(var i = 0 ; i <= 8 ; i++){
+                var duration = Math.floor(Math.random() * 2001) + 500;
+                $( ".track-names p:nth-child("+i+")" ).animate({opacity: 1},{queue: false, duration: duration});
+            }
+            
             //// GEOLOCATION
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position){
                     var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
                     getPosition(pos);
                 }, function(){
-                    $(".data").text("").append("<h2>Search for a city in the list.</h2>");
+                    // $(".data").text("").append("<h2>Search for a city in the list.</h2>");
                 });
-            } else { $(".data").text("").append("<h2>Your browser doesn't support geolocation.</h2>"); }
+            } else { 
+                // $(".data").text("").append("<h2>Your browser doesn't support geolocation.</h2>"); 
+                
+            }
         }
     });
     
