@@ -17,7 +17,7 @@ function getPosition(data){
             } else {
                 shake("#searchTextField");
                 // shake(".btn-search");
-                $("#searchTextField").val("").attr("placeholder","Please select a city from the list");
+                $("#searchTextField").val("").attr("placeholder","Invalid city selected");
             }
         }
     });

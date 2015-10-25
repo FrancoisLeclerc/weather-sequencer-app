@@ -81,7 +81,7 @@ body {
     }
     header {
         display:flex;
-        height:150vh;
+        height:100vh;
         color:$white;
         flex-direction:column;
         .ws {
@@ -109,6 +109,11 @@ body {
                 -webkit-animation:bounce 750ms infinite;
             }
         }
+    }
+    buffer {
+        display:flex;
+        height:50vh;
+        background: linear-gradient(to bottom, black, #111111, black);
     }
     #container {
         display:flex;
