@@ -4,12 +4,10 @@ var Instrument  = require("./modules/instrument");
 var sampleSet = require("./modules/sampleSet");
 var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
-var ui = require("./modules/interface");
+var ui = require("./modules/wsui");
 
 //Load nexus component ui handlers
 var nxReady = nx.onload = ui.nexusSetting;
-
-require('./modules/interface');
 
 //load google library Autocomplete
 var input = document.getElementById('searchTextField');
@@ -18,15 +16,13 @@ var autocomplete = new google.maps.places.Autocomplete(input,options);
 
 
 
-//state variables
+//global state variables
 var weatherFetched = false;
 var instrumentLoaded = false;
 
 
-
-
 //start the app
-var weather = {};
+var currentWeather;
 
 var seqInstru = new Instrument(sampleSet["default"]);
 // weather = window.googleOnLoad = require("./modules/initialize");
@@ -50,8 +46,11 @@ async.getUserLatLong().then(function(userLatLong){
     });
     
     async.getWeather(userLatLong).then(function(weather){
+        currentWeather = weather;
+        // console.log(currentWeather);
         weatherFetched = true;
         seqInstru.connectFX(weather);
+        ui.launchDialMotion(weather);
     });
 })
 
