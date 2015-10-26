@@ -14,7 +14,8 @@ var input = document.getElementById('searchTextField');
 var options = { types: ["(cities)"] };
 var autocomplete = new google.maps.places.Autocomplete(input,options);
 
-
+//Load start motion display
+ui.mainDisplayMotion();
 
 //global state variables
 var weatherFetched = false;
@@ -46,11 +47,30 @@ async.getUserLatLong().then(function(userLatLong){
     });
     
     async.getWeather(userLatLong).then(function(weather){
+        
         currentWeather = weather;
         // console.log(currentWeather);
         weatherFetched = true;
         seqInstru.connectFX(weather);
-        ui.launchDialMotion(weather);
+        
+        var $playButton = $("#toggle1");
+        
+        if ($playButton.isOnScreen()) {
+            // console.log("in screen");
+            ui.motionDial(weather);
+        }
+        else {
+            // console.log("not in screen");
+            var $window = $(window);
+            $window.on("scroll load", function dialDisplayHandler() {
+                if ($playButton.isOnScreen())
+                {
+                    // console.log("start dial motion")
+                    ui.motionDial(weather);
+                    $window.unbind("scroll load",dialDisplayHandler);
+                }
+            })        
+        }
     });
 })
 
@@ -61,4 +81,5 @@ async.getUserLatLong().then(function(userLatLong){
 $.when(nxReady,seqInstru.loaded).then(function(){
     loadSequencer(seqInstru);
 })
+
 
