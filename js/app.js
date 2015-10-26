@@ -1,32 +1,45 @@
-// $(document).foundation();
+var Tone = require("tone");
+var instrument  = require("./modules/instrument");
+var sampleSet = require("./modules/sampleSet");
+var async = require("./modules/async-data");
 
-window.initialize = require("./modules/initialize");
-
-
-// var Tone = require("tone");
 require('./modules/interface');
 
+//load google library Autocomplete
+var input = document.getElementById('searchTextField');
+var options = { types: ["(cities)"] };
+var autocomplete = new google.maps.places.Autocomplete(input,options);
 
-//weather test example
-// var weather = {
-//     "time":1445351823,
-//     "summary":"Mostly Cloudy",
-//     "icon":"partly-cloudy-day",
-//     "nearestStormDistance":55,
-//     "nearestStormBearing":186,
-//     "precipIntensity":0.05,
-//     "precipProbability":0.5,
-//     "temperature":55.25,
-//     "apparentTemperature":55.25,
-//     "dewPoint":45.73,
-//     "humidity":0.7,
-//     "windSpeed":10.74,
-//     "windBearing":242,
-//     "visibility":10,
-//     "cloudCover":0.6,
-//     "pressure":1013.74,
-//     "ozone":284.23
-// };
+
+//state variables
+var weatherFetched = false;
+var instrumentLoaded = false;
+
+
+
+//start the app
+var weather = {};
+
+var seqInstru = new instrument(sampleSet["default"]);
+// weather = window.googleOnLoad = require("./modules/initialize");
+
+Tone.Buffer.onload = function(){
+    console.log("buffer loaded");
+    instrumentLoaded = true;
+}
+
+
+async.getUserLatLong().then(function(userLatLong){
+    
+    async.getPosition().then(function(location){
+        
+    });
+    
+    async.getWeather().then(function(weather){
+        
+    });
+})
+
 
 //REFACTORE
 
