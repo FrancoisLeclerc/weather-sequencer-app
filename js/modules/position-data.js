@@ -17,7 +17,7 @@ function getPosition(data){
             } else {
                 shake("#searchTextField");
                 // shake(".btn-search");
-                $("#searchTextField").val("").attr("placeholder","Invalid city selected");
+                $("#searchTextField").val("").attr("placeholder","Invalid selection");
             }
         }
     });
@@ -29,13 +29,11 @@ function shake(div){
     var times = 4;                                                                                                      
 
     $(div).css('position','relative');                                                                                  
-
     for(var iter=0;iter<(times+1);iter++){                                                                              
         $(div).animate({ 
             left:((iter%2==0 ? distance : distance+15))
             },interval);                                   
     }                                                                                                             
-
     $(div).animate({ left: 0},interval);                                                                                
 }
 

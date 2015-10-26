@@ -1,4 +1,5 @@
 // $(document).foundation();
+
 window.initialize = require("./modules/initialize");
 
 
@@ -26,10 +27,6 @@ require('./modules/interface');
 //     "pressure":1013.74,
 //     "ozone":284.23
 // };
-
-
-
-
 
 //REFACTORE
 

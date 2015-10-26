@@ -26,22 +26,17 @@ $(window).on("resize",function(){
 });
 
 //// ACTION SEARCH INPUT
-// $(".input").on("click",".btn-search", function(){
-//     var valueInput = $("#searchTextField").val();
-//     var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
-//     for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
-//     getPosition(valueInput);
-// });
-
-// $('#searchTextField').on('keypress', function(e) {
-//     var keyCode = e.keyCode;
-//     if (keyCode === 13) {
-//         var valueInput = $("#searchTextField").val();
-//         var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
-//         for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
-//         getPosition(valueInput);
-//     }
-// });
+$(".input").on("keypress", "#searchTextField", function(e){
+    var keyCode = e.keyCode;
+    if (keyCode === 13) {
+        setTimeout(function(){
+            var valueInput = $("#searchTextField").val();
+            var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+            for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
+            getPosition(valueInput);
+        }, 50);
+    }
+});
 
 $("body").on("mousedown",".pac-container", function(){
     setTimeout(function(){
@@ -49,14 +44,12 @@ $("body").on("mousedown",".pac-container", function(){
         var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
         for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
         getPosition(valueInput);
-    }, 500);
+    }, 50);
 });
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
-        || location.hostname == this.hostname) {
-
+    if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
         var target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
            if (target.length) {
@@ -89,7 +82,6 @@ playButton.on('mousedown touchstart',function(e){
 
 $(window).on("keydown",function(e){
     if(e.keyCode === 32){
-        
         if($(window).scrollTop() <= 580){
             $(".arrow").trigger("click");
         }
@@ -109,3 +101,10 @@ $(window).on("keydown",function(e){
         }
     }
 });
+
+// $(".input").on("click",".btn-search", function(){
+//     var valueInput = $("#searchTextField").val();
+//     var valueDial = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
+//     for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
+//     getPosition(valueInput);
+// });
