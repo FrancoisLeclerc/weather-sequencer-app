@@ -10,14 +10,14 @@ function getPosition(data){
         url: url,
         datatype: "jsonp",
         success: function(city){
-            if(city.status === "OK" && ( typeof data === "object" || data.toLowerCase() === city.results[x].formatted_address.toLowerCase() || data.toLowerCase() === city.results[x].address_components[0].long_name.toLowerCase())) {
+            if(city.status === "OK"){// && ( typeof data === "object" || data.toLowerCase() === city.results[x].formatted_address.toLowerCase() || data.toLowerCase() === city.results[x].address_components[0].long_name.toLowerCase())) {
                 var position = city.results[0].geometry.location;
                 $("#searchTextField").val(city.results[x].formatted_address);
                 getWeather(position);
             } else {
                 shake("#searchTextField");
-                shake(".btn-search");
-                $("#searchTextField").val("").attr("placeholder","Please select a city from the list");
+                // shake(".btn-search");
+                $("#searchTextField").val("").attr("placeholder","Invalid selection");
             }
         }
     });
@@ -29,13 +29,11 @@ function shake(div){
     var times = 4;                                                                                                      
 
     $(div).css('position','relative');                                                                                  
-
     for(var iter=0;iter<(times+1);iter++){                                                                              
         $(div).animate({ 
             left:((iter%2==0 ? distance : distance+15))
             },interval);                                   
     }                                                                                                             
-
     $(div).animate({ left: 0},interval);                                                                                
 }
 
