@@ -1,4 +1,5 @@
 // $(document).foundation();
+window.$ = window.jQuery = require('jquery');
 
 window.initialize = require("./modules/initialize");
 

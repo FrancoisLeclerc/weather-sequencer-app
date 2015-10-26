@@ -12,7 +12,7 @@ module.exports = function(grunt) {
          sourceMap: true,
        },
        files: {
-         'css/app.css': 'scss/app.scss'
+         'public/css/app.css': 'public/scss/app.scss'
        }
      }
    },
@@ -20,16 +20,16 @@ module.exports = function(grunt) {
    autoprefixer:{
       dist:{
         files:{
-          'css/app.css':'css/app.css'
+          'public/css/app.css':'public/css/app.css'
         }
       }
     },
     
    webpack: {
      build: {
-       entry: './js/app.js',
+       entry: './public/js/app.js',
        output: {
-         path: "./js/",
+         path: "./public/js/",
          filename: "app-bundle.js",
        },
      }
@@ -44,12 +44,12 @@ module.exports = function(grunt) {
      },
 
      css: {
-       files: 'scss/**/*.scss',
+       files: 'public/scss/**/*.scss',
        tasks: ['sass', 'autoprefixer']
      },
      
      webpack: {
-       files: ['js/**/*.js', 'js/**/*.ejs', '!js/app-bundle.js'],
+       files: ['public/js/**/*.js', 'public/js/**/*.ejs', '!public/js/app-bundle.js'],
        tasks: ['webpack']
      }
    }
