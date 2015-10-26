@@ -8,7 +8,7 @@ $gradright: linear-gradient(to right, $black, #111111, $black); $gradbottom: lin
 *, *:before, *:after { box-sizing: border-box; }
 
 body { margin:0; background-color:$black; }
-span { color:$green; }
+.q { color:$green; }
 .pac-icon, .nodisplay { display:none; }
 .pac-item { text-align:center; font-family:$abel; }
     
