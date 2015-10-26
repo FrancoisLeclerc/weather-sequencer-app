@@ -1,6 +1,6 @@
 var Tone = require("tone");
 
-function sequencer(instrument){
+function sequencer(Instrument){
 
 //keep track of steps and notes
 var stepNumber = 0;
@@ -15,7 +15,7 @@ Tone.Transport.setInterval(function(time){
 	var column = matrix1.matrix[stepNumber];
 	for (var i = 0; i < 8; i++){
 		if (column[i] === 1){
-			instrument.triggerAttackRelease(noteNames[i], "32n", time);
+			Instrument.toneSynth.triggerAttackRelease(noteNames[i], "32n", time);
 		}
 	}
 	
