@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "postinstall": "grunt build"
+    "postinstall": "./node_modules/.bin/grunt build"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -22,6 +22,7 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "express": "^4.13.3",
+    "grunt-cli": "^0.1.13",
     "jquery": "^2.1.4",
     "nexusui": "^1.0.8",
     "tone": "^0.5.1"
