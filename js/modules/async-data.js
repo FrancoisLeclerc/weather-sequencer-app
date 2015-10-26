@@ -78,10 +78,10 @@ function getWeather(pos){
     });
 
     return $dfd.promise();
-    
 }
 
-console.log("ASYNC FUNCTION");
+
+
 module.exports = {
     getUserLatLong: getUserLatLong,
     getPosition: getPosition,

@@ -9,15 +9,19 @@ var noteNames = ["kick", "snare", "hihat", "tom", "A", "C#", "E", "F#"];
 
 //the repeated callback
 Tone.Transport.setInterval(function(time){
+	
 	// get the notes at the step
+	
 	var column = matrix1.matrix[stepNumber];
 	for (var i = 0; i < 8; i++){
 		if (column[i] === 1){
 			instrument.triggerAttackRelease(noteNames[i], "32n", time);
 		}
 	}
+	
 	stepNumber++;
 	stepNumber = stepNumber % 16;
+	
 }, "16n");
 
 
@@ -25,6 +29,8 @@ Tone.Transport.setInterval(function(time){
 Tone.Transport.loopEnd = "1m";
 Tone.Transport.loop = true;
 // Tone.Transport.start();
+
+console.log("seq");
 }
 
 module.exports = sequencer;

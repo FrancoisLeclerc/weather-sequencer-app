@@ -2,7 +2,8 @@ var Tone = require("tone");
 var getPosition = require("./position-data");
 
 //// NEXUS UI SET UP
-nx.onload = function() {
+function nexusSetting() {
+    
     var dialResponsivity = [dial1,dial2,dial3,dial4,dial5,dial6,dial7];
     for(var i = 0 ; i < 7 ; i++){ dialResponsivity[i].responsivity = 0; }
     nx.colorize("#0affea");
@@ -10,6 +11,8 @@ nx.onload = function() {
     matrix1.col = 16;
     matrix1.row = 8;
     matrix1.init();
+    
+    return $.Deferred().resolve();
 };
 
 //// TOGGLE IMPERIAL-METRIC
@@ -108,3 +111,9 @@ $(window).on("keydown",function(e){
 //     for(var i = 0 ; i < valueDial.length ; i++){ valueDial[i].val.value = 0; }
 //     getPosition(valueInput);
 // });
+
+
+
+module.exports = {
+    nexusSetting: nexusSetting
+}
