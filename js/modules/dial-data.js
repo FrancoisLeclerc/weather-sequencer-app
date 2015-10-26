@@ -1,9 +1,6 @@
 function getDial(data){
   var speed = [];
-  for(var i = 0 ; i < 7 ; i++){
-    speed[i] = (Math.round(Math.random()*22) + 8)/1500;
-  }
-  
+  for(var i = 0 ; i < 7 ; i++){ speed[i] = (Math.round(Math.random()*22) + 8)/1500; }
   //TEMPERATURE
   var val1 = (data.temperature+30)/134;
   if(data.temperature < -30 || typeof data.temperature !== "number"){ val1 = 0; dial1.val.value = 0; dial1.init();}

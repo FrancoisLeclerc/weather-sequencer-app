@@ -1,31 +1,32 @@
-require('./modules/wsui');
-require('./modules/wsui-nx');
+// $(document).foundation();
 
-var getPosition = require("./modules/position-data");
-
-//Load first the Google API Callback
-window.initialize = function(){
-    
-    //// Load google library on search field
-    var input = document.getElementById('searchTextField');
-    var options = { types: ["(cities)"] };
-    if (google) var autocomplete = new google.maps.places.Autocomplete(input,options);
-    else alert("Google has not loaded properly");
-
-    //// GEOLOCATION
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position){
-            var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
-            
-            getPosition(pos);
-        });
-    }
-}
+window.initialize = require("./modules/initialize");
 
 
+// var Tone = require("tone");
+require('./modules/interface');
 
 
-
+//weather test example
+// var weather = {
+//     "time":1445351823,
+//     "summary":"Mostly Cloudy",
+//     "icon":"partly-cloudy-day",
+//     "nearestStormDistance":55,
+//     "nearestStormBearing":186,
+//     "precipIntensity":0.05,
+//     "precipProbability":0.5,
+//     "temperature":55.25,
+//     "apparentTemperature":55.25,
+//     "dewPoint":45.73,
+//     "humidity":0.7,
+//     "windSpeed":10.74,
+//     "windBearing":242,
+//     "visibility":10,
+//     "cloudCover":0.6,
+//     "pressure":1013.74,
+//     "ozone":284.23
+// };
 
 //REFACTORE
 
