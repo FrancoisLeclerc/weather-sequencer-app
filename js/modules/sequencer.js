@@ -11,7 +11,6 @@ var noteNames = ["kick", "snare", "hihat", "tom", "A", "C#", "E", "F#"];
 Tone.Transport.setInterval(function(time){
 	
 	// get the notes at the step
-	
 	var column = matrix1.matrix[stepNumber];
 	for (var i = 0; i < 8; i++){
 		if (column[i] === 1){
@@ -28,9 +27,7 @@ Tone.Transport.setInterval(function(time){
 //transport settings
 Tone.Transport.loopEnd = "1m";
 Tone.Transport.loop = true;
-// Tone.Transport.start();
 
-console.log("seq");
 }
 
 module.exports = sequencer;

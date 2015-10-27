@@ -9,6 +9,7 @@ var temperatureFX = require("./fx/temperature");
 
 
 function Instrument(sampleSet) {
+
     this.BPM = 120;
     
     this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {
@@ -38,8 +39,6 @@ function Instrument(sampleSet) {
     this.directToMaster = function() {
         this.toneSynth.toMaster();
     }
-    
-    this.loaded = $.Deferred().resolve();
 }
 
 module.exports = Instrument;

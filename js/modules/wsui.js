@@ -2,7 +2,6 @@ var Tone = require("tone");
 // var getPosition = require("./position-data");
 var async = require("./async-data");
 
-
 //jQuery helpers
 $.fn.isOnScreen = function(){
     var viewport = {};
@@ -15,6 +14,7 @@ $.fn.isOnScreen = function(){
 };
 
 
+var $nxReady = $.Deferred();
 //// NEXUS UI SET UP
 function nexusSetting() {
 
@@ -30,10 +30,20 @@ function nexusSetting() {
     matrix1.row = 8;
     matrix1.init();
 
+    onResize();
 
-    return $.Deferred().resolve();
+    $nxReady.resolve();
 }
 
+
+//// ON RESIZE
+function onResize(){
+    $(window).on("resize", function() {
+        $('#searchTextField').css("width", "100%");
+        matrix1.resize($('body').width()-124, $('.matrix-size').height());
+        toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
+    });
+}
 
 
 
@@ -49,7 +59,7 @@ function loadSearchHandlers(instrument) {
                     .then(async.getWeather)
                     .then(function(weather){
                         instrument.connectFX(weather);
-                        motionDial(weather);
+                        dialAnimation(weather);
                     });
             }, 50);
         }
@@ -63,7 +73,7 @@ function loadSearchHandlers(instrument) {
                 .then(async.getWeather)
                 .then(function(weather){
                     instrument.connectFX(weather);
-                    motionDial(weather);
+                    dialAnimation(weather);
                 });
         }, 50);
     });
@@ -73,23 +83,15 @@ function loadSearchHandlers(instrument) {
 
 //// PLAY BUTTON
 function loadPlayButtonHandler(instrument) {
+
     var playButton = $('#toggle1');
 
     playButton.active = false;
     playButton.start = function() {
-        console.log(instrument.BPM);
-        
-        // Tone.Transport.start(matrix1.sequence(instrument.BPM));
-        // matrix1.jumpToCol(-1);
-        // matrix1.bpm = instrument.BPM;
-        // matrix1.sequence(instrument.BPM);
-        // console.log(matrix1.bpm);
         Tone.Transport.start();
     };
     playButton.stop = function() {
         Tone.Transport.stop();
-        // matrix1.stop();
-        // matrix1.jumpToCol(20);
     };
 
     playButton.on('mousedown touchstart', function(e) {
@@ -111,16 +113,16 @@ function loadPlayButtonHandler(instrument) {
             }
             else {
                 if (!playButton.active) {
+                    playButton.start();
                     toggle1.val.value = 1;
                     toggle1.draw();
                     playButton.active = true;
-                    playButton.start();
                 }
                 else {
+                    playButton.stop();
                     toggle1.val.value = 0;
                     toggle1.draw();
                     playButton.active = false;
-                    playButton.stop();
                 }
             }
         }
@@ -191,12 +193,12 @@ function displayWeatherData(data) {
 }
 
 
-function dialMotionLauncher(weather){
+function dialAnimationLauncher(weather){
     //handling FX UI Motion
     var $playButton = $("#toggle1");
     if ($playButton.isOnScreen()) {
         
-        motionDial(weather);
+        dialAnimation(weather);
     }
     else {//if not currently on screen, add event to trigger when motion automatically
         
@@ -204,7 +206,7 @@ function dialMotionLauncher(weather){
         $window.on("scroll load", function dialDisplayHandler() {
             if ($playButton.isOnScreen())
             {
-                motionDial(weather);
+                dialAnimation(weather);
                 $window.unbind("scroll load",dialDisplayHandler);
             }
         })        
@@ -212,7 +214,7 @@ function dialMotionLauncher(weather){
 }
 
 
-function motionDial(data) {
+function dialAnimation(data) {
 
     var $console = $(".console");
     if ($console.isOnScreen())
@@ -224,10 +226,8 @@ function motionDial(data) {
             valueDial[i].val.value = 0;
         }
     
-    
         var speed = [];
-    
-    
+        
         for (var i = 0; i < 7; i++) {
             speed[i] = (Math.round(Math.random() * 22) + 8) / 1500;
         }
@@ -363,7 +363,7 @@ function motionDial(data) {
 }
 
 
-function mainDisplayMotion() {
+function mainDisplayAnimation() {
 
     var $title = $(".title h1");
     if ($title.isOnScreen())
@@ -399,7 +399,7 @@ function mainDisplayMotion() {
         $window.on("scroll load", function mainDisplayHandler() {
             if ($title.isOnScreen())
             {
-                mainDisplayMotion();
+                mainDisplayAnimation();
                 $window.unbind("scroll load",mainDisplayHandler);
             }
         });
@@ -416,16 +416,6 @@ $(".input").on("click", ".system", function() {
     $(".switch").toggleClass("nodisplay");
     ($(".system").text() === "Switch to metric system") ? $(".system").text("Switch to imperial system"): $(".system").text("Switch to metric system");
 });
-
-
-//// ON RESIZE
-$(window).on("resize", function() {
-    $('#searchTextField').css("width", "100%");
-    matrix1.resize($('body').width()-124, $('.matrix-size').height());
-    toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
-});
-
-
 
 
 
@@ -451,9 +441,10 @@ $('a[href*=#]:not([href=#])').click(function() {
 
 module.exports = {
     nexusSetting: nexusSetting,
-    motionDial: motionDial,
-    mainDisplayMotion: mainDisplayMotion,
+    dialAnimation: dialAnimation,
+    mainDisplayAnimation: mainDisplayAnimation,
     loadSearchHandlers,loadSearchHandlers,
-    dialMotionLauncher:dialMotionLauncher,
-    loadPlayButtonHandler: loadPlayButtonHandler
+    dialAnimationLauncher:dialAnimationLauncher,
+    loadPlayButtonHandler: loadPlayButtonHandler,
+    $nxReady,$nxReady
 };
