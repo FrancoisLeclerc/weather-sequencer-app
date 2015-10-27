@@ -17,6 +17,9 @@ function Instrument(sampleSet) {
     })
     
     this.connectFX = function(weather) {
+        //change the bpm of the Transport
+        temperatureFX(weather);
+        
         this.toneSynth.chain(
             rainFX(weather),
             // humidityFX(weather),
