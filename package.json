@@ -6,8 +6,7 @@
     "url": "https://github.com/zurb/foundation-libsass-template.git"
   },
   "scripts": {
-    "start": "node index.js",
-    "postinstall": "./node_modules/.bin/grunt build"
+    "start": "node index.js"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
