@@ -9,27 +9,27 @@ $gradright: linear-gradient(to right, $black, #111111, $black); $gradbottom: lin
 
 body { margin:0; background-color:$black; }
 .q { color:$green; }
-.pac-icon, .nodisplay { display:none; }
+.pac-icon, .nodisplay, .mobile { display:none; }
 .pac-item { text-align:center; font-family:$abel; }
     
 header { display:flex; height:100vh; color:$white; flex-direction:column;
     .ws { height:90vh; padding:0 2em;
-        h1 { font:11em $lombok; text-align:center; margin:0; }
-        p { font:2.5em $raleway; text-align:justify; margin:0.5em 0; } }
-        
-    .slider { height:10vh; padding:0.5em;
-        img { display: block; margin:auto; height:100%; position:relative; animation:bounce 750ms infinite; } }
+        h1 { font:10em $lombok; text-align:center; margin:0; }
+        p { font:2em $raleway; text-align:justify; margin:0.5em 0; } }
+}    
+.slider { height:10vh; padding:0.5em;
+    img { display: block; margin:auto; height:100%; position:relative; animation:bounce 750ms infinite; } 
 }
             
 buffer { display:flex; height:50vh; background: $gradbottom; }
 
 #container { display:flex; height:100vh; flex-direction:column;
     .head { display:flex; height:10vh; padding:0.5em 2em;
-        .title { width:75vw;
+        .title { width:70vw;
             h1{ font:2.5em $lombok; color:$white; margin:0; opacity:0; } }
             
-        .input { width:25vw; text-align:right;
-            div { height:100%; width:100%; }
+        .input { width:30vw; text-align:right; display:block;
+            div { display:block; }
             p { font:0.8em $raleway; color:$lgray; margin:0; display:inline; }
             .system, .send { &:hover { opacity:0.5; cursor:pointer; } } 
             #searchTextField { font-family:$abel; text-align:center; width:0px; height:2em; border:0px; &:focus { outline: none; } } } }
@@ -41,72 +41,112 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
                 canvas { margin:0.2em 0 0 0; height:100px; width:100px; cursor:default; }
                 p { margin:0; text-align:center; } } } }
                 
-    .sequencer { display:flex; height:50vh; margin:0 1em;
-        .track-names { display:flex; flex-direction:column; background: $gradright; font:bold $abel; color:$green; text-align:center; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray;
-            p { margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; } }
-            
-        canvas { width:85vw; border:2px solid $dgray; } }
+    .sequencer { display:flex; height:50vh; margin:0 0.5em;
+        .track-names { display:flex; flex-direction:column; background: $gradright; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray;
+            p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; } }
+        div { width:100%; height:100%; } }
         
-    footer { height:10vh; margin:0.5em; }
+    footer { height:10vh; margin:0.5em; 
+        .go-up {
+            display:none;
+        }
+        .toggle-size {
+            width:100%; height:100%;
+        }
+    }
     .sequencer, footer {
         canvas { width:100%; height:100%; cursor:pointer; } }
 }
 
-// .btn-search {
-//     font-family:$abel;
-//     color:$white;
-//     text-decoration: none;
-//     background:$dgray;
-//     height:2em;
-//     width:3em;
-//     padding: 2px 10px 2px 10px;
-//     border:0px;
-//     cursor:pointer;
-//     &:focus {
-//         outline: none;
-//     }
-//     &:hover {
-//         color:$green;
-//     }
+@media only screen and (max-width: 40em) and (orientation:landscape){
+    body { width:auto; height:auto;}
+    header { width:100vw;
+        .ws { height:85vh; padding:0 1em;
+            h1 { font-size:5em; padding-bottom:0.2em;}
+            p { font-size:1em; margin:0; } } }        
+    
+    .slider { height:15vh; padding:0.2em; }
+    .mobile { display:inline; }
+    
+    #container { height:auto; width:100vw;
+        .head { padding:0 0.5em; height:15vh; width:100vw;
+            .title { width:70vw;
+                h1{ font-size:2em; margin-top:0.2em;} }
+            .input { width:30vw;
+                div { margin-top:-4px; }
+                p { font-size:0.5em; }
+                #searchTextField { font-size:0.5em; } } }
+                    
+        .settings { height:70vh; width:100vw;
+            .console { width:100vw; margin: 2.5em 0;
+                .effect { &:first-child { margin-left:1em; } &:last-child { margin-right:1em; }
+                    canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
+                    p { font-size:0.75em;} } } }
+                    
+        .sequencer { margin:0; padding:0 0.25em; height:90vh; width:100vw;
+            .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px; height:100%;
+                p { font-size:0.6em; padding:1em 0;} }
+                
+            .matrix-size { width:100%; height: 100%; padding:0 0.25em;
+                canvas { width:100% !important; height:100% !important; } } }
+            
+        footer { display:flex; margin:0; padding:0.25em; height:10vh; width:100vw; 
+            .go-up { display:inline; max-width:50px; min-width:50px; height:100%; border-radius:5px; margin-right:0; border:1px solid $dgray; background:$gradright;
+                a { text-decoration:none; }
+                p { font-family:$abel; color:$green; margin:0; text-align:center; } }
+            
+            .toggle-size { width:100%; height:100%; padding:0 0.25em;
+                canvas { width:100% !important; height:100% !important;} }
+        }
+    }
+}
+
+@media only screen and (max-width: 40em) and (orientation:portrait){
+    header { width:100vw;
+        .ws { height:85vh; padding:0 1em;
+            h1 { font-size:3.4em; padding-bottom:0.5em;} //fs pb
+            p { font-size:1.5em; margin:0; } } }        //fs 
+    
+    .slider { height:15vh; padding:0.2em; }
+    .mobile { display:inline; }
+    
+    #container { height:auto; width:100vw;
+        .head { padding:0 0.5em; height:15vh; width:100vw; //p
+            .title { width:60vw; //
+                h1{ font-size:2em; margin-top:0;} }//mt
+            .input { width:40vw; //
+                div { margin-top:-6px; } //
+                p { font-size:0.4em; } //
+                #searchTextField { font-size:0.5em; } } }
+                    
+        .settings { height:70vh; width:100vw;
+            .console { width:90vw; margin: auto; flex-wrap:wrap; height: 60vh; padding-top:1em;//all 5
+                .effect { display:block; &:first-child {  } &:last-child {  } &:nth-child(1) { margin-left:0; } &:nth-child(4) { margin-right:0; } //mg left mg right all nth
+                    canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; } //h w
+                    p { font-size:0.75em; &:last-child { padding-bottom:2em; } } } } }//lcpb
+                    
+        .sequencer { margin:0; padding:0 0.25em; height:90vh; width:100vw;
+            .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px; height:100%;
+                p { font-size:1.1em; padding:0.5em 0; &:nth-child(3) { padding:0.525em; } } }//all 2
+                
+            .matrix-size { width:100%; height: 100%; padding:0 0.25em;
+                canvas { width:100% !important; height:100% !important; } } }
+            
+        footer { display:flex; margin:0; padding:0.25em; height:10vh; width:100vw; 
+            .go-up { display:inline; max-width:50px; min-width:50px; height:100%; border-radius:5px; margin-right:0; border:1px solid $dgray; background:$gradright;
+                a { text-decoration:none; }
+                p { font-family:$abel; color:$green; margin:0; text-align:center; padding: 0.7em 0; } }//pad
+            
+            .toggle-size { width:100%; height:100%; padding:0 0.25em;
+                canvas { width:100% !important; height:100% !important;} }
+        }
+    }
+}
+
+// // Medium screens
+// @media only screen and (min-width: 40.063em) { 
+   
 // }
 
-// @import "settings";
-// @import "foundation";
-
-// Or selectively include components
-// @import
-//   "foundation/components/accordion",
-//   "foundation/components/alert-boxes",
-//   "foundation/components/block-grid",
-//   "foundation/components/breadcrumbs",
-//   "foundation/components/button-groups",
-//   "foundation/components/buttons",
-//   "foundation/components/clearing",
-//   "foundation/components/dropdown",
-//   "foundation/components/dropdown-buttons",
-//   "foundation/components/flex-video",
-//   "foundation/components/forms",
-//   "foundation/components/grid",
-//   "foundation/components/inline-lists",
-//   "foundation/components/joyride",
-//   "foundation/components/keystrokes",
-//   "foundation/components/labels",
-//   "foundation/components/magellan",
-//   "foundation/components/orbit",
-//   "foundation/components/pagination",
-//   "foundation/components/panels",
-//   "foundation/components/pricing-tables",
-//   "foundation/components/progress-bars",
-//   "foundation/components/reveal",
-//   "foundation/components/side-nav",
-//   "foundation/components/split-buttons",
-//   "foundation/components/sub-nav",
-//   "foundation/components/switches",
-//   "foundation/components/tables",
-//   "foundation/components/tabs",
-//   "foundation/components/thumbs",
-//   "foundation/components/tooltips",
-//   "foundation/components/top-bar",
-//   "foundation/components/type",
-//   "foundation/components/offcanvas",
-//   "foundation/components/visibility";
+// // Large screens
+// @media only screen and (min-width: 64.063em) { }
