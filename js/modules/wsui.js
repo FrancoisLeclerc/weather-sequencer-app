@@ -44,10 +44,8 @@ function loadSearchHandlers() {
     var $searchField = $("#searchTextField");
 
     //// ACTION SEARCH INPUT
-    $(".input").on("keypress", "#searchTextField", function(e) {
-
-        var keyCode = e.keyCode;
-        if (keyCode === 13) {
+    $searchField.on("keypress", function(e) {
+        if (e.keyCode === 13) {
             setTimeout(function() {
 
                 async.getPosition($searchField.val())
@@ -69,8 +67,6 @@ function loadSearchHandlers() {
         }, 50);
     });
 }
-
-
 
 
 
@@ -205,6 +201,7 @@ function motionDial(data) {
         for (var i = 0; i < 7; i++) {
             speed[i] = (Math.round(Math.random() * 22) + 8) / 1500;
         }
+        
         //TEMPERATURE
         var val1 = (data.temperature + 30) / 134;
         if (data.temperature < -30 || typeof data.temperature !== "number") {
@@ -224,6 +221,7 @@ function motionDial(data) {
                 dial1.init();
             }
         }, 20);
+        
         //PRECIPITATION
         var val2 = (data.precipIntensity * 10) / 4;
         if (data.precipIntensity > 0.4) {
@@ -243,6 +241,7 @@ function motionDial(data) {
                 dial2.init();
             }
         }, 20);
+        
         //HUMIDITY
         var val3 = data.humidity;
         if (typeof data.humidity !== "number") {
@@ -259,6 +258,7 @@ function motionDial(data) {
                 dial3.init();
             }
         }, 20);
+        
         //WIND SPEED
         var val4 = data.windSpeed / 40;
         if (data.windSpeed > 40) {
@@ -278,6 +278,7 @@ function motionDial(data) {
                 dial4.init();
             }
         }, 20);
+        
         //VISIBILITY
         var val5 = data.visibility / 10;
         if (typeof data.visibility !== "number") {
@@ -294,6 +295,7 @@ function motionDial(data) {
                 dial5.init();
             }
         }, 20);
+        
         //CLOUD COVER
         var val6 = data.cloudCover;
         if (typeof data.cloudCover !== "number") {
@@ -310,6 +312,7 @@ function motionDial(data) {
                 dial6.init();
             }
         }, 20);
+        
         //NEAREST STORM 0 600
         var val7 = 1 - (data.nearestStormDistance / 600);
         if (data.nearestStormDistance > 600 || typeof data.nearestStormDistance !== "number") {
@@ -360,7 +363,7 @@ function mainDisplayMotion() {
             });
         }
     }
-    else 
+    else //if not currently on screen, add event to trigger when motion automatically
     {
         var $window = $(window);
         $window.on("scroll load", function mainDisplayHandler() {
@@ -398,6 +401,8 @@ $(window).on("resize", function() {
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
+    console.log(this);
+    console.log(location);
     if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
         var target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');

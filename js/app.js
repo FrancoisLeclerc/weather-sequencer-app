@@ -41,10 +41,7 @@ if (!weatherFetched) seqInstru.directToMaster();
 // Fetch user location + weather then connect fx if successful
 async.getUserLatLong().then(function(userLatLong){
     
-    // console.log(userLatLong);
-    async.getPosition(userLatLong).then(function(location){
-        
-    });
+    async.getPosition(userLatLong);
     
     async.getWeather(userLatLong).then(function(weather){
         
@@ -56,16 +53,15 @@ async.getUserLatLong().then(function(userLatLong){
         var $playButton = $("#toggle1");
         
         if ($playButton.isOnScreen()) {
-            // console.log("in screen");
+            
             ui.motionDial(weather);
         }
-        else {
-            // console.log("not in screen");
+        else {//if not currently on screen, add event to trigger when motion automatically
+            
             var $window = $(window);
             $window.on("scroll load", function dialDisplayHandler() {
                 if ($playButton.isOnScreen())
                 {
-                    // console.log("start dial motion")
                     ui.motionDial(weather);
                     $window.unbind("scroll load",dialDisplayHandler);
                 }
