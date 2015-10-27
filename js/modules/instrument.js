@@ -18,6 +18,9 @@ function Instrument(sampleSet) {
     
     this.connectFX = function(weather) {
         
+        //disconnect any existing effect
+        this.toneSynth.disconnect();
+        
         //change the bpm of Transport
         temperatureFX(weather);
         

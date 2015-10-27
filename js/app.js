@@ -38,6 +38,7 @@ ui.loadSearchHandlers(seqInstru);
 //Load sequencer only when nx.onload has been called and instrument is created
 $.when(nxReady,seqInstru.loaded).then(function(){
     loadSequencer(seqInstru);
+    ui.loadPlayButtonHandler();
 })
 
 //
@@ -57,24 +58,6 @@ async.getUserLatLong().then(function(userLatLong){
         weatherFetched = true;
         currentWeather = weather;
         seqInstru.connectFX(weather);
-        
-        //handling FX UI Motion
-        var $playButton = $("#toggle1");
-        if ($playButton.isOnScreen()) {
-            
-            ui.motionDial(weather);
-        }
-        else {//if not currently on screen, add event to trigger when motion automatically
-            
-            var $window = $(window);
-            $window.on("scroll load", function dialDisplayHandler() {
-                if ($playButton.isOnScreen())
-                {
-                    ui.motionDial(weather);
-                    $window.unbind("scroll load",dialDisplayHandler);
-                }
-            })        
-        }
-        
+        ui.dialMotionLauncher(weather);
     });
 })

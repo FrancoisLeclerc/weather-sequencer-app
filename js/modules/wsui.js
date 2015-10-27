@@ -30,9 +30,6 @@ function nexusSetting() {
     matrix1.row = 8;
     matrix1.init();
 
-    
-    //Load Play Trigger handler from Nexus as used in the following function
-    loadPlayButtonHandler()
 
     return $.Deferred().resolve();
 };
@@ -182,6 +179,27 @@ function displayWeatherData(data) {
     else {
         $(".data7").text(Math.round(data.nearestStormDistance) + " mi");
         $(".data7m").text(Math.round(data.nearestStormDistance * 1.609344) + " km");
+    }
+}
+
+
+function dialMotionLauncher(weather){
+    //handling FX UI Motion
+    var $playButton = $("#toggle1");
+    if ($playButton.isOnScreen()) {
+        
+        motionDial(weather);
+    }
+    else {//if not currently on screen, add event to trigger when motion automatically
+        
+        var $window = $(window);
+        $window.on("scroll load", function dialDisplayHandler() {
+            if ($playButton.isOnScreen())
+            {
+                motionDial(weather);
+                $window.unbind("scroll load",dialDisplayHandler);
+            }
+        })        
     }
 }
 
@@ -427,5 +445,7 @@ module.exports = {
     nexusSetting: nexusSetting,
     motionDial: motionDial,
     mainDisplayMotion: mainDisplayMotion,
-    loadSearchHandlers,loadSearchHandlers
+    loadSearchHandlers,loadSearchHandlers,
+    dialMotionLauncher:dialMotionLauncher,
+    loadPlayButtonHandler: loadPlayButtonHandler
 }
