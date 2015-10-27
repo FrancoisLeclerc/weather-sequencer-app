@@ -1,37 +1,63 @@
-// $(document).foundation();
+require("./modules/nexus/nexusUI");
+var Tone = require("tone");
+var Instrument  = require("./modules/instrument");
+var sampleSet = require("./modules/sampleSet");
+var async = require("./modules/async-data");
+var loadSequencer = require("./modules/sequencer");
+var ui = require("./modules/wsui");
 
-window.initialize = require("./modules/initialize");
+//Load nexus component ui handlers
+var nxReady = nx.onload = ui.nexusSetting;
+
+//load google library Autocomplete
+var input = document.getElementById('searchTextField');
+var options = { types: ["(cities)"] };
+var autocomplete = new google.maps.places.Autocomplete(input,options);
+
+//Load start motion display
+ui.mainDisplayMotion();
+
+//global state variables
+var weatherFetched = false;
+var audioFilesLoaded = false;
 
 
-// var Tone = require("tone");
-require('./modules/interface');
+//start the app
+var currentWeather;
+
+//create the instrument (async loading audio samples)
+var seqInstru = new Instrument(sampleSet["default"]);
+
+//
+if (!weatherFetched) seqInstru.directToMaster();
+
+//load search handlers with the instrument
+//THIS MIGHT HAVE TO BE RELOAD IF INSTRUMENT SET CHANGE
+ui.loadSearchHandlers(seqInstru);
+
+//Load sequencer only when nx.onload has been called and instrument is created
+$.when(nxReady,seqInstru.loaded).then(function(){
+    loadSequencer(seqInstru);
+    ui.loadPlayButtonHandler(seqInstru);
+})
+
+//
+Tone.Buffer.onload = function(){
+    console.log("buffer loaded");
+    audioFilesLoaded = true;
+}
 
 
-//weather test example
-// var weather = {
-//     "time":1445351823,
-//     "summary":"Mostly Cloudy",
-//     "icon":"partly-cloudy-day",
-//     "nearestStormDistance":55,
-//     "nearestStormBearing":186,
-//     "precipIntensity":0.05,
-//     "precipProbability":0.5,
-//     "temperature":55.25,
-//     "apparentTemperature":55.25,
-//     "dewPoint":45.73,
-//     "humidity":0.7,
-//     "windSpeed":10.74,
-//     "windBearing":242,
-//     "visibility":10,
-//     "cloudCover":0.6,
-//     "pressure":1013.74,
-//     "ozone":284.23
-// };
+// Fetch user location + weather then connect fx if successful
+async.getUserLatLong().then(function(userLatLong){
+    
+    async.getPosition(userLatLong);
+    
+    async.getWeather(userLatLong).then(function(weather){
 
-//REFACTORE
-
-//fetch location + weather
-
-//loal sequencer 
-
-//connect fx when weather fetched
+        weatherFetched = true;
+        currentWeather = weather;
+        seqInstru.connectFX(weather);
+        ui.dialMotionLauncher(weather);
+    });
+})

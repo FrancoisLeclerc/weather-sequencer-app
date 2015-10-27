@@ -926,7 +926,7 @@ widget.prototype.setFont = function() {
   with (this.context) {
         textAlign = "center";
         textBaseline = "middle";
-        font = this.fontWeight+" 2em 'Abel'";
+        font = this.fontWeight+" 1.1em 'Abel'";
         fillStyle = "#0affea";
         globalAlpha = 0.7;
   }

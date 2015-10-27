@@ -1,12 +1,11 @@
 <!doctype html>
-<html>
+<html class="no-js" lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Sequencer App</title>
+  <title>Weather Sequencer</title>
   <link rel="icon" type="image/png" href="./image/favicon.png" />
-  <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/app.css" />
@@ -30,11 +29,10 @@
         <h1>WEATHER SE<span class="q">Q</span>UENCER</h1>
       </div>
       <div class="input">
+        <input id="searchTextField" type="text" placeholder="Search for another city">
         <div>
-          <input id="searchTextField" type="text" placeholder="Search for another city">
-          <!--<button class="btn-search">Go</button>-->
+          <p class="system">Switch to imperial system</p><p> | </p><p class="send">Send to a friend</p>
         </div>
-        <p class="system">Switch to imperial system</p><p> | </p><p class="send">Send to a friend</p>
       </div>
     </section>
     <section class="settings">
@@ -88,7 +86,10 @@
         </div>
       </div>
     </section>
-    <section class="sequencer">
+    <div class="slider mobile">
+      <a href="#seq"><img class="arrow" src="./image/arrow.png" alt="Go to the sequencer!"></a>
+    </div>
+    <section class="sequencer" id="seq">
       <div class="track-names">
 
         <p>Bass Drum</p>
@@ -100,17 +101,24 @@
         <p>Synth 3</p>
         <p>Synth 4</p>
       </div>
-      <canvas nx='matrix' id="matrix1"></canvas>
+      <div class="matrix-size">
+        <canvas nx='matrix' id="matrix1"></canvas>
+      </div>
     </section>
     <footer>
+      <div class="go-up">
+        <a href="#container"><p>GO UP</p></a>
+      </div>
+      <div class="toggle-size">
         <canvas nx="toggle" id="toggle1"></canvas>
+      </div>
     </footer>
   </main>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="./js/modules/nexus/nexusUI.js"></script>
+  <!--<script type="text/javascript" src="./js/modules/nexus/nexusUI.js"></script>-->
   <!--<script src="bower_components/foundation/js/foundation.min.js"></script>-->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&libraries=places"></script>
   <script src="./js/app-bundle.js"></script>
-  <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&callback=initialize&libraries=places"></script>
 </body>
 
 </html>
