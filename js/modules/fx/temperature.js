@@ -55,6 +55,7 @@ function temperature(weather){
     console.log("--BPM: "+newBPM);
     
     Tone.Transport.bpm.value = newBPM;
+    return newBPM;
 }
 
 module.exports = temperature;

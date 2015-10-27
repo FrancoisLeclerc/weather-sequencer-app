@@ -38,7 +38,7 @@ ui.loadSearchHandlers(seqInstru);
 //Load sequencer only when nx.onload has been called and instrument is created
 $.when(nxReady,seqInstru.loaded).then(function(){
     loadSequencer(seqInstru);
-    ui.loadPlayButtonHandler();
+    ui.loadPlayButtonHandler(seqInstru);
 })
 
 //

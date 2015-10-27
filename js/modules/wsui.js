@@ -72,16 +72,24 @@ function loadSearchHandlers(instrument) {
 
 
 //// PLAY BUTTON
-function loadPlayButtonHandler() {
-
+function loadPlayButtonHandler(instrument) {
     var playButton = $('#toggle1');
 
     playButton.active = false;
     playButton.start = function() {
+        console.log(instrument.BPM);
+        
+        // Tone.Transport.start(matrix1.sequence(instrument.BPM));
+        // matrix1.jumpToCol(-1);
+        // matrix1.bpm = instrument.BPM;
+        // matrix1.sequence(instrument.BPM);
+        // console.log(matrix1.bpm);
         Tone.Transport.start();
     };
     playButton.stop = function() {
         Tone.Transport.stop();
+        // matrix1.stop();
+        // matrix1.jumpToCol(20);
     };
 
     playButton.on('mousedown touchstart', function(e) {
