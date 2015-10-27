@@ -11,10 +11,13 @@ function getUserLatLong() {
                 lng: position.coords.longitude
             };
             $dfd.resolve(pos);
+        },function(){
+            $("#searchTextField").val("").attr("placeholder","Select a location");
         });
     }
     else {
         $dfd.reject(new Error('API not available'));
+        $("#searchTextField").val("").attr("placeholder","Select a location");
     }
 
     return $dfd.promise();
@@ -51,12 +54,9 @@ function getPosition(data) {
             }
             else {
                 $dfd.reject(new Error("An error has occurred: location cannot be found"));
+                shake("#searchTextField");
+                $("#searchTextField").val("").attr("placeholder","Invalid selection");
             }
-            // else {
-            //     shake("#searchTextField");
-            //     // shake(".btn-search");
-            //     $("#searchTextField").val("").attr("placeholder","Invalid selection");
-            // }
         },
         error: function(error) {
             $dfd.reject(error);
@@ -66,7 +66,20 @@ function getPosition(data) {
     return $dfd.promise();
 }
 
+//// Shake animation custom
+function shake(div){                                                                                                                                                                                            
+   var interval = 100;                                                                                                 
+   var distance = -10;                                                                                                  
+   var times = 4;                                                                                                      
 
+   $(div).css('position','relative');                                                                                  
+   for(var iter=0;iter<(times+1);iter++){                                                                              
+       $(div).animate({ 
+           left:((iter%2==0 ? distance : distance+15))
+           },interval);                                   
+   }                                                                                                             
+   $(div).animate({ left: 0},interval);                                                                                
+}
 
 function getWeather(pos) {
 
@@ -97,4 +110,4 @@ module.exports = {
     getUserLatLong: getUserLatLong,
     getPosition: getPosition,
     getWeather: getWeather
-}
+};

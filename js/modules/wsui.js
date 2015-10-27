@@ -32,7 +32,7 @@ function nexusSetting() {
 
 
     return $.Deferred().resolve();
-};
+}
 
 
 
@@ -394,7 +394,7 @@ function mainDisplayMotion() {
                 mainDisplayMotion();
                 $window.unbind("scroll load",mainDisplayHandler);
             }
-        })
+        });
     }
 }
 
@@ -413,8 +413,8 @@ $(".input").on("click", ".system", function() {
 //// ON RESIZE
 $(window).on("resize", function() {
     $('#searchTextField').css("width", "100%");
-    $('#toggle1').css("width", $("body").width() - 15 + "px").css("height", $("footer").height() + "px");
-    $('#matrix1').css("width", $("body").width() - $(".track-names").width() - 40 + "px").css("height", $(".sequencer").height() + "px");
+    matrix1.resize($('body').width()-124, $('.matrix-size').height());
+    toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
 });
 
 
@@ -448,4 +448,4 @@ module.exports = {
     loadSearchHandlers,loadSearchHandlers,
     dialMotionLauncher:dialMotionLauncher,
     loadPlayButtonHandler: loadPlayButtonHandler
-}
+};
