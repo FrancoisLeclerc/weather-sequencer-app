@@ -26,7 +26,9 @@ var instrumentLoaded = false;
 var currentWeather;
 
 var seqInstru = new Instrument(sampleSet["default"]);
-// weather = window.googleOnLoad = require("./modules/initialize");
+//load search handlers with the instrument
+//THIS MIGHT HAVE TO BE RELOAD IF INSTRUMENT SET CHANGE
+ui.loadSearchHandlers(seqInstru);
 
 Tone.Buffer.onload = function(){
     console.log("buffer loaded");

@@ -30,8 +30,8 @@ function nexusSetting() {
     matrix1.row = 8;
     matrix1.init();
 
-
-    loadSearchHandlers();
+    
+    //Load Play Trigger handler from Nexus as used in the following function
     loadPlayButtonHandler()
 
     return $.Deferred().resolve();
@@ -40,7 +40,7 @@ function nexusSetting() {
 
 
 
-function loadSearchHandlers() {
+function loadSearchHandlers(instrument) {
     var $searchField = $("#searchTextField");
 
     //// ACTION SEARCH INPUT
@@ -50,8 +50,10 @@ function loadSearchHandlers() {
 
                 async.getPosition($searchField.val())
                     .then(async.getWeather)
-                    .then(motionDial);
-
+                    .then(function(weather){
+                        instrument.connectFX(weather);
+                        motionDial(weather);
+                    });
             }, 50);
         }
     });
@@ -62,8 +64,10 @@ function loadSearchHandlers() {
 
             async.getPosition($searchField.val())
                 .then(async.getWeather)
-                .then(motionDial);
-
+                .then(function(weather){
+                    instrument.connectFX(weather);
+                    motionDial(weather);
+                });
         }, 50);
     });
 }
@@ -423,4 +427,5 @@ module.exports = {
     nexusSetting: nexusSetting,
     motionDial: motionDial,
     mainDisplayMotion: mainDisplayMotion,
+    loadSearchHandlers,loadSearchHandlers
 }
