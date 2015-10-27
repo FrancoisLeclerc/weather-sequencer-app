@@ -25,7 +25,7 @@ function initialize() {
                     var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
                     getPosition(pos);
                 }, function(){
-                    $("#searchTextField").val("").attr("placeholder","Select a city from the menu");
+                    $("#searchTextField").val("").attr("placeholder","Select a city from the list");
                 });
             } else { 
                 alert("Your browser doesn't support geolocation!"); 

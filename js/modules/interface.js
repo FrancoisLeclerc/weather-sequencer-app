@@ -9,6 +9,9 @@ nx.onload = function() {
     nx.colorize("fill", "#424242");
     matrix1.col = 16;
     matrix1.row = 8;
+    // matrix1.resize($('#matrix1').width(), $('#matrix1').height());
+    // toggle1.resize($('#toggle1').width(), $('#toggle1').height());
+    // toggle1.init();
     matrix1.init();
 };
 
@@ -21,8 +24,12 @@ $(".input").on("click", ".system", function(){
 //// ON RESIZE
 $(window).on("resize",function(){
     $('#searchTextField').css("width","100%");
-    $('#toggle1').css("width",$("body").width()-15+"px").css("height",$("footer").height()+"px");
-    $('#matrix1').css("width",$("body").width()-$(".track-names").width()-40+"px").css("height",$(".sequencer").height()+"px");
+    // matrix1.resize($('.matrix-size').width(), $('.matrix-size').height());
+    matrix1.resize($('body').width()-124, $('.matrix-size').height());
+    toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
+//     // $('#toggle1').css("width",$("body").width()-15+"px").css("height",$("footer").height()+"px");
+//     // $('#matrix1').css("width",$("body").width()-$(".track-names").width()-40+"px").css("height",$(".sequencer").height()+"px");
+//     // $("*").css("width",$(this).width()-($(this).width()/$("body").width())+"px");
 });
 
 //// ACTION SEARCH INPUT
