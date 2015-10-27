@@ -2,7 +2,6 @@
 
 window.initialize = require("./modules/initialize");
 
-
 // var Tone = require("tone");
 require('./modules/interface');
 

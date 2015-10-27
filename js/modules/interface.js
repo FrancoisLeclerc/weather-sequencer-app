@@ -21,10 +21,12 @@ $(".input").on("click", ".system", function(){
     ($(".system").text() === "Switch to metric system")?$(".system").text("Switch to imperial system"):$(".system").text("Switch to metric system");
 });
 
+$(window).on("orientationchange", function(){
+});
+
 //// ON RESIZE
 $(window).on("resize",function(){
     $('#searchTextField').css("width","100%");
-    // matrix1.resize($('.matrix-size').width(), $('.matrix-size').height());
     matrix1.resize($('body').width()-124, $('.matrix-size').height());
     toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
 //     // $('#toggle1').css("width",$("body").width()-15+"px").css("height",$("footer").height()+"px");
