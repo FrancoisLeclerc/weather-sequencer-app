@@ -10,14 +10,15 @@ var temperatureFX = require("./fx/temperature");
 
 function Instrument(sampleSet) {
     
-    this.toneSynth = new Tone.PolySynth(8, Tone.Sampler, sampleSet, {
+    this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {
     	"envelope" : {
     		"release" : 0.2
     	}
     })
     
     this.connectFX = function(weather) {
-        //change the bpm of the Transport
+        
+        //change the bpm of Transport
         temperatureFX(weather);
         
         this.toneSynth.chain(

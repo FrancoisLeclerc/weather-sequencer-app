@@ -88,7 +88,7 @@ function loadPlayButtonHandler() {
     };
 
     playButton.on('mousedown touchstart', function(e) {
-        console.log(e);
+        
         if (!playButton.active) {
             playButton.active = true;
             playButton.start();

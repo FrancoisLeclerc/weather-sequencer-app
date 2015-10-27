@@ -19,25 +19,32 @@ ui.mainDisplayMotion();
 
 //global state variables
 var weatherFetched = false;
-var instrumentLoaded = false;
+var audioFilesLoaded = false;
 
 
 //start the app
 var currentWeather;
 
+//create the instrument (async loading audio samples)
 var seqInstru = new Instrument(sampleSet["default"]);
+
+//
+if (!weatherFetched) seqInstru.directToMaster();
+
 //load search handlers with the instrument
 //THIS MIGHT HAVE TO BE RELOAD IF INSTRUMENT SET CHANGE
 ui.loadSearchHandlers(seqInstru);
 
+//Load sequencer only when nx.onload has been called and instrument is created
+$.when(nxReady,seqInstru.loaded).then(function(){
+    loadSequencer(seqInstru);
+})
+
+//
 Tone.Buffer.onload = function(){
     console.log("buffer loaded");
-    instrumentLoaded = true;
+    audioFilesLoaded = true;
 }
-
-if (!weatherFetched) seqInstru.directToMaster();
-
-
 
 
 // Fetch user location + weather then connect fx if successful
@@ -46,14 +53,13 @@ async.getUserLatLong().then(function(userLatLong){
     async.getPosition(userLatLong);
     
     async.getWeather(userLatLong).then(function(weather){
-        
-        currentWeather = weather;
-        // console.log(currentWeather);
+
         weatherFetched = true;
+        currentWeather = weather;
         seqInstru.connectFX(weather);
         
+        //handling FX UI Motion
         var $playButton = $("#toggle1");
-        
         if ($playButton.isOnScreen()) {
             
             ui.motionDial(weather);
@@ -69,15 +75,6 @@ async.getUserLatLong().then(function(userLatLong){
                 }
             })        
         }
+        
     });
 })
-
-
-
-
-//Load sequencer only when nx.onload has been called and instrument is created
-$.when(nxReady,seqInstru.loaded).then(function(){
-    loadSequencer(seqInstru);
-})
-
-
