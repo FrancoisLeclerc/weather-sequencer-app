@@ -1,12 +1,12 @@
 module.exports = {
     default: {
-        "kick" : "./Audio/drum/kick.mp3",
-        "snare" : "./Audio/drum/snare.mp3",
-        "hihat" : "./Audio/drum/hihat.mp3",
-        "tom" : "./Audio/drum/tom.mp3",
-    	"A" : "./Audio/casio/A1.mp3",
-    	"C#" : "./Audio/casio/Cs2.mp3",
-    	"E" : "./Audio/casio/E2.mp3",
-    	"F#" : "./Audio/casio/Fs2.mp3",
+        "kick" : "./audio/drum/kick.mp3",
+        "snare" : "./audio/drum/snare.mp3",
+        "hihat" : "./audio/drum/hihat.mp3",
+        "tom" : "./audio/drum/tom.mp3",
+    	"A" : "./audio/casio/A1.mp3",
+    	"C#" : "./audio/casio/Cs2.mp3",
+    	"E" : "./audio/casio/E2.mp3",
+    	"F#" : "./audio/casio/Fs2.mp3",
     }
 }
