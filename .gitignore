@@ -1,6 +1,6 @@
 *.DS_Store
-/public/css/*
+/css/*
 /bower_components/*
 /node_modules/*
-/public/js/app-bundle.js
-/public/audio/*
+/js/app-bundle.js
+/audio/*
