@@ -29,6 +29,11 @@ function nexusSetting() {
     matrix1.col = 16;
     matrix1.row = 8;
     matrix1.init();
+    
+//     var fromMail = [[1,0,0,0,null,null,null,null],[0,1,0,0,null,null,null,null],[0,0,1,0,null,null,null,null],[0,0,0,1,null,null,null,null],[0,0,0,0,1,0,0,0],[0,0,0,0,0,1,0,0],[0,0,0,0,0,0,1,0],[0,0,0,1,0,0,0,1],[0,0,0,0,0,0,0,0],[0,0,0,1,0,0,0,0],[0,0,0,0,0,0,0,0],[0,1,1,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0]];
+// 	matrix1.matrix = fromMail;
+//  matrix1.setCell(0,0,fromMail[0][0]);
+    // setTimeout(function() { Tone.Transport.start(); }, 500);
 
 
     return $.Deferred().resolve();

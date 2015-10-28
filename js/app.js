@@ -5,6 +5,8 @@ var sampleSet = require("./modules/sampleSet");
 var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
 var ui = require("./modules/wsui");
+var testEncoder = require("./modules/encoder.js"); 
+testEncoder();
 
 //Load nexus component ui handlers
 var nxReady = nx.onload = ui.nexusSetting;
