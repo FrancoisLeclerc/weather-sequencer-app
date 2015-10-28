@@ -432,8 +432,8 @@ function onResize(){
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
-    console.log(this);
-    console.log(location);
+    // console.log(this);
+    // console.log(location);
     if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
         var target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -481,7 +481,14 @@ $(".btn-fx").on("click",function clearSeq(){
 
 
 /// SELECT ANOTHER SOUND SET
-
+function displayTrackNames(instrument){
+    var $trackBlock = $(".track-names");
+    var trackNames = instrument.getTrackSetArray();
+    console.log($trackBlock);
+    $trackBlock.children().each(function(index,track){
+        $(track).text(trackNames[index]);
+    })
+}
 
 
 
@@ -492,5 +499,6 @@ module.exports = {
     loadSearchHandlers:loadSearchHandlers,
     dialAnimationLauncher:dialAnimationLauncher,
     loadPlayButtonHandler: loadPlayButtonHandler,
-    $nxReady,$nxReady
+    $nxReady:$nxReady,
+    displayTrackNames:displayTrackNames
 };

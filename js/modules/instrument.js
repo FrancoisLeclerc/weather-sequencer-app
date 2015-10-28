@@ -10,17 +10,16 @@ var windFx = require("./fx/wind");
 
 
 function Instrument(sampleSet) {
-
+    this.fxOn = false;
+    this.trackSet = sampleSet;
     this.BPM = 120;
     this.wind = new windFx();
-    this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {
-                    	"envelope" : {
-                    		"release" : 0.2
-                    	}
-                    })
-    
-    this.fxOn = false;
-    this.connectFX = function(weather) {
+    this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
+}
+
+
+Instrument.prototype = {
+    connectFX: function(weather) {
         //windFx
         this.wind.setFx(weather);
 
@@ -41,13 +40,20 @@ function Instrument(sampleSet) {
         );
         
         this.fxOn = true;
-    }
-    
-    this.disconnectFX = function(){
+    },
+    getTrackSetArray: function() {
+        var set = this.trackSet;
+        var setArray = [];
+        for (var key in set){
+            setArray.push(key);
+        }
+        return setArray
+    },
+    disconnectFX: function(){
         this.toneSynth.disconnect();
         this.wind.noise.stop();
-    }
-    this.directToMaster = function() {
+    },
+    directToMaster: function() {
         this.toneSynth.toMaster();
     }
 }

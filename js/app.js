@@ -16,8 +16,11 @@ ui.mainDisplayAnimation();
 
 //create the instrument (async loading audio samples)
 g.setInstru(new Instrument(sampleSet["default"]));
-
 g.getInstru().directToMaster();
+	
+//change the track names in the interface
+ui.setTrackNames(g.getInstru());
+
 
 //load search handlers
 ui.loadSearchHandlers();
