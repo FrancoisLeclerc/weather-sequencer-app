@@ -7,17 +7,17 @@ $gradright: linear-gradient(to right, $black, #111111, $black); $gradbottom: lin
 
 *, *:before, *:after { box-sizing: border-box; }
 
-body { margin:0; background-color:$black; }
+body { width:auto; margin:0; background-color:$black; }
 .q { color:$green; }
 .pac-icon, .nodisplay, .mobile { display:none; }
 .pac-item { text-align:center; font-family:$abel; }
     
-header { display:flex; height:100vh; color:$white; flex-direction:column;
+header { display:flex; flex-direction:column; height:100vh; color:$white;
     .ws { height:90vh; padding:0 2em;
-        h1 { font:10em $lombok; text-align:center; margin:0; }
-        p { font:2em $raleway; text-align:justify; margin:0.5em 0; } }
+        h1 { font:10em $lombok; text-align:center; margin:0; padding-top:0.1em; }
+        p { font:2em $raleway; text-align:justify; margin:0; padding:1.5em 0; } }
 }    
-.slider { height:10vh; padding:0.5em;
+.slider { height:10vh; padding:0.2em;
     img { display: block; margin:auto; height:100%; position:relative; animation:bounce 750ms infinite; } 
 }
             
@@ -25,10 +25,10 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
 
 #container { display:flex; height:100vh; flex-direction:column;
     .head { display:flex; height:10vh; padding:0.5em 2em;
-        .title { width:70vw;
+        .title { width:65vw;
             h1{ font:2.5em $lombok; color:$white; margin:0; opacity:0; } }
             
-        .input { width:30vw; text-align:right; display:block;
+        .input { width:35vw; text-align:right; display:block;
             div { display:block; }
             p { font:0.8em $raleway; color:$lgray; margin:0; display:inline; }
             .system, .send { &:hover { opacity:0.5; cursor:pointer; } } 
@@ -36,117 +36,148 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
                 
     .settings, .sequencer, footer { width:auto; }
     .settings { height:30vh;
-        .console { display:flex; font-family:$abel; color:$lgray; width:80%; margin:auto;
+        .console { display:flex; font-family:$abel; color:$lgray; width:80%; margin:auto; padding-top:0.5em;
+            .btn-fx { background-color:$green; height:100px; width:100px; border-radius:50%; border:2px solid $dgray; margin:auto;
+                p {
+                        margin: auto;
+                        text-align: center;
+                        padding: 0.75em 0;
+                        color: $dgray;
+                        font-family: $abel;
+                        font-weight: bold;
+                        font-size: 2.2em;
+                }
+            }
             .effect { margin:auto;
                 canvas { margin:0.2em 0 0 0; height:100px; width:100px; cursor:default; }
                 p { margin:0; text-align:center; } } } }
                 
     .sequencer { display:flex; height:50vh; margin:0 0.5em;
         .track-names { display:flex; flex-direction:column; background: $gradright; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray;
-            p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; } }
-        div { width:100%; height:100%; } }
+            p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; } } }
         
-    footer { height:10vh; margin:0.5em; 
-        .go-up {
-            display:none;
-        }
-        .toggle-size {
-            width:100%; height:100%;
-        }
-    }
-    .sequencer, footer {
+    footer { height:10vh; margin:0; padding:0.5em; 
+        .go-up { display:none; } }
+    
+    .toggle-size, .matrix-size { width:100%; height:100%;
         canvas { width:100%; height:100%; cursor:pointer; } }
 }
 
-@media only screen and (max-width: 40em) and (orientation:landscape){
-    body { width:auto; height:auto;}
-    header { width:100vw;
+@media only screen and (max-width: 640px) and (orientation:landscape){
+    body { width:auto; height:auto; }
+    header {
         .ws { height:85vh; padding:0 1em;
-            h1 { font-size:5em; padding-bottom:0.2em;}
-            p { font-size:1em; margin:0; } } }        
+            h1 { font-size:5em; padding:0; }
+            p { font-size:1em; padding:0.75em 0; } } }        
     
     .slider { height:15vh; padding:0.2em; }
     .mobile { display:inline; }
     
-    #container { height:auto; width:100vw;
-        .head { padding:0 0.5em; height:15vh; width:100vw;
-            .title { width:70vw;
-                h1{ font-size:2em; margin-top:0.2em;} }
+    #container { height:auto;
+        .head { padding:0 0.5em; height:15vh;
+            .title {
+                h1{ font-size:2em; margin-top:0.1em;} }
             .input { width:30vw;
                 div { margin-top:-4px; }
                 p { font-size:0.5em; }
                 #searchTextField { font-size:0.5em; } } }
                     
-        .settings { height:70vh; width:100vw;
-            .console { width:100vw; margin: 2.5em 0;
+        .settings { height:70vh; //width:100vw;
+            .console { width:100vw; margin: 2.5em 0; padding:0;
                 .effect { &:first-child { margin-left:1em; } &:last-child { margin-right:1em; }
                     canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
                     p { font-size:0.75em;} } } }
                     
-        .sequencer { margin:0; padding:0 0.25em; height:90vh; width:100vw;
-            .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px; height:100%;
-                p { font-size:0.6em; padding:1em 0;} }
-                
-            .matrix-size { width:100%; height: 100%; padding:0 0.25em;
-                canvas { width:100% !important; height:100% !important; } } }
+        .sequencer { margin:0; padding:0 0.25em; height:90vh;
+            .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px;
+                p { font-size:0.6em; padding:1em 0;} } }
             
-        footer { display:flex; margin:0; padding:0.25em; height:10vh; width:100vw; 
+        footer { display:flex; padding:0.25em;
             .go-up { display:inline; max-width:50px; min-width:50px; height:100%; border-radius:5px; margin-right:0; border:1px solid $dgray; background:$gradright;
                 a { text-decoration:none; }
-                p { font-family:$abel; color:$green; margin:0; text-align:center; } }
-            
-            .toggle-size { width:100%; height:100%; padding:0 0.25em;
-                canvas { width:100% !important; height:100% !important;} }
-        }
+                p { font-family:$abel; color:$green; margin:auto; text-align:center; } } }
+        
+        .toggle-size, .matrix-size { padding:0 0.25em;
+            canvas { width:100% !important; height:100% !important;} }
     }
 }
 
-@media only screen and (max-width: 40em) and (orientation:portrait){
-    header { width:100vw;
+@media only screen and (max-width: 640px) and (orientation:portrait){
+    body { width:auto; height:auto; }
+    header { 
         .ws { height:85vh; padding:0 1em;
-            h1 { font-size:3.4em; padding-bottom:0.5em;} //fs pb
-            p { font-size:1.5em; margin:0; } } }        //fs 
+            h1 { font-size:3.4em; padding-top:0.2em; }
+            p { font-size:1.5em; padding:0.75em 0;} } }
     
     .slider { height:15vh; padding:0.2em; }
     .mobile { display:inline; }
     
-    #container { height:auto; width:100vw;
-        .head { padding:0 0.5em; height:15vh; width:100vw; //p
-            .title { width:60vw; //
-                h1{ font-size:2em; margin-top:0;} }//mt
-            .input { width:40vw; //
-                div { margin-top:-6px; } //
-                p { font-size:0.4em; } //
+    #container { height:auto;
+        .head { padding:0 0.5em; height:15vh;
+            .title { width:60vw;
+                h1{ font-size:2em; margin-top:0.1em;} }
+            .input { width:40vw;
+                div { margin-top:-6px; }
+                p { font-size:0.4em; }
                 #searchTextField { font-size:0.5em; } } }
                     
-        .settings { height:70vh; width:100vw;
-            .console { width:90vw; margin: auto; flex-wrap:wrap; height: 60vh; padding-top:1em;//all 5
-                .effect { display:block; &:first-child {  } &:last-child {  } &:nth-child(1) { margin-left:0; } &:nth-child(4) { margin-right:0; } //mg left mg right all nth
-                    canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; } //h w
-                    p { font-size:0.75em; &:last-child { padding-bottom:2em; } } } } }//lcpb
+        .settings { height:70vh; //width:100vw;
+            .console { width:90vw; margin: auto; flex-wrap:wrap; height: 60vh; padding-top:1em;
+                .effect { display:block;
+                    canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
+                    p { font-size:0.75em; &:last-child { padding-bottom:2em; } } } } }
                     
-        .sequencer { margin:0; padding:0 0.25em; height:90vh; width:100vw;
-            .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px; height:100%;
-                p { font-size:1.1em; padding:0.5em 0; &:nth-child(3) { padding:0.525em; } } }//all 2
-                
-            .matrix-size { width:100%; height: 100%; padding:0 0.25em;
-                canvas { width:100% !important; height:100% !important; } } }
-            
-        footer { display:flex; margin:0; padding:0.25em; height:10vh; width:100vw; 
+        .sequencer { margin:0; padding:0 0.25em; height:90vh;
+            .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px;
+                p { font-size:1.1em; padding:0.5em 0; &:nth-child(3) { padding:0.525em; } } } }   
+
+        footer { display:flex; padding:0.25em;
             .go-up { display:inline; max-width:50px; min-width:50px; height:100%; border-radius:5px; margin-right:0; border:1px solid $dgray; background:$gradright;
                 a { text-decoration:none; }
-                p { font-family:$abel; color:$green; margin:0; text-align:center; padding: 0.7em 0; } }//pad
-            
-            .toggle-size { width:100%; height:100%; padding:0 0.25em;
-                canvas { width:100% !important; height:100% !important;} }
-        }
+                p { font-family:$abel; color:$green; margin:0; text-align:center; padding: 0.7em 0; } } }
+        
+        .toggle-size, .matrix-size { padding:0 0.25em;
+            canvas { width:100% !important; height:100% !important;} }
     }
 }
 
-// // Medium screens
-// @media only screen and (min-width: 40.063em) { 
-   
-// }
 
-// // Large screens
-// @media only screen and (min-width: 64.063em) { }
+@media only screen and (min-width: 641px) and (max-width: 800px){
+    header { 
+        .ws { padding:0 1.5em;
+            h1 { font-size:6em; } } }    
+    
+    #container { 
+        .head { padding:0.25em 1em;
+            .title { width:60vw;
+                h1{ font-size:2em; } }
+                
+            .input { width:40vw;
+                p { font-size:0.7em; } } }
+                    
+        .settings { 
+            .console { width:100%; padding-top:0.75em;
+                .effect { 
+                    canvas { margin:0.2em 0 0 0; height:80px; width:80px; }
+                    p { font-size:0.9em; } } } }
+    }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1024px){
+
+    header { 
+        .ws { 
+            h1 { font-size:7.5em; } } }    
+
+    #container { 
+        .head {
+            .title { width:65vw; }
+            .input { width:35vw;
+                p { font-size:0.75em; } } }
+                    
+        .settings {
+            .console { width:90%;
+                .effect {
+                    canvas { height:90px; width:90px; } } } }
+    }
+}
