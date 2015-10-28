@@ -14,10 +14,11 @@ Tone.Transport.setInterval(function(time){
 	var column = matrix1.matrix[stepNumber];
 	for (var i = 0; i < 8; i++){
 		if (column[i] === 1){
-			Instrument.toneSynth.triggerAttackRelease(noteNames[i], "32n", time);
+			Instrument.toneSynth.triggerAttackRelease(noteNames[i], "64n", time);
 		}
 	}
 	
+	matrix1.jumpToCol(stepNumber);
 	stepNumber++;
 	stepNumber = stepNumber % 16;
 	
