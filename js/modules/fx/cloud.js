@@ -47,7 +47,6 @@ function cloudFx(weather){
 
     console.log("--low pass filter");
     console.log("frequency: "+frequency);
-    
     var filter = new Tone.Filter(frequency, "lowpass");
     return filter;
 }

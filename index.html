@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather Sequencer</title>
   <link rel="icon" type="image/png" href="./image/favicon.png" />
-  <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css" />
 
 </head>
@@ -22,7 +23,8 @@
       <a href="#container"><img class="arrow" src="./image/arrow.png" alt="Go to the sequencer!"></a>
     </div>
   </header>
-  <buffer></buffer>
+  <buffer>
+  </buffer>
   <main id="container">
     <section class="head">
       <div class="title">
@@ -31,7 +33,11 @@
       <div class="input">
         <input id="searchTextField" type="text" placeholder="Search for another city">
         <div>
+<<<<<<< HEAD
           <p class="system">Switch to imperial system</p><p> | </p><p class="send">Send a Friend</p>
+=======
+          <p class="system">Switch to imperial system</p><p> | </p><p class="share">Share</p>
+>>>>>>> ebdf7301e1289fecd51923503209586da61d2027
         </div>
       </div>
     </section>
@@ -91,33 +97,49 @@
     </div>
     <section class="sequencer" id="seq">
       <div class="track-names">
-
-        <p>Bass Drum</p>
-        <p>Snare Drum</p>
-        <p>Hi Hat</p>
-        <p>Floor Tom</p>
-        <p>Synth 1</p>
-        <p>Synth 2</p>
-        <p>Synth 3</p>
-        <p>Synth 4</p>
+        <p class="track1">Bass Drum</p>
+        <p class="track2">Snare Drum</p>
+        <p class="track3">Hi-Hat</p>
+        <p class="track4">Floor Tom</p>
+        <p class="track5">Synth 1</p>
+        <p class="track6">Synth 2</p>
+        <p class="track7">Synth 3</p>
+        <p class="track8">Synth 4</p>
       </div>
       <div class="matrix-size">
         <canvas nx='matrix' id="matrix1"></canvas>
       </div>
     </section>
     <footer>
-      <div class="go-up">
-        <a href="#container"><p>GO UP</p></a>
+      <div class="menu">
+        <ul>
+          <li>
+            <i class="material-icons">menu</i>
+            <ul class="nodisplay">
+              <li class="bypass-fx">Bypass FX</li>
+              <li class="clear-sequencer">Clear sequencer</li>
+              <li class="change-sounds">Change sounds</li>
+            </ul>
+          </li>   
+        </ul>
       </div>
       <div class="toggle-size">
         <canvas nx="toggle" id="toggle1"></canvas>
       </div>
+      <div class="go-up">
+        <a href="#container">
+          <i class="material-icons">arrow_drop_up</i>
+        </a>
+      </div>
     </footer>
   </main>
+<<<<<<< HEAD
   
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <!--<script type="text/javascript" src="./js/modules/nexus/nexusUI.js"></script>-->
   <!--<script src="bower_components/foundation/js/foundation.min.js"></script>-->
+=======
+>>>>>>> ebdf7301e1289fecd51923503209586da61d2027
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmk5AKVdNHYCjGEv-UeAK0LOaiiCGP_DE&libraries=places"></script>
   <script src="./js/app-bundle.js"></script>
 </body>

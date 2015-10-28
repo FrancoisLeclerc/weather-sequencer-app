@@ -14,7 +14,7 @@ function stormFx(weather){
     var amount = 0;
 
     if (nearestStormDistance < 600 ) {
-        amount = 100 / nearestStormDistance;
+        amount = 100 / (nearestStormDistance + 1);
     }
 
     console.log("--distortion");

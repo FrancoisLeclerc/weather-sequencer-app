@@ -1,8 +1,7 @@
 var Tone = require("tone");
-// var getPosition = require("./position-data");
+var g = require("./current-env");
 var async = require("./async-data");
 var getLink = require("./encoder");
-
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
@@ -16,6 +15,7 @@ $.fn.isOnScreen = function(){
 };
 
 
+var $nxReady = $.Deferred();
 //// NEXUS UI SET UP
 function nexusSetting() {
 
@@ -31,19 +31,17 @@ function nexusSetting() {
     matrix1.row = 8;
     matrix1.init();
     
-//     var fromMail = [[1,0,0,0,null,null,null,null],[0,1,0,0,null,null,null,null],[0,0,1,0,null,null,null,null],[0,0,0,1,null,null,null,null],[0,0,0,0,1,0,0,0],[0,0,0,0,0,1,0,0],[0,0,0,0,0,0,1,0],[0,0,0,1,0,0,0,1],[0,0,0,0,0,0,0,0],[0,0,0,1,0,0,0,0],[0,0,0,0,0,0,0,0],[0,1,1,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0]];
-// 	matrix1.matrix = fromMail;
-//  matrix1.setCell(0,0,fromMail[0][0]);
-    // setTimeout(function() { Tone.Transport.start(); }, 500);
+    //add a method to clear the sequencer
+    matrix1.clear = clear;
 
+    onResize();
 
-    return $.Deferred().resolve();
+    $nxReady.resolve();
 }
 
 
 
-
-function loadSearchHandlers(instrument) {
+function loadSearchHandlers() {
     var $searchField = $("#searchTextField");
 
     //// ACTION SEARCH INPUT
@@ -54,8 +52,8 @@ function loadSearchHandlers(instrument) {
                 async.getPosition($searchField.val())
                     .then(async.getWeather)
                     .then(function(weather){
-                        instrument.connectFX(weather);
-                        motionDial(weather);
+                        g.getInstru().connectFX(weather);
+                        dialAnimation(weather);
                     });
             }, 50);
         }
@@ -68,8 +66,8 @@ function loadSearchHandlers(instrument) {
             async.getPosition($searchField.val())
                 .then(async.getWeather)
                 .then(function(weather){
-                    instrument.connectFX(weather);
-                    motionDial(weather);
+                    g.getInstru().connectFX(weather);
+                    dialAnimation(weather);
                 });
         }, 50);
     });
@@ -78,24 +76,20 @@ function loadSearchHandlers(instrument) {
 
 
 //// PLAY BUTTON
-function loadPlayButtonHandler(instrument) {
-    var playButton = $('#toggle1');
+function loadPlayButtonHandler() {
 
+    var playButton = $('#toggle1');
+    
     playButton.active = false;
     playButton.start = function() {
-        console.log(instrument.BPM);
-        
-        // Tone.Transport.start(matrix1.sequence(instrument.BPM));
-        // matrix1.jumpToCol(-1);
-        // matrix1.bpm = instrument.BPM;
-        // matrix1.sequence(instrument.BPM);
-        // console.log(matrix1.bpm);
+        var instrument = g.getInstru();
+        if (instrument.wind.isOn) instrument.wind.noise.start();
         Tone.Transport.start();
     };
     playButton.stop = function() {
+        var instrument = g.getInstru();
+        if (instrument.wind.isOn) instrument.wind.noise.stop();
         Tone.Transport.stop();
-        // matrix1.stop();
-        // matrix1.jumpToCol(20);
     };
 
     playButton.on('mousedown touchstart', function(e) {
@@ -117,16 +111,16 @@ function loadPlayButtonHandler(instrument) {
             }
             else {
                 if (!playButton.active) {
+                    playButton.start();
                     toggle1.val.value = 1;
                     toggle1.draw();
                     playButton.active = true;
-                    playButton.start();
                 }
                 else {
+                    playButton.stop();
                     toggle1.val.value = 0;
                     toggle1.draw();
                     playButton.active = false;
-                    playButton.stop();
                 }
             }
         }
@@ -197,28 +191,28 @@ function displayWeatherData(data) {
 }
 
 
-function dialMotionLauncher(weather){
+function dialAnimationLauncher(weather){
     //handling FX UI Motion
-    var $playButton = $("#toggle1");
-    if ($playButton.isOnScreen()) {
+    var $dials = $(".console");
+    if ($dials.isOnScreen()) {
         
-        motionDial(weather);
+        dialAnimation(weather);
     }
     else {//if not currently on screen, add event to trigger when motion automatically
         
         var $window = $(window);
         $window.on("scroll load", function dialDisplayHandler() {
-            if ($playButton.isOnScreen())
+            if ($dials.isOnScreen())
             {
-                motionDial(weather);
+                dialAnimation(weather);
                 $window.unbind("scroll load",dialDisplayHandler);
             }
-        })        
+        });      
     }
 }
 
 
-function motionDial(data) {
+function dialAnimation(data) {
 
     var $console = $(".console");
     if ($console.isOnScreen())
@@ -230,10 +224,8 @@ function motionDial(data) {
             valueDial[i].val.value = 0;
         }
     
-    
         var speed = [];
-    
-    
+        
         for (var i = 0; i < 7; i++) {
             speed[i] = (Math.round(Math.random() * 22) + 8) / 1500;
         }
@@ -369,7 +361,7 @@ function motionDial(data) {
 }
 
 
-function mainDisplayMotion() {
+function mainDisplayAnimation() {
 
     var $title = $(".title h1");
     if ($title.isOnScreen())
@@ -405,17 +397,12 @@ function mainDisplayMotion() {
         $window.on("scroll load", function mainDisplayHandler() {
             if ($title.isOnScreen())
             {
-                mainDisplayMotion();
+                mainDisplayAnimation();
                 $window.unbind("scroll load",mainDisplayHandler);
             }
         });
     }
 }
-
-
-
-
-
 
 //// TOGGLE IMPERIAL-METRIC
 $(".input").on("click", ".system", function() {
@@ -424,21 +411,30 @@ $(".input").on("click", ".system", function() {
 });
 
 
+
+
 //// ON RESIZE
-$(window).on("resize", function() {
-    $('#searchTextField').css("width", "100%");
-    matrix1.resize($('body').width()-124, $('.matrix-size').height());
-    toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
-});
-
-
+function onResize(){
+    var widthWinInit = $(window).width();
+    $(window).on("resize", function() {
+        var widthMove  = widthWinInit - $(window).width();
+        widthWinInit = $(window).width();
+        
+        matrix1.resize(matrix1.width-widthMove,matrix1.height);
+        $("#matrix1").attr("width",matrix1.width).attr("height",matrix1.height);
+        matrix1.draw();
+        
+        $('#searchTextField').css("width", "100%");
+        // toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
+        toggle1.resize(toggle1.width-widthMove,toggle1.height);
+    });
+}
 
 
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
-    console.log(this);
-    console.log(location);
+
     if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
         var target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -453,7 +449,7 @@ $('a[href*=#]:not([href=#])').click(function() {
 
 
 ///SHARE LINK BUTTON
-$('.send').on('click', function() {
+$('.share').on('click', function() {
     var link = getLink();
     
     var $overlay = $('<div class="overlay"></div>');
@@ -476,15 +472,88 @@ $('.send').on('click', function() {
 
 
 
+//// SWITCH ON/OFF FX
+$('.menu').on("click",function switchFX(){
+    if (!g.getInstru().empty){
+        var instrument = g.getInstru();
+        if (instrument.fxOn) {
+            instrument.disconnectFX();
+            instrument.directToMaster();
+            instrument.fxOn = false;
+        }
+        else {
+            if (!g.getWeather().empty) instrument.connectFX(g.getWeather());
+        }
+    }
+});
+
+/// CLEAR THE MATRIX
+function clear(){
+    var grid = this.matrix;
+    
+    for (var y = 0; y < grid.length; y++){
+        for (var x = 0; x < grid[y].length; x++){
+           this.setCell(y,x,0);   
+        }
+    }
+}
+
+$(".btn-fx").on("click",function clearSeq(){
+    if (matrix1) matrix1.clear();
+})
 
 
+
+/// SELECT ANOTHER SOUND SET
+function displayTrackNames(instrument){
+    var $trackBlock = $(".track-names");
+    var trackNames = instrument.getTrackSetArray();
+
+    $trackBlock.children().each(function(index,track){
+        $(track).text(trackNames[index]);
+    })
+}
+
+function loadNewTrackSet(sampleSet){
+    var instrument = g.getInstru();
+    var weather = g.getWeather();
+    
+    instrument.disconnectFX();
+    instrument.setNewSynth(sampleSet);
+    instrument.directToMaster();
+    if (!g.getWeather().empty) {instrument.connectFX(weather);}
+    displayTrackNames(instrument);
+}
+
+$("title").on("click",function(){
+    console.log("test");
+})
+
+
+//// RELOAD URL ON ORIENTATION CHANGE
+$(window).on('orientationchange', function(e) {
+    window.location.reload();
+});
+
+$(".menu").on("click", "i", function(){
+  $( ".menu ul li ul" ).toggleClass("nodisplay");
+});
+
+$(".menu ul li ul").on("click", "li", function(){
+  $( ".menu ul li ul" ).toggleClass("nodisplay");
+});
+
+$("#searchTextField").on("click", function(){
+    this.select();
+});
 
 module.exports = {
     nexusSetting: nexusSetting,
-    motionDial: motionDial,
-    mainDisplayMotion: mainDisplayMotion,
-    loadSearchHandlers,loadSearchHandlers,
-    dialMotionLauncher:dialMotionLauncher,
-    loadPlayButtonHandler: loadPlayButtonHandler
+    dialAnimation: dialAnimation,
+    mainDisplayAnimation: mainDisplayAnimation,
+    loadSearchHandlers:loadSearchHandlers,
+    dialAnimationLauncher:dialAnimationLauncher,
+    loadPlayButtonHandler: loadPlayButtonHandler,
+    $nxReady:$nxReady,
+    displayTrackNames:displayTrackNames
 };
-

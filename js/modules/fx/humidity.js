@@ -31,7 +31,7 @@ function humidityFx(weather){
     
     console.log("--reverb");
     console.log("roomSize: "+roomSize);
-    var reverb = new Tone.Freeverb(roomSize).toMaster();
+    var reverb = new Tone.Freeverb(roomSize);
     // reverb.dampening.value = 5000;
     if (roomSize < 0.2) reverb.wet.value=0;
     return reverb;

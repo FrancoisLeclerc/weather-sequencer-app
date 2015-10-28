@@ -1,4 +1,6 @@
 //functions that execute async operations
+var g = require("./current-env");
+
 
 //get position of user from his browser
 function getUserLatLong() {
@@ -47,7 +49,7 @@ function getPosition(data) {
         url: url,
         datatype: "jsonp",
         success: function(city) {
-            if (city.status === "OK") { // && ( typeof data === "object" || data.toLowerCase() === city.results[x].formatted_address.toLowerCase() || data.toLowerCase() === city.results[x].address_components[0].long_name.toLowerCase())) {
+            if (city.status === "OK") {
                 var position = city.results[0].geometry.location;
                 $("#searchTextField").val(city.results[x].formatted_address);
                 $dfd.resolve(position);
@@ -65,6 +67,7 @@ function getPosition(data) {
 
     return $dfd.promise();
 }
+
 
 //// Shake animation custom
 function shake(div){                                                                                                                                                                                            
@@ -92,7 +95,8 @@ function getWeather(pos) {
 
             var currentWeather = forecastInfo.currently;
 
-            console.log(currentWeather);
+            g.setWeather(currentWeather);
+            //console.log(currentWeather);
 
             $dfd.resolve(currentWeather);
         },
