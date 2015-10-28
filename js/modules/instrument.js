@@ -33,7 +33,7 @@ function Instrument(sampleSet) {
         //all other fx are regular ones to chain between the instrument and the Master
         this.toneSynth.chain(
             rainFX(weather),
-            // humidityFX(weather),
+            humidityFX(weather),
             visibilityFX(weather),
             cloudFX(weather),
             stormFX(weather),
