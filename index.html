@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather Sequencer</title>
   <link rel="icon" type="image/png" href="./image/favicon.png" />
-  <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css" />
 
 </head>
@@ -38,9 +39,6 @@
     </section>
     <section class="settings">
       <div class="console">
-        <div class="btn-fx">
-          <p>FX</p>
-        </div>
         <div class="effect">
           <p>Temperature</p>
           <p class="data1 switch nodisplay">0°F</p>
@@ -95,25 +93,32 @@
     </div>
     <section class="sequencer" id="seq">
       <div class="track-names">
-        <p>Bass Drum</p>
-        <p>Snare Drum</p>
-        <p>Hi Hat</p>
-        <p>Floor Tom</p>
-        <p>Synth 1</p>
-        <p>Synth 2</p>
-        <p>Synth 3</p>
-        <p>Synth 4</p>
+        <p class="track1">Bass Drum</p>
+        <p class="track2">Snare Drum</p>
+        <p class="track3">Hi Hat</p>
+        <p class="track4">Floor Tom</p>
+        <p class="track5">Synth 1</p>
+        <p class="track6">Synth 2</p>
+        <p class="track7">Synth 3</p>
+        <p class="track8">Synth 4</p>
       </div>
       <div class="matrix-size">
         <canvas nx='matrix' id="matrix1"></canvas>
       </div>
     </section>
     <footer>
-      <div class="go-up">
-        <a href="#container"><p>GO UP</p></a>
+      <div class="menu">
+        <a href="">
+          <i class="material-icons">menu</i>
+        </a>
       </div>
       <div class="toggle-size">
         <canvas nx="toggle" id="toggle1"></canvas>
+      </div>
+      <div class="go-up">
+        <a href="#container">
+          <i class="material-icons">arrow_drop_up</i>
+        </a>
       </div>
     </footer>
   </main>

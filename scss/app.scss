@@ -37,17 +37,6 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
     .settings, .sequencer, footer { width:auto; }
     .settings { height:30vh;
         .console { display:flex; font-family:$abel; color:$lgray; width:80%; margin:auto; padding-top:0.5em;
-            .btn-fx { background-color:$green; height:100px; width:100px; border-radius:50%; border:2px solid $dgray; margin:auto;
-                p {
-                        margin: auto;
-                        text-align: center;
-                        padding: 0.75em 0;
-                        color: $dgray;
-                        font-family: $abel;
-                        font-weight: bold;
-                        font-size: 2.2em;
-                }
-            }
             .effect { margin:auto;
                 canvas { margin:0.2em 0 0 0; height:100px; width:100px; cursor:default; }
                 p { margin:0; text-align:center; } } } }
@@ -56,7 +45,10 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
         .track-names { display:flex; flex-direction:column; background: $gradright; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray;
             p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; } } }
         
-    footer { height:10vh; margin:0; padding:0.5em; 
+    footer { display:flex; height:10vh; margin:0; padding:0.5em;
+        .go-up, .menu { max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray; background:$gradright;
+                a { text-decoration:none; 
+                    i { font-size:2.9em; color:$green; text-align:center; padding:0 0.55em; } } } 
         .go-up { display:none; } }
     
     .toggle-size, .matrix-size { width:100%; height:100%;
@@ -82,7 +74,7 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
                 p { font-size:0.5em; }
                 #searchTextField { font-size:0.5em; } } }
                     
-        .settings { height:70vh; //width:100vw;
+        .settings { height:70vh;
             .console { width:100vw; margin: 2.5em 0; padding:0;
                 .effect { &:first-child { margin-left:1em; } &:last-child { margin-right:1em; }
                     canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
@@ -92,10 +84,9 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
             .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px;
                 p { font-size:0.6em; padding:1em 0;} } }
             
-        footer { display:flex; padding:0.25em;
-            .go-up { display:inline; max-width:50px; min-width:50px; height:100%; border-radius:5px; margin-right:0; border:1px solid $dgray; background:$gradright;
-                a { text-decoration:none; }
-                p { font-family:$abel; color:$green; margin:auto; text-align:center; } } }
+        footer { padding: 0.25em 0.5em 0.25em 0.25em;
+            .go-up, .menu { display:inline; max-width:50px; min-width:50px; margin-right:0; border-width:1px;
+                a { i { font-size:1.2em; padding:1px 0.75em; } } } }
         
         .toggle-size, .matrix-size { padding:0 0.25em;
             canvas { width:100% !important; height:100% !important;} }
@@ -121,7 +112,7 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
                 p { font-size:0.4em; }
                 #searchTextField { font-size:0.5em; } } }
                     
-        .settings { height:70vh; //width:100vw;
+        .settings { height:70vh;
             .console { width:90vw; margin: auto; flex-wrap:wrap; height: 60vh; padding-top:1em;
                 .effect { display:block;
                     canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
@@ -131,10 +122,9 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
             .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px;
                 p { font-size:1.1em; padding:0.5em 0; &:nth-child(3) { padding:0.525em; } } } }   
 
-        footer { display:flex; padding:0.25em;
-            .go-up { display:inline; max-width:50px; min-width:50px; height:100%; border-radius:5px; margin-right:0; border:1px solid $dgray; background:$gradright;
-                a { text-decoration:none; }
-                p { font-family:$abel; color:$green; margin:0; text-align:center; padding: 0.7em 0; } } }
+        footer { padding: 0.25em 0.5em 0.25em 0.25em;
+            .go-up, .menu { display:inline; max-width:50px; min-width:50px; margin-right:0; border-width:1px; 
+                a { i { font-size:2.5em; padding:3px 0.1em; } } } }
         
         .toggle-size, .matrix-size { padding:0 0.25em;
             canvas { width:100% !important; height:100% !important;} }
