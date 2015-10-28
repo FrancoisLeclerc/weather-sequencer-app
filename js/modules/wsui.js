@@ -448,7 +448,7 @@ $('a[href*=#]:not([href=#])').click(function() {
 
 
 //// SWITCH ON/OFF FX
-$('.title').on("click",function switchFX(){
+$('.menu').on("click",function switchFX(){
     if (!g.getInstru().empty){
         var instrument = g.getInstru();
         if (instrument.fxOn) {
@@ -483,7 +483,7 @@ $(".btn-fx").on("click",function clearSeq(){
 function displayTrackNames(instrument){
     var $trackBlock = $(".track-names");
     var trackNames = instrument.getTrackSetArray();
-    console.log($trackBlock);
+
     $trackBlock.children().each(function(index,track){
         $(track).text(trackNames[index]);
     })
@@ -500,6 +500,9 @@ function loadNewTrackSet(sampleSet){
     displayTrackNames(instrument);
 }
 
+$("title").on("click",function(){
+    console.log("test");
+})
 
 
 //// RELOAD URL ON ORIENTATION CHANGE

@@ -15,7 +15,7 @@ nx.onload = ui.nexusSetting;
 ui.mainDisplayAnimation();
 
 //create the instrument (async loading audio samples)
-g.setInstru(new Instrument(sampleSet["default"]));
+g.setInstru(new Instrument(sampleSet["Default"]));
 
 //change the track names in the interface
 ui.displayTrackNames(g.getInstru());
