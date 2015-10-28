@@ -1,6 +1,5 @@
 $black: #000; $white: #fff; $green: #0affea; $lgray: #e5e5e5; $dgray: #424242; 
 $raleway: 'Raleway', sans-serif; $lombok: 'Lombok', sans-serif; $abel: 'Abel', sans-serif;
-$gradright: linear-gradient(to right, $black, #111111, $black); $gradbottom: linear-gradient(to bottom, $black, #111111, $black);
 
 @font-face { font-family:Lombok; src: url(../fonts/Lombok.otf) }
 @keyframes bounce { 0% { bottom:1px; } 25%, 75% { bottom:3px; } 50% { bottom:4px; } 100% { bottom:0px; } }
@@ -9,50 +8,57 @@ $gradright: linear-gradient(to right, $black, #111111, $black); $gradbottom: lin
 
 body { width:auto; margin:0; background-color:$black; }
 .q { color:$green; }
-.pac-icon, .nodisplay, .mobile { display:none; }
 .pac-item { text-align:center; font-family:$abel; }
-    
+.pac-icon, .nodisplay, .mobile { display:none; }
+
 header { display:flex; flex-direction:column; height:100vh; color:$white;
     .ws { height:90vh; padding:0 2em;
-        h1 { font:10em $lombok; text-align:center; margin:0; padding-top:0.1em; }
-        p { font:2em $raleway; text-align:justify; margin:0; padding:1.5em 0; } }
+        h1 { font:10em $lombok; text-align:center; margin:0; padding-top:0.1em; user-select:none;  }
+        p { font:2em $raleway; text-align:justify; margin:0; padding:1.5em 0; user-select:none;  } }
 }    
-.slider { height:10vh; padding:0.2em;
-    img { display: block; margin:auto; height:100%; position:relative; animation:bounce 750ms infinite; } 
+.slider { height:10vh; padding:0.2em; user-select:none; 
+    img { display: block; margin:auto; height:100%; position:relative; animation:bounce 750ms infinite; user-select:none;  } 
 }
             
-buffer { display:flex; height:50vh; background: $gradbottom; }
+buffer { display:flex; height:50vh; }
 
 #container { display:flex; height:100vh; flex-direction:column;
     .head { display:flex; height:10vh; padding:0.5em 2em;
-        .title { width:65vw;
-            h1{ font:2.5em $lombok; color:$white; margin:0; opacity:0; } }
+        .title { width:65vw; user-select:none; 
+            h1{ font:2.5em $lombok; color:$white; margin:0; opacity:0; user-select:none; } }
             
-        .input { width:35vw; text-align:right; display:block;
+        .input { width:35vw; text-align:right; display:block; user-select:none; 
             div { display:block; }
-            p { font:0.8em $raleway; color:$lgray; margin:0; display:inline; }
-            .system, .send { &:hover { opacity:0.5; cursor:pointer; } } 
+            p { font:0.8em $raleway; color:$lgray; margin:0; display:inline; user-select:none; }
+            .system, .share { &:hover { opacity:0.5; cursor:pointer; } } 
             #searchTextField { font-family:$abel; text-align:center; width:0px; height:2em; border:0px; &:focus { outline: none; } } } }
                 
     .settings, .sequencer, footer { width:auto; }
     .settings { height:30vh;
         .console { display:flex; font-family:$abel; color:$lgray; width:80%; margin:auto; padding-top:0.5em;
             .effect { margin:auto;
-                canvas { margin:0.2em 0 0 0; height:100px; width:100px; cursor:default; }
-                p { margin:0; text-align:center; } } } }
+                canvas { margin:0.2em 0 0 0; height:100px; width:100px; cursor:default; user-select:none; }
+                p { margin:0; text-align:center; user-select:none; } } } }
                 
     .sequencer { display:flex; height:50vh; margin:0 0.5em;
-        .track-names { display:flex; flex-direction:column; background: $gradright; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray;
-            p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; } } }
+        .track-names { display:flex; flex-direction:column; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border:2px solid $dgray;
+            p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; user-select:none; } } }
         
     footer { display:flex; height:10vh; margin:0; padding:0.5em;
-        .go-up, .menu { max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border-radius:5px; border:2px solid $dgray; background:$gradright;
-                a { text-decoration:none; 
-                    i { font-size:2.9em; color:$green; text-align:center; padding:0 0.55em; } } } 
-        .go-up { display:none; } }
+        .go-up { display:none; }
+        .go-up, .menu { max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border:2px solid $dgray;
+                a { text-decoration:none; }
+                i { font-size:2.9em; color:$green; text-align:center; padding:0 0.55em; cursor:pointer; user-select:none; } }  
+                
+        .menu {
+            * { padding:0; margin:0; list-style-type:none; }
+            li { position:relative; }
+            ul li ul { display:block; width:200px; position: absolute; margin-left:-2px; bottom:100%; background-color:$black; }
+            ul li .nodisplay { display:none; }
+            ul li ul li { font-size:1em; font-family:$raleway; padding:1em; text-align:center; color:$lgray; cursor:pointer; } } }
     
     .toggle-size, .matrix-size { width:100%; height:100%;
-        canvas { width:100%; height:100%; cursor:pointer; } }
+        canvas { width:100%; height:100%; cursor:pointer; border-radius:0; } }
 }
 
 @media only screen and (max-width: 640px) and (orientation:landscape){

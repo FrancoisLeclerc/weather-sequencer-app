@@ -507,6 +507,18 @@ $(window).on('orientationchange', function(e) {
     window.location.reload();
 });
 
+$(".menu").on("click", "i", function(){
+  $( ".menu ul li ul" ).toggleClass("nodisplay");
+});
+
+$(".menu ul li ul").on("click", "li", function(){
+  $( ".menu ul li ul" ).toggleClass("nodisplay");
+});
+
+$("#searchTextField").on("click", function(){
+    this.select();
+});
+
 module.exports = {
     nexusSetting: nexusSetting,
     dialAnimation: dialAnimation,
