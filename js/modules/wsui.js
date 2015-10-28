@@ -29,6 +29,9 @@ function nexusSetting() {
     matrix1.col = 16;
     matrix1.row = 8;
     matrix1.init();
+    
+    //add a method to clear the sequencer
+    matrix1.clear = clear;
 
     onResize();
 
@@ -459,6 +462,25 @@ $('.title').on("click",function switchFX(){
     }
 })
 
+
+/// CLEAR THE MATRIX
+function clear(){
+    var grid = this.matrix;
+    
+    for (var y = 0; y < grid.length; y++){
+        for (var x = 0; x < grid[y].length; x++){
+           this.setCell(y,x,0);   
+        }
+    }
+}
+
+$(".btn-fx").on("click",function clearSeq(){
+    matrix1.clear();
+})
+
+
+
+/// SELECT ANOTHER SOUND SET
 
 
 module.exports = {
