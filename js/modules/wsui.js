@@ -475,12 +475,14 @@ function clear(){
 }
 
 $(".btn-fx").on("click",function clearSeq(){
-    matrix1.clear();
+    if (matrix1) matrix1.clear();
 })
 
 
 
 /// SELECT ANOTHER SOUND SET
+
+
 
 
 module.exports = {
