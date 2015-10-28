@@ -421,7 +421,8 @@ function onResize(){
         matrix1.draw();
         
         $('#searchTextField').css("width", "100%");
-        toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
+        // toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
+        toggle1.resize(toggle1.width-widthMove,toggle1.height);
     });
 }
 
@@ -429,8 +430,6 @@ function onResize(){
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
-    console.log(this);
-    console.log(location);
     if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
         var target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -457,9 +456,12 @@ $('.title').on("click",function switchFX(){
             if (!g.getWeather().empty) instrument.connectFX(g.getWeather());
         }
     }
-})
+});
 
-
+//// RELOAD URL ON ORIENTATION CHANGE
+$(window).on('orientationchange', function(e) {
+    window.location.reload();
+});
 
 module.exports = {
     nexusSetting: nexusSetting,
@@ -468,5 +470,5 @@ module.exports = {
     loadSearchHandlers:loadSearchHandlers,
     dialAnimationLauncher:dialAnimationLauncher,
     loadPlayButtonHandler: loadPlayButtonHandler,
-    $nxReady,$nxReady
+    $nxReady: $nxReady
 };

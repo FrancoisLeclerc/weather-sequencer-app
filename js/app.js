@@ -7,7 +7,7 @@ var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
 var ui = require("./modules/wsui");
 var g = require("./modules/current-env");
-
+    
 //Define the nx.onload callback
 nx.onload = ui.nexusSetting;
 
