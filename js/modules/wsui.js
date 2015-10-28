@@ -36,16 +36,6 @@ function nexusSetting() {
 }
 
 
-//// ON RESIZE
-function onResize(){
-    $(window).on("resize", function() {
-        $('#searchTextField').css("width", "100%");
-        matrix1.resize($('body').width()-124, $('.matrix-size').height());
-        toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
-    });
-}
-
-
 
 function loadSearchHandlers() {
     var $searchField = $("#searchTextField");
@@ -213,7 +203,7 @@ function dialAnimationLauncher(weather){
                 dialAnimation(weather);
                 $window.unbind("scroll load",dialDisplayHandler);
             }
-        })        
+        });      
     }
 }
 
@@ -410,16 +400,30 @@ function mainDisplayAnimation() {
     }
 }
 
-
-
-
-
-
 //// TOGGLE IMPERIAL-METRIC
 $(".input").on("click", ".system", function() {
     $(".switch").toggleClass("nodisplay");
     ($(".system").text() === "Switch to metric system") ? $(".system").text("Switch to imperial system"): $(".system").text("Switch to metric system");
 });
+
+
+
+
+//// ON RESIZE
+function onResize(){
+    var widthWinInit = $(window).width();
+    $(window).on("resize", function() {
+        var widthMove  = widthWinInit - $(window).width();
+        widthWinInit = $(window).width();
+        
+        matrix1.resize(matrix1.width-widthMove,matrix1.height);
+        $("#matrix1").attr("width",matrix1.width).attr("height",matrix1.height);
+        matrix1.draw();
+        
+        $('#searchTextField').css("width", "100%");
+        toggle1.resize($('.toggle-size').width(), $('.toggle-size').height());
+    });
+}
 
 
 
@@ -440,7 +444,7 @@ $('a[href*=#]:not([href=#])').click(function() {
 });
 
 
-
+//// SWITCH ON/OFF FX
 $('.title').on("click",function switchFX(){
     if (!g.getInstru().empty){
         var instrument = g.getInstru();
