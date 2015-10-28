@@ -6,6 +6,7 @@ var sampleSet = require("./modules/sampleSet");
 var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
 var ui = require("./modules/wsui");
+var g = require("./modules/current-env");
 
 //Define the nx.onload callback
 nx.onload = ui.nexusSetting;
@@ -14,19 +15,18 @@ nx.onload = ui.nexusSetting;
 ui.mainDisplayAnimation();
 
 //create the instrument (async loading audio samples)
-var seqInstru = new Instrument(sampleSet["default"]);
+g.setInstru(new Instrument(sampleSet["default"]));
 
-seqInstru.directToMaster();
+g.getInstru().directToMaster();
 
-//load search handlers with the instrument
-//THIS MIGHT HAVE TO BE RELOAD IF INSTRUMENT SET CHANGE
-ui.loadSearchHandlers(seqInstru);
+//load search handlers
+ui.loadSearchHandlers();
 
 //Load sequencer only when nx.onload has been called and instrument is created
 
 ui.$nxReady.then(function(){
-    loadSequencer(seqInstru);
-    ui.loadPlayButtonHandler(seqInstru);
+    loadSequencer(g.getInstru());
+    ui.loadPlayButtonHandler();
 });
 
 // Fetch user location + weather then connect fx if successful
@@ -36,7 +36,7 @@ async.getUserLatLong().then(function(userLatLong){
     
     async.getWeather(userLatLong).then(function(weather){
         
-        seqInstru.connectFX(weather);
+        g.getInstru().connectFX(weather);
         
         ui.$nxReady.then(function(){
             ui.dialAnimationLauncher(weather);

@@ -1,4 +1,6 @@
 //functions that execute async operations
+var g = require("./current-env");
+
 
 //get position of user from his browser
 function getUserLatLong() {
@@ -66,6 +68,7 @@ function getPosition(data) {
     return $dfd.promise();
 }
 
+
 //// Shake animation custom
 function shake(div){                                                                                                                                                                                            
    var interval = 100;                                                                                                 
@@ -92,7 +95,8 @@ function getWeather(pos) {
 
             var currentWeather = forecastInfo.currently;
 
-            console.log(currentWeather);
+            g.setWeather(currentWeather);
+            //console.log(currentWeather);
 
             $dfd.resolve(currentWeather);
         },

@@ -1,5 +1,5 @@
 var Tone = require("tone");
-// var getPosition = require("./position-data");
+var g = require("./current-env");
 var async = require("./async-data");
 
 //jQuery helpers
@@ -47,7 +47,7 @@ function onResize(){
 
 
 
-function loadSearchHandlers(instrument) {
+function loadSearchHandlers() {
     var $searchField = $("#searchTextField");
 
     //// ACTION SEARCH INPUT
@@ -58,7 +58,7 @@ function loadSearchHandlers(instrument) {
                 async.getPosition($searchField.val())
                     .then(async.getWeather)
                     .then(function(weather){
-                        instrument.connectFX(weather);
+                        g.getInstru().connectFX(weather);
                         dialAnimation(weather);
                     });
             }, 50);
@@ -72,7 +72,7 @@ function loadSearchHandlers(instrument) {
             async.getPosition($searchField.val())
                 .then(async.getWeather)
                 .then(function(weather){
-                    instrument.connectFX(weather);
+                    g.getInstru().connectFX(weather);
                     dialAnimation(weather);
                 });
         }, 50);
@@ -82,15 +82,19 @@ function loadSearchHandlers(instrument) {
 
 
 //// PLAY BUTTON
-function loadPlayButtonHandler(instrument) {
+function loadPlayButtonHandler() {
 
     var playButton = $('#toggle1');
-
+    
     playButton.active = false;
     playButton.start = function() {
+        var instrument = g.getInstru();
+        if (instrument.wind.isOn) instrument.wind.noise.start();
         Tone.Transport.start();
     };
     playButton.stop = function() {
+        var instrument = g.getInstru();
+        if (instrument.wind.isOn) instrument.wind.noise.stop();
         Tone.Transport.stop();
     };
 
@@ -195,8 +199,8 @@ function displayWeatherData(data) {
 
 function dialAnimationLauncher(weather){
     //handling FX UI Motion
-    var $playButton = $("#toggle1");
-    if ($playButton.isOnScreen()) {
+    var $dials = $(".console");
+    if ($dials.isOnScreen()) {
         
         dialAnimation(weather);
     }
@@ -204,7 +208,7 @@ function dialAnimationLauncher(weather){
         
         var $window = $(window);
         $window.on("scroll load", function dialDisplayHandler() {
-            if ($playButton.isOnScreen())
+            if ($dials.isOnScreen())
             {
                 dialAnimation(weather);
                 $window.unbind("scroll load",dialDisplayHandler);
@@ -437,13 +441,27 @@ $('a[href*=#]:not([href=#])').click(function() {
 
 
 
+$('.title').on("click",function switchFX(){
+    if (!g.getInstru().empty){
+        var instrument = g.getInstru();
+        if (instrument.fxOn) {
+            instrument.disconnectFX();
+            instrument.directToMaster();
+            instrument.fxOn = false;
+        }
+        else {
+            if (!g.getWeather().empty) instrument.connectFX(g.getWeather());
+        }
+    }
+})
+
 
 
 module.exports = {
     nexusSetting: nexusSetting,
     dialAnimation: dialAnimation,
     mainDisplayAnimation: mainDisplayAnimation,
-    loadSearchHandlers,loadSearchHandlers,
+    loadSearchHandlers:loadSearchHandlers,
     dialAnimationLauncher:dialAnimationLauncher,
     loadPlayButtonHandler: loadPlayButtonHandler,
     $nxReady,$nxReady
