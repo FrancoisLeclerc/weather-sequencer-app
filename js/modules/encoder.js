@@ -2,6 +2,7 @@
 function encoder() {
     setTimeout(function(){
         // console.log(matrix1.matrix);
+        
         //Convert null in array for 0
         var melody = matrix1.matrix;
      
@@ -21,29 +22,16 @@ function encoder() {
         }
         
         console.log('urlHash #### ' + urlHash);
-            
+         
+        return urlHash;   
         
         
     }, 10000);
     
 }
 
-encoder();
-
-
-        
-
-
 
 
 module.exports = encoder;
 
-	// var matsettings = matrix1;
-	// console.log("matsettings--------" , matsettings);
-	// console.log(JSON.stringify(matrix1.matrix));
-	// Encode
-    // var urlHash = '';
-    // for (var i = 0; i < 16; i++) {
-    //     urlHash += matrix[i].join('')
-    // }
 	

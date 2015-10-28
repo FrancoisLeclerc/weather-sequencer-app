@@ -5,11 +5,17 @@ var sampleSet = require("./modules/sampleSet");
 var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
 var ui = require("./modules/wsui");
-var testEncoder = require("./modules/encoder.js"); 
-testEncoder();
+
+var encoder = require("./modules/encoder.js");
+encoder();
+
+
 
 //Load nexus component ui handlers
 var nxReady = nx.onload = ui.nexusSetting;
+
+var decoder = require("./modules/decoder.js");
+
 
 //load google library Autocomplete
 var input = document.getElementById('searchTextField');
@@ -61,5 +67,6 @@ async.getUserLatLong().then(function(userLatLong){
         currentWeather = weather;
         seqInstru.connectFX(weather);
         ui.dialMotionLauncher(weather);
+        decoder();
     });
 })
