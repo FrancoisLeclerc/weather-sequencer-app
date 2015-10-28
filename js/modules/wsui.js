@@ -490,6 +490,18 @@ function displayTrackNames(instrument){
     })
 }
 
+function loadNewTrackSet(sampleSet){
+    var instrument = g.getInstru();
+    var weather = g.getWeather();
+    
+    instrument.disconnectFX();
+    instrument.setNewSynth(sampleSet);
+    instrument.directToMaster();
+    if (!g.getWeather().empty) {instrument.connectFX(weather);}
+    displayTrackNames(instrument);
+}
+
+
 
 
 module.exports = {

@@ -10,11 +10,11 @@ var windFx = require("./fx/wind");
 
 
 function Instrument(sampleSet) {
-    this.fxOn = false;
     this.trackSet = sampleSet;
-    this.BPM = 120;
-    this.wind = new windFx();
     this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
+    this.toneSynth.toMaster();
+    this.fxOn = false;
+    this.wind = new windFx();
 }
 
 
@@ -55,6 +55,10 @@ Instrument.prototype = {
     },
     directToMaster: function() {
         this.toneSynth.toMaster();
+    },
+    setNewSynth: function(sampleSet) {
+        this.trackSet = sampleSet;
+        this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
     }
 }
 
