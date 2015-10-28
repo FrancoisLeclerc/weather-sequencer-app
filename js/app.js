@@ -6,6 +6,7 @@ var sampleSet = require("./modules/sampleSet");
 var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
 var ui = require("./modules/wsui");
+var decoder = require("./modules/decoder.js");
 var g = require("./modules/current-env");
     
 //Define the nx.onload callback
@@ -24,7 +25,6 @@ ui.displayTrackNames(g.getInstru());
 ui.loadSearchHandlers();
 
 //Load sequencer only when nx.onload has been called and instrument is created
-
 ui.$nxReady.then(function(){
     loadSequencer(g.getInstru());
     ui.loadPlayButtonHandler();
@@ -42,6 +42,8 @@ async.getUserLatLong().then(function(userLatLong){
         ui.$nxReady.then(function(){
             ui.dialAnimationLauncher(weather);
         });
+        
+        decoder();
     });
 })
 

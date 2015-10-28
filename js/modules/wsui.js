@@ -1,6 +1,7 @@
 var Tone = require("tone");
 var g = require("./current-env");
 var async = require("./async-data");
+var getLink = require("./encoder");
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
@@ -447,6 +448,30 @@ $('a[href*=#]:not([href=#])').click(function() {
 });
 
 
+///SHARE LINK BUTTON
+$('.send').on('click', function() {
+    var link = getLink();
+    
+    var $overlay = $('<div class="overlay"></div>');
+    var $input = $('<input>');
+    
+    $overlay.append($input);
+    $('body').append($overlay);
+    $overlay.hide();
+    
+    
+    $input.attr("value", link);
+    $overlay.fadeIn(100);
+
+    $overlay.on('click', function(evt) {
+        if (evt.target === evt.currentTarget) {
+            $overlay.fadeOut(100);
+        }
+    });
+});
+
+
+
 //// SWITCH ON/OFF FX
 $('.menu').on("click",function switchFX(){
     if (!g.getInstru().empty){
@@ -509,6 +534,7 @@ $("title").on("click",function(){
 $(window).on('orientationchange', function(e) {
     window.location.reload();
 });
+
 
 module.exports = {
     nexusSetting: nexusSetting,
