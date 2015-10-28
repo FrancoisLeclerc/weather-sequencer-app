@@ -1,8 +1,6 @@
 
-function encoder() {
-    setTimeout(function(){
-        // console.log(matrix1.matrix);
-        
+function getLink() {
+
         //Convert null in array for 0
         var melody = matrix1.matrix;
      
@@ -21,17 +19,16 @@ function encoder() {
             urlHash += melody[i].join('');
         }
         
-        console.log('urlHash #### ' + urlHash);
-         
-        return urlHash;   
+        //create link for popup
+        var link = "https://weather-sequencer-app-francoisleclerc.c9.io/index.html#"+urlHash; 
+        return link;   
         
         
-    }, 10000);
-    
+
 }
 
 
 
-module.exports = encoder;
+module.exports = getLink;
 
 	

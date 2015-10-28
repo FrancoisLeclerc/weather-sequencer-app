@@ -23,6 +23,7 @@ header { display:flex; height:100vh; color:$white; flex-direction:column;
             
 buffer { display:flex; height:50vh; background: $gradbottom; }
 
+
 #container { display:flex; height:100vh; flex-direction:column;
     .head { display:flex; height:10vh; padding:0.5em 2em;
         .title { width:70vw;
@@ -141,6 +142,33 @@ buffer { display:flex; height:50vh; background: $gradbottom; }
                 canvas { width:100% !important; height:100% !important;} }
         }
     }
+}
+
+///////////////POPUP
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100vw;
+  height: 35vh;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.75);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.overlay * {
+    cursor: default;
+}
+
+.overlay input {
+    font-family: "Raleway",sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding:1em;
+    width:50vw;
 }
 
 // // Medium screens

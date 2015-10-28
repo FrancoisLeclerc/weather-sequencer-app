@@ -6,8 +6,7 @@ var async = require("./modules/async-data");
 var loadSequencer = require("./modules/sequencer");
 var ui = require("./modules/wsui");
 
-var encoder = require("./modules/encoder.js");
-encoder();
+
 
 
 
@@ -47,13 +46,13 @@ ui.loadSearchHandlers(seqInstru);
 $.when(nxReady,seqInstru.loaded).then(function(){
     loadSequencer(seqInstru);
     ui.loadPlayButtonHandler(seqInstru);
-})
+});
 
 //
 Tone.Buffer.onload = function(){
     console.log("buffer loaded");
     audioFilesLoaded = true;
-}
+};
 
 
 // Fetch user location + weather then connect fx if successful

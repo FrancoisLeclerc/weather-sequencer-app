@@ -1,6 +1,7 @@
 var Tone = require("tone");
 // var getPosition = require("./position-data");
 var async = require("./async-data");
+var getLink = require("./encoder");
 
 
 //jQuery helpers
@@ -451,6 +452,30 @@ $('a[href*=#]:not([href=#])').click(function() {
 });
 
 
+///SHARE LINK BUTTON
+$('.send').on('click', function() {
+    var link = getLink();
+    
+    var $overlay = $('<div class="overlay"></div>');
+    var $input = $('<input>');
+    
+    $overlay.append($input);
+    $('body').append($overlay);
+    $overlay.hide();
+    
+    
+    $input.attr("value", link);
+    $overlay.fadeIn(100);
+
+    $overlay.on('click', function(evt) {
+        if (evt.target === evt.currentTarget) {
+            $overlay.fadeOut(100);
+        }
+    });
+});
+
+
+
 
 
 
@@ -462,3 +487,4 @@ module.exports = {
     dialMotionLauncher:dialMotionLauncher,
     loadPlayButtonHandler: loadPlayButtonHandler
 };
+
