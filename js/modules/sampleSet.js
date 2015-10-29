@@ -1,5 +1,25 @@
 module.exports = {
-    Default: {
+    Bulldog: {
+    	"Kick" : "./audio/bulldog/bulldog-kick.mp3",
+    	"Snare" : "./audio/bulldog/bulldog-snare.mp3",
+    	"Hi-Hat 1" : "./audio/bulldog/bulldog-hihat-1.mp3",
+    	"Hi-Hat 2" : "./audio/bulldog/bulldog-hihat-2.mp3",
+    	"Synth-1" : "./audio/bulldog/bulldog-synth-1.mp3",
+    	"Synth-2" : "./audio/bulldog/bulldog-synth-2.mp3",
+    	"Synth-3" : "./audio/bulldog/bulldog-synth-3.mp3",
+    	"Tom" :  "./audio/bulldog/bulldog-tom.mp3",
+    },
+    French_Toast: {
+    	"Kick" : "./audio/french-toast/french-toast-kick.mp3",
+    	"Snare" : "./audio/french-toast/french-toast-snare.mp3",
+    	"Hi-Hat" : "./audio/french-toast/french-toast-hihat.mp3",
+    	"Punch" : "./audio/french-toast/french-toast-punch.mp3",
+    	"C" : "./audio/juno-106/juno-106-c.mp3",
+    	"E" : "./audio/juno-106/juno-106-e.mp3",
+    	"G" : "./audio/juno-106/juno-106-g.mp3",
+    	"A" : "./audio/juno-106/juno-106-a.mp3",
+    },
+    Fame_Boy: {
         "Kick" : "./audio/drum/kick.mp3",
         "Snare" : "./audio/drum/snare.mp3",
         "Hi-hat" : "./audio/drum/hihat.mp3",
@@ -18,26 +38,6 @@ module.exports = {
     	"A" : "./audio/casio/A2.mp3",
     	"B" : "./audio/casio/B1.mp3",
     	"F#" : "./audio/casio/Fs2.mp3",
-    },
-    French_Toast: {
-    	"Kick" : "./audio/french-toast/french-toast-kick.mp3",
-    	"Snare" : "./audio/french-toast/french-toast-snare.mp3",
-    	"Hi-Hat" : "./audio/french-toast/french-toast-hihat.mp3",
-    	"Punch" : "./audio/french-toast/french-toast-punch.mp3",
-    	"C" : "./audio/juno-106/juno-106-c.mp3",
-    	"E" : "./audio/juno-106/juno-106-e.mp3",
-    	"G" : "./audio/juno-106/juno-106-g.mp3",
-    	"A" : "./audio/juno-106/juno-106-a.mp3",
-    },
-    Bulldog: {
-    	"Kick" : "./audio/bulldog/bulldog-kick.mp3",
-    	"Snare" : "./audio/bulldog/bulldog-snare.mp3",
-    	"Hi-Hat 1" : "./audio/bulldog/bulldog-hihat-1.mp3",
-    	"Hi-Hat 2" : "./audio/bulldog/bulldog-hihat-2.mp3",
-    	"Synth-1" : "./audio/bulldog/bulldog-synth-1.mp3",
-    	"Synth-2" : "./audio/bulldog/bulldog-synth-2.mp3",
-    	"Synth-3" : "./audio/bulldog/bulldog-synth-3.mp3",
-    	"Tom" :  "./audio/bulldog/bulldog-tom.mp3",
     },
     Juno_106: {
     	"C" : "./audio/juno-106/juno-106-c.mp3",
