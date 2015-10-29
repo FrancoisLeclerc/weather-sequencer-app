@@ -211,7 +211,7 @@ function displayWeatherData(data) {
     else {
         $(".data6").text(Math.round(data.cloudCover * 100) + "%");
     }
-    //NEAREST STROM
+    //NEAREST STORM
     if (typeof data.nearestStormDistance !== "number") {
         $(".data7").text("n/a");
         $(".data7m").text("n/a");
@@ -272,6 +272,8 @@ function dialAnimation(data) {
         }
         var intDial1 = setInterval(function() {
             if (dial1.val.value >= val1) {
+                dial1.val.value = val1;
+                dial1.init();
                 clearInterval(intDial1);
             }
             else {
@@ -292,6 +294,8 @@ function dialAnimation(data) {
         }
         var intDial2 = setInterval(function() {
             if (dial2.val.value >= val2) {
+                dial2.val.value = val2;
+                dial2.init();
                 clearInterval(intDial2);
             }
             else {
@@ -309,6 +313,8 @@ function dialAnimation(data) {
         }
         var intDial3 = setInterval(function() {
             if (dial3.val.value >= val3) {
+                dial3.val.value = val3;
+                dial3.init();
                 clearInterval(intDial3);
             }
             else {
@@ -329,6 +335,8 @@ function dialAnimation(data) {
         }
         var intDial4 = setInterval(function() {
             if (dial4.val.value >= val4) {
+                dial4.val.value = val4;
+                dial4.init();
                 clearInterval(intDial4);
             }
             else {
@@ -346,6 +354,8 @@ function dialAnimation(data) {
         }
         var intDial5 = setInterval(function() {
             if (dial5.val.value >= val5) {
+                dial5.val.value = val5;
+                dial5.init();
                 clearInterval(intDial5);
             }
             else {
@@ -363,6 +373,8 @@ function dialAnimation(data) {
         }
         var intDial6 = setInterval(function() {
             if (dial6.val.value >= val6) {
+                dial6.val.value = val6;
+                dial6.init();
                 clearInterval(intDial6);
             }
             else {
@@ -380,6 +392,8 @@ function dialAnimation(data) {
         }
         var intDial7 = setInterval(function() {
             if (dial7.val.value >= val7) {
+                dial7.val.value = val7;
+                dial7.init();
                 clearInterval(intDial7);
             }
             else {
@@ -471,7 +485,6 @@ $('a[href*=#]:not([href=#])').click(function() {
     }
 });
 
-
 ///SHARE LINK BUTTON
 $('.share').on('click', function() {
     var link = getLink();
@@ -528,8 +541,6 @@ $(".menu li.clear-sequencer").on("click",function clearSeq(){
     if (matrix1) matrix1.clear();
 });
 
-
-
 /// DISPLAY TRACK NAMES
 function displayTrackNames(instrument){
     var $trackBlock = $(".track-names");
@@ -539,7 +550,6 @@ function displayTrackNames(instrument){
         $(track).text(trackNames[index]);
     });
 }
-
 
 /// SELECT ANOTHER SOUND SET
 function loadNewTrackSet(Set){
@@ -558,8 +568,6 @@ function loadNewTrackSet(Set){
     playButton.active = false;
     if (prevInstrument.wind.isOn) prevInstrument.wind.noise.stop();
     Tone.Transport.stop();
-    
-
     
     //Recreate a new instrument and connect it
     var newInstrument = new Instrument(Set);
@@ -596,7 +604,6 @@ $(window).on('orientationchange', function(e) {
 $("#searchTextField").on("click", function(){
     this.select();
 });
-
 
 //// Message to user with overlay
 function messageToUser(textToDisplay){
