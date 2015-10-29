@@ -36,7 +36,7 @@ buffer { display:flex; height:50vh; }
             div { display:block; }
             p   { font:0.8em $raleway; color:$lgray; margin:0; display:inline; user-select:none; }
             .system, .share  { &:hover { opacity:0.5; cursor:pointer; } } 
-            #searchTextField { font-family:$abel; text-align:center; width:0px; height:2em; border:0px; &:focus { outline: none; } } } }
+            #searchTextField { font-family:$abel; text-align:center; width:0px; height:2em; border:0px; border-radius:0; &:focus { outline: none; } } } }
                 
     .settings, .sequencer, footer { width:auto; }
     .settings { height:30vh;

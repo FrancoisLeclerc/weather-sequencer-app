@@ -5,6 +5,7 @@ var getLink = require("./encoder");
 var sampleSet = require("./sampleSet");
 var loadSequencer = require("./sequencer");
 var Instrument  = require("./instrument");
+var decoder = require("./decoder");
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
