@@ -42,7 +42,8 @@ Instrument.prototype = {
             stormFX(weather),
             Tone.Master
         );
-        
+        console.log("fx applied");
+        $(".onoffswitch-checkbox").prop('checked', true);
         this.fxOn = true;
     },
     getTrackSetArray: function() {
@@ -54,6 +55,7 @@ Instrument.prototype = {
         return setArray;
     },
     disconnectFX: function(){
+        $(".onoffswitch-checkbox").prop('checked', false);
         this.toneSynth.disconnect();
         this.wind.noise.stop();
         // this.wind.autoFilter.disconnect();
