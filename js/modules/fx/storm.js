@@ -21,7 +21,7 @@ function stormFx(weather){
     console.log("amount: "+amount);
     
     var dist = new Tone.Distortion(amount);
-    dist.wet.value = 0.35;
+    dist.wet.value = 0.25;
     // if (precipIntensity === 0) pingPong.wet.value=0;
     return dist;
 }

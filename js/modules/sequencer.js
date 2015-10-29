@@ -6,7 +6,7 @@ function sequencer(Instrument){
 	//keep track of steps and notes
 	var stepNumber = 0;
 	var noteNames = Instrument.getTrackSetArray();
-	console.log(noteNames);
+	// console.log(noteNames);
 	
 	//the repeated callback
 	Tone.Transport.setInterval(function(time){

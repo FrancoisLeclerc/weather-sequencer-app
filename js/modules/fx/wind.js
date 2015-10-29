@@ -34,7 +34,7 @@ windFx.prototype = {
         var noiseVol = -60;
         
         if (wind > 10) {
-            noiseVol = -25 + wind;
+            noiseVol = -20 + wind;
             this.isOn = true;
             if (Tone.Transport.state === "started") this.noise.start();
         }

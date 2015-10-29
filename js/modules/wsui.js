@@ -96,7 +96,7 @@ function loadPlayButtonHandler() {
     playButton.active = false;
     playButton.start = function() {
         var instrument = g.getInstru();
-        if (instrument.wind.isOn) instrument.wind.noise.start();
+        if (instrument.wind.isOn && instrument.fxOn) instrument.wind.noise.start();
         Tone.Transport.start();
     };
     playButton.stop = function() {

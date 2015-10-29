@@ -56,7 +56,7 @@ Instrument.prototype = {
     disconnectFX: function(){
         this.toneSynth.disconnect();
         this.wind.noise.stop();
-        this.wind.autoFilter.disconnect();
+        // this.wind.autoFilter.disconnect();
     },
     directToMaster: function() {
         this.toneSynth.toMaster();
