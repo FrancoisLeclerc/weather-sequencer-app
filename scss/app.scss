@@ -68,7 +68,7 @@ buffer { display:flex; height:50vh; }
         .menu ul li ul, .menu:hover ul li ul, .menu:hover ul li:hover ul li ul{ display:none; }
         .menu:hover ul, .menu:hover ul li:hover ul, .menu:hover ul li:hover ul li:hover ul { display:block; }
         .menu:hover ul li:hover ul li:hover ul { position: absolute; margin-left: 184px; margin-bottom: -51px; }
-        .menu:hover ul li:hover ul { position: absolute; margin-left:-2px; bottom:100%; margin-bottom:2px; }
+        .menu:hover ul li:hover ul { position: absolute; margin-left:-2px; bottom:100%; margin-bottom:1px; }
 }
 
 @media only screen and (max-width: 640px) and (orientation:landscape){
