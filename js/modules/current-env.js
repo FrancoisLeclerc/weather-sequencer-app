@@ -6,4 +6,4 @@ module.exports = {
     setInstru: function(i){instrument = i;},
     getWeather: function(){return weather;},
     setWeather: function(w){weather = w;}
-}
+};

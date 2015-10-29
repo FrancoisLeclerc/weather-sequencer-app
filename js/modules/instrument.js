@@ -47,7 +47,7 @@ Instrument.prototype = {
         for (var key in set){
             setArray.push(key);
         }
-        return setArray
+        return setArray;
     },
     disconnectFX: function(){
         this.toneSynth.disconnect();
@@ -60,6 +60,6 @@ Instrument.prototype = {
         this.trackSet = sampleSet;
         this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
     }
-}
+};
 
 module.exports = Instrument;

@@ -9,7 +9,7 @@ module.exports = {
     	"E" : "./audio/casio/E2.mp3",
     	"F#" : "./audio/casio/Fs2.mp3",
     },
-    Major: {
+    Casio: {
     	"C" : "./audio/casio/C2.mp3",
     	"D" : "./audio/casio/D2.mp3",
     	"E" : "./audio/casio/E2.mp3",
@@ -19,4 +19,4 @@ module.exports = {
     	"B" : "./audio/casio/B1.mp3",
     	"" : "./audio/casio/Fs2.mp3",
     }
-}
+};

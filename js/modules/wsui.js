@@ -179,7 +179,7 @@ function displayWeatherData(data) {
     else {
         $(".data6").text(Math.round(data.cloudCover * 100) + "%");
     }
-    //NEAREST STROM
+    //NEAREST STORM
     if (typeof data.nearestStormDistance !== "number") {
         $(".data7").text("n/a");
         $(".data7m").text("n/a");
