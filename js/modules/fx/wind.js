@@ -10,18 +10,19 @@ var Tone = require("tone");
 
 function windFx(){
         
-    var autoFilter = new Tone.AutoFilter({
+    this.autoFilter = new Tone.AutoFilter({
     	"frequency" : "8m", 
     	"min" : 800, 
     	"max" : 10000
-    }).toMaster();
+    });
     
     this.isOn = false;
     //initialize the noise and start
     this.noise = new Tone.Noise("pink");
     this.noise.volume.value = -60;
-
-    this.noise.connect(autoFilter);
+    
+    this.autoFilter.toMaster();
+    this.noise.connect(this.autoFilter);
 }
 
 windFx.prototype = {

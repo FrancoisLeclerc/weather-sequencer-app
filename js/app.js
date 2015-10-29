@@ -24,11 +24,11 @@ ui.displayTrackNames(g.getInstru());
 //load search handlers
 ui.loadSearchHandlers();
 
-//Load sequencer only when nx.onload has been called and instrument is created
-ui.$nxReady.then(function(){
+//Load sequencer only when nexus UI has loaded
+if (g.getNexus()){
     loadSequencer(g.getInstru());
     ui.loadPlayButtonHandler();
-});
+}
 
 // Fetch user location + weather then connect fx if successful
 async.getUserLatLong().then(function(userLatLong){
@@ -39,11 +39,10 @@ async.getUserLatLong().then(function(userLatLong){
         
         g.getInstru().connectFX(weather);
         
-        ui.$nxReady.then(function(){
+        if (g.getNexus()){
             ui.dialAnimationLauncher(weather);
-        });
+        };
         
-        // decoder();
     });
 });
 

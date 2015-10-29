@@ -25,7 +25,9 @@ buffer { display:flex; height:50vh; }
 .overlay {  position: fixed; top: 0; left: 0; width:100vw; height: 100vh; display: flex; background-color: rgba(0, 0, 0, 0.75); align-items: center; 
             justify-content: center; flex-direction: column; cursor: pointer;
     *     { cursor: default; }
-    input { font-family: $raleway; font-weight: bold; font-size: 1.2em; padding:1em; width:50vw; } }
+    input { font-family: $raleway; font-weight: bold; font-size: 1.2em; padding:1em; width:50vw; } 
+    p {font-family: $raleway; font-weight: bold; font-size: 1.2em; padding:1em; color:white;}
+}
 
 #container { display:flex; height:100vh; flex-direction:column;
     .head  { display:flex; height:10vh; padding:0.5em 2em;
@@ -220,7 +222,8 @@ buffer { display:flex; height:50vh; }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
     height: 26px; padding: 0; line-height: 26px;
-    border: 2px solid #999999; border-radius: 26px;
+    border: 2px solid $lgray; 
+    border-radius: 26px;
     background-color: $dgray;
     transition: background-color 0.3s ease-in;
 }
@@ -230,14 +233,16 @@ buffer { display:flex; height:50vh; }
     background: $dgray;
     position: absolute; top: 0; bottom: 0;
     right: 47px;
-    border: 2px solid #999999; border-radius: 50%;
+    border: 2px solid #999999; 
+    border-radius: 50%;
     transition: all 0.3s ease-in 0s; 
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label {
+    // border-color: $dgray;
     background-color: $lgray;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-   border-color: $lgray;
+//   border-color: $lgray;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 

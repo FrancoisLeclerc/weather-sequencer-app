@@ -5,6 +5,7 @@ var getLink = require("./encoder");
 var sampleSet = require("./sampleSet");
 var loadSequencer = require("./sequencer");
 var Instrument  = require("./instrument");
+var decoder = require("./decoder");
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
@@ -18,7 +19,6 @@ $.fn.isOnScreen = function(){
 };
 
 
-var $nxReady = $.Deferred();
 //// NEXUS UI SET UP
 function nexusSetting() {
 
@@ -38,9 +38,18 @@ function nexusSetting() {
     matrix1.clear = clear;
 
     onResize();
-
-    $nxReady.resolve();
     decoder();
+    
+    g.setNexus(true);
+    
+    if (!g.getInstru().empty){
+        loadSequencer(g.getInstru());
+        loadPlayButtonHandler();
+    }
+    
+    if (!g.getWeather().empty) {
+        dialAnimationLauncher(g.getWeather());
+    }
 }
 
 
@@ -124,10 +133,10 @@ function loadPlayButtonHandler() {
 
     $(window).on("keydown", function(e) {
         if (e.keyCode === 32) {
-            if ($(window).scrollTop() <= 580) {
-                $(".arrow").trigger("click");
-            }
-            else {
+            // if ($(window).scrollTop() <= 580) {
+            //     $(".arrow").trigger("click");
+            // }
+            // else {
                 if (!playButton.active) {
                     if (g.getBuffer()){
                         playButton.start();
@@ -145,7 +154,7 @@ function loadPlayButtonHandler() {
                     toggle1.draw();
                     playButton.active = false;
                 }
-            }
+            // }
         }
     });
 }
@@ -541,26 +550,26 @@ function loadNewTrackSet(Set){
     g.setBuffer(false);
 
     var prevInstrument = g.getInstru();
-    
-    //Stop the sequencer if playing
-    var playButton = $('#toggle1');
-    playButton.active = false;
-    toggle1.val.value = 0;
-    toggle1.draw();
-    if (prevInstrument.wind.isOn) {prevInstrument.wind.noise.stop();}
-    Tone.Transport.stop();
-
-    
     //Disconnect the existing sounds from the master
     prevInstrument.disconnectFX();
+
+    //Stop the sequencer if playing
+    var playButton = $('#toggle1');
+    toggle1.val.value = 0;
+    toggle1.draw();
+    playButton.active = false;
+    if (prevInstrument.wind.isOn) prevInstrument.wind.noise.stop();
+    Tone.Transport.stop();
+    
+
     
     //Recreate a new instrument and connect it
     var newInstrument = new Instrument(Set);
     var weather = g.getWeather();
     g.setInstru(newInstrument);
     
-    if (!g.getWeather().empty) {newInstrument.connectFX(weather);}
     displayTrackNames(newInstrument);
+    if (!g.getWeather().empty) {newInstrument.connectFX(weather);}
     loadSequencer(newInstrument);
 }
 
@@ -614,6 +623,5 @@ module.exports = {
     loadSearchHandlers:loadSearchHandlers,
     dialAnimationLauncher:dialAnimationLauncher,
     loadPlayButtonHandler: loadPlayButtonHandler,
-    $nxReady:$nxReady,
     displayTrackNames:displayTrackNames
 };
