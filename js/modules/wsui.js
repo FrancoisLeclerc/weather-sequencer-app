@@ -621,6 +621,15 @@ function messageToUser(textToDisplay){
     return $overlay;
 }
 
+
+$(".track-names").children().on("click",function(){
+    var $this = $(this);
+    var note = $this.text();
+    var instrument = g.getInstru();
+    instrument.toneSynth.triggerAttackRelease(note, "32n");
+})
+
+
 module.exports = {
     nexusSetting: nexusSetting,
     dialAnimation: dialAnimation,
