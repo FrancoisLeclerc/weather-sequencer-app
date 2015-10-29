@@ -536,22 +536,34 @@ function displayTrackNames(instrument){
 
 /// SELECT ANOTHER SOUND SET
 function loadNewTrackSet(Set){
+    
+    //Buffer unload;
     g.setBuffer(false);
+
+    var prevInstrument = g.getInstru();
+    
+    //Stop the sequencer if playing
+    var playButton = $('#toggle1');
+    playButton.active = false;
+    toggle1.val.value = 0;
+    toggle1.draw();
+    if (prevInstrument.wind.isOn) {prevInstrument.wind.noise.stop();}
     Tone.Transport.stop();
 
-    // console.log(Tone.Buffer);
-    g.getInstru().disconnectFX();
-    var instrument = new Instrument(Set);
-    g.setInstru(instrument);
+    
+    //Disconnect the existing sounds from the master
+    prevInstrument.disconnectFX();
+    
+    //Recreate a new instrument and connect it
+    var newInstrument = new Instrument(Set);
     var weather = g.getWeather();
+    g.setInstru(newInstrument);
     
-    
-    // instrument.setNewSynth(Set);
-    instrument.directToMaster();
-    if (!g.getWeather().empty) {instrument.connectFX(weather);}
-    displayTrackNames(instrument);
-    loadSequencer(instrument);
+    if (!g.getWeather().empty) {newInstrument.connectFX(weather);}
+    displayTrackNames(newInstrument);
+    loadSequencer(newInstrument);
 }
+
 
 $(".menu .m2 li").on("click",function(){
     var $this = $(this);
