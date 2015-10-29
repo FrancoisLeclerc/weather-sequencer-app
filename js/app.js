@@ -43,10 +43,9 @@ async.getUserLatLong().then(function(userLatLong){
             ui.dialAnimationLauncher(weather);
         });
         
-        decoder();
+        // decoder();
     });
-})
-
+});
 
 //load google library Autocomplete
 var input = document.getElementById('searchTextField');

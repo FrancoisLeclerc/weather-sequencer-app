@@ -2,6 +2,7 @@ var Tone = require("tone");
 var g = require("./current-env");
 var async = require("./async-data");
 var getLink = require("./encoder");
+var decoder = require("./decoder");
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
@@ -37,6 +38,7 @@ function nexusSetting() {
     onResize();
 
     $nxReady.resolve();
+    decoder();
 }
 
 
@@ -360,7 +362,6 @@ function dialAnimation(data) {
     }
 }
 
-
 function mainDisplayAnimation() {
 
     var $title = $(".title h1");
@@ -410,9 +411,6 @@ $(".input").on("click", ".system", function() {
     ($(".system").text() === "Switch to metric system") ? $(".system").text("Switch to imperial system"): $(".system").text("Switch to metric system");
 });
 
-
-
-
 //// ON RESIZE
 function onResize(){
     var widthWinInit = $(window).width();
@@ -429,8 +427,6 @@ function onResize(){
         toggle1.resize(toggle1.width-widthMove,toggle1.height);
     });
 }
-
-
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
@@ -453,7 +449,7 @@ $('.share').on('click', function() {
     var link = getLink();
     
     var $overlay = $('<div class="overlay"></div>');
-    var $input = $('<input id="input-over" />');
+    var $input = $('<input />');
     
     $overlay.append($input);
     $('body').append($overlay);
@@ -463,7 +459,7 @@ $('.share').on('click', function() {
     $input.attr("value", link);
     $overlay.fadeIn(100);
     
-    $("#input-over").on("click", function(){
+    $(".overlay input").on("click", function(){
         this.select();
     });
 
@@ -473,8 +469,6 @@ $('.share').on('click', function() {
         }
     });
 });
-
-
 
 //// SWITCH ON/OFF FX
 $('.menu').on("click",function switchFX(){
@@ -531,18 +525,9 @@ function loadNewTrackSet(sampleSet){
 
 //// RELOAD URL ON ORIENTATION CHANGE
 $(window).on('orientationchange', function(e) {
+    var link = getLink();
+    window.location.href = link;
     window.location.reload();
-});
-
-//// MENU FOR MOBILE
-$(".menu").on("click", ".material-icons", function(){
-    $(".m1").toggleClass("display");
-    
-});
-
-$(".menu").on("click", ".change-sounds", function(){
-    $(".m2").toggleClass("display");
-    
 });
 
 //// AUTOMATIC SELECT SEARCH INPUT
