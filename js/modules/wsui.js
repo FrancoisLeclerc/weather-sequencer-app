@@ -556,19 +556,11 @@ function loadNewTrackSet(Set){
     
     //Buffer unload;
     g.setBuffer(false);
-
+    console.log("buffer :" + g.getBuffer())
     var prevInstrument = g.getInstru();
     //Disconnect the existing sounds from the master
     prevInstrument.disconnectFX();
 
-    //Stop the sequencer if playing
-    var playButton = $('#toggle1');
-    toggle1.val.value = 0;
-    toggle1.draw();
-    playButton.active = false;
-    if (prevInstrument.wind.isOn) prevInstrument.wind.noise.stop();
-    Tone.Transport.stop();
-    
     //Recreate a new instrument and connect it
     var newInstrument = new Instrument(Set);
     var weather = g.getWeather();
@@ -581,9 +573,20 @@ function loadNewTrackSet(Set){
 
 
 $(".menu .m2 li").on("click",function(){
+    
+    //Stop the sequencer if playing
+    var playButton = $('#toggle1');
+    toggle1.val.value = 0;
+    toggle1.draw();
+    playButton.active = false;
+    
+    var instrument = g.getInstru();
+    if (instrument.wind.isOn) instrument.wind.noise.stop();
+    Tone.Transport.stop();
+    
     var $this = $(this);
     var soundSet = $this.text();
-    if (sampleSet.hasOwnProperty(soundSet)) loadNewTrackSet(sampleSet[soundSet]);
+    if (sampleSet.hasOwnProperty(soundSet)) setTimeout(function() {loadNewTrackSet(sampleSet[soundSet]);}, 500);
     else {
         var $message = messageToUser("Sorry this soundset does not exist");
         $message.on('click', function(evt) {

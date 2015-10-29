@@ -16,8 +16,8 @@ function Instrument(sampleSet) {
     this.fxOn = false;
     this.wind = new windFx();
     Tone.Buffer.onload = function(){
-        console.log("buffer loaded");
         g.setBuffer(true);
+        console.log("buffer :" + g.getBuffer())
     }
 }
 
