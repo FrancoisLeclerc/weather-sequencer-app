@@ -453,7 +453,7 @@ $('.share').on('click', function() {
     var link = getLink();
     
     var $overlay = $('<div class="overlay"></div>');
-    var $input = $('<input>');
+    var $input = $('<input id="input-over" />');
     
     $overlay.append($input);
     $('body').append($overlay);
@@ -462,6 +462,10 @@ $('.share').on('click', function() {
     
     $input.attr("value", link);
     $overlay.fadeIn(100);
+    
+    $("#input-over").on("click", function(){
+        this.select();
+    });
 
     $overlay.on('click', function(evt) {
         if (evt.target === evt.currentTarget) {
@@ -500,7 +504,7 @@ function clear(){
 
 $(".btn-fx").on("click",function clearSeq(){
     if (matrix1) matrix1.clear();
-})
+});
 
 
 
@@ -511,7 +515,7 @@ function displayTrackNames(instrument){
 
     $trackBlock.children().each(function(index,track){
         $(track).text(trackNames[index]);
-    })
+    });
 }
 
 function loadNewTrackSet(sampleSet){
@@ -525,24 +529,23 @@ function loadNewTrackSet(sampleSet){
     displayTrackNames(instrument);
 }
 
-$("title").on("click",function(){
-    console.log("test");
-})
-
-
 //// RELOAD URL ON ORIENTATION CHANGE
 $(window).on('orientationchange', function(e) {
     window.location.reload();
 });
 
-$(".menu").on("click", "i", function(){
-  $( ".menu ul li ul" ).toggleClass("nodisplay");
+//// MENU FOR MOBILE
+$(".menu").on("click", ".material-icons", function(){
+    $(".m1").toggleClass("display");
+    
 });
 
-$(".menu ul li ul").on("click", "li", function(){
-  $( ".menu ul li ul" ).toggleClass("nodisplay");
+$(".menu").on("click", ".change-sounds", function(){
+    $(".m2").toggleClass("display");
+    
 });
 
+//// AUTOMATIC SELECT SEARCH INPUT
 $("#searchTextField").on("click", function(){
     this.select();
 });

@@ -10,6 +10,7 @@ body { width:auto; margin:0; background-color:$black; }
 .q { color:$green; }
 .pac-item { text-align:center; font-family:$abel; }
 .pac-icon, .nodisplay, .mobile { display:none; }
+.display { display: block !important; }
 
 header { display:flex; flex-direction:column; height:100vh; color:$white;
     .ws { height:90vh; padding:0 2em;
@@ -52,12 +53,19 @@ buffer { display:flex; height:50vh; }
                 i { font-size:2.9em; color:$green; text-align:center; padding:0 0.55em; cursor:pointer; user-select:none; } }  
                 
         .menu {
-            * { padding:0; margin:0; list-style-type:none; }
+            * { padding:0; margin:0; list-style-type:none; user-select:none; }
             li { position:relative; }
-            ul li ul { display:block; width:200px; position: absolute; margin-left:-2px; bottom:100%; background-color:$black; }
-            ul li .nodisplay { display:none; }
-            ul li ul li { font-size:1em; font-family:$raleway; padding:1em; text-align:center; color:$lgray; cursor:pointer; } } }
-    
+            ul li ul { width:200px; background-color:$black; }
+            ul li ul li { font-size:1em; font-family:$raleway; padding:1em; text-align:center; color:$lgray; cursor:pointer; &:hover { background-color:$lgray; color:$black; } } } }
+        
+        .menu ul li ul, .menu:hover ul li ul, .menu:hover ul li:hover ul li ul{ display:none; }
+        
+        .menu:hover ul, .menu:hover ul li:hover ul, .menu:hover ul li:hover ul li:hover ul { display:block; }
+        
+        .menu:hover ul li:hover ul li:hover ul { position: absolute; margin-left: 180px; margin-bottom: -51px; }
+            
+        .menu:hover ul li:hover ul { position: absolute; margin-left:-2px; bottom:100%; }
+            
     .toggle-size, .matrix-size { width:100%; height:100%;
         canvas { width:100%; height:100%; cursor:pointer; border-radius:0; } }
 }
@@ -183,7 +191,7 @@ buffer { display:flex; height:50vh; }
 
 
 
-///////////////POPUP
+//// POPUP
 .overlay {
   position: fixed;
   top: 0;
