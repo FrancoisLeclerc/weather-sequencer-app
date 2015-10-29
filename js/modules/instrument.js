@@ -6,15 +6,19 @@ var cloudFX = require("./fx/cloud");
 var stormFX = require("./fx/storm");
 var temperatureFX = require("./fx/temperature");
 var windFx = require("./fx/wind");
-
+var g = require("./current-env");
 
 
 function Instrument(sampleSet) {
     this.trackSet = sampleSet;
-    this.toneSynth = new Tone.PolySynth(8, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
+    this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
     this.toneSynth.toMaster();
     this.fxOn = false;
     this.wind = new windFx();
+    Tone.Buffer.onload = function(){
+        console.log("buffer loaded");
+        g.setBuffer(true);
+    }
 }
 
 
@@ -55,11 +59,11 @@ Instrument.prototype = {
     },
     directToMaster: function() {
         this.toneSynth.toMaster();
-    },
-    setNewSynth: function(sampleSet) {
-        this.trackSet = sampleSet;
-        this.toneSynth = new Tone.PolySynth(8, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
     }
+    // setNewSynth: function(sampleSet) {
+    //     this.trackSet = sampleSet;
+    //     this.toneSynth = new Tone.PolySynth(1, Tone.Sampler, sampleSet, {"envelope" : {"release" : 0.2}});
+    // }
 }
 
 module.exports = Instrument;

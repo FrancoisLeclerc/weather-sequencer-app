@@ -4,7 +4,7 @@ var async = require("./async-data");
 var getLink = require("./encoder");
 var sampleSet = require("./sampleSet");
 var loadSequencer = require("./sequencer");
-
+var Instrument  = require("./instrument");
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
@@ -94,12 +94,35 @@ function loadPlayButtonHandler() {
         if (instrument.wind.isOn) instrument.wind.noise.stop();
         Tone.Transport.stop();
     };
-
+    
+    function bufferNotification(){
+        var $overlay = $('<div class="overlay"></div>');
+        var $p = $('<p>');
+        
+        $overlay.append($p);
+        $('body').append($overlay);
+        $overlay.hide();
+        
+        
+        $p.text("The sound samples are loading");
+        $overlay.fadeIn(100);
+     
+        setInterval(function(){
+            if (g.getBuffer()) $overlay.fadeOut(100);
+        },500);
+       
+    }
+    
     playButton.on('mousedown touchstart', function(e) {
         
         if (!playButton.active) {
-            playButton.active = true;
-            playButton.start();
+            if (g.getBuffer()){
+                playButton.active = true;
+                playButton.start();
+            }
+            else {
+                bufferNotification();
+            }
         }
         else {
             playButton.active = false;
@@ -114,10 +137,15 @@ function loadPlayButtonHandler() {
             }
             else {
                 if (!playButton.active) {
-                    playButton.start();
-                    toggle1.val.value = 1;
-                    toggle1.draw();
-                    playButton.active = true;
+                    if (g.getBuffer()){
+                        playButton.start();
+                        toggle1.val.value = 1;
+                        toggle1.draw();
+                        playButton.active = true;
+                    }
+                    else{
+                        bufferNotification();
+                    }
                 }
                 else {
                     playButton.stop();
@@ -476,7 +504,7 @@ $('.share').on('click', function() {
 
 
 //// SWITCH ON/OFF FX
-$('.menu li.bypass-fx').on("click",function switchFX(){
+$('.onoffswitch-checkbox').on("click",function switchFX(){
     if (!g.getInstru().empty){
         var instrument = g.getInstru();
         if (instrument.fxOn) {
@@ -520,16 +548,17 @@ function displayTrackNames(instrument){
 
 /// SELECT ANOTHER SOUND SET
 function loadNewTrackSet(Set){
-    
+    g.setBuffer(false);
     Tone.Transport.stop();
-    // Tone.Transport.clearTimelines();
-    Tone.Buffer.dispose();
-    
-    var instrument = g.getInstru();
+
+    // console.log(Tone.Buffer);
+    g.getInstru().disconnectFX();
+    var instrument = new Instrument(Set);
+    g.setInstru(instrument);
     var weather = g.getWeather();
     
-    instrument.disconnectFX();
-    instrument.setNewSynth(Set);
+    
+    // instrument.setNewSynth(Set);
     instrument.directToMaster();
     if (!g.getWeather().empty) {instrument.connectFX(weather);}
     displayTrackNames(instrument);

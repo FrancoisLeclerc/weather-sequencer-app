@@ -209,3 +209,50 @@ buffer { display:flex; height:50vh; }
     padding:1em;
     width:50vw;
 }
+
+.overlay p {
+    font-family: "Raleway",sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding:1em;
+    color:white;
+}
+
+
+
+////SWITCH BYPASS FX
+.onoffswitch {
+    display: inline-block;
+    position: relative; width: 74px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    top:0.35em;
+    left: 0.5em;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 26px; padding: 0; line-height: 26px;
+    border: 2px solid #999999; border-radius: 26px;
+    background-color: $dgray;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 26px; margin: 0px;
+    background: $dgray;
+    position: absolute; top: 0; bottom: 0;
+    right: 47px;
+    border: 2px solid #999999; border-radius: 50%;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: $lgray;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: $lgray;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+}
