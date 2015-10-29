@@ -13,4 +13,4 @@ module.exports = {
     setBuffer: function(b){buffer = b;},
     getNexus: function(){return nexusReady;},
     setNexus: function(n){nexusReady = n;},
-}
+};

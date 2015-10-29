@@ -46,6 +46,6 @@ windFx.prototype = {
         this.noise.volume.value = noiseVol;
         console.log("noiseVol: " + this.noise.volume.value);
     }
-}
+};
 
 module.exports = windFx;
