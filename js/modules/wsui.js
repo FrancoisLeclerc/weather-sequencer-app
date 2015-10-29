@@ -2,6 +2,9 @@ var Tone = require("tone");
 var g = require("./current-env");
 var async = require("./async-data");
 var getLink = require("./encoder");
+var sampleSet = require("./sampleSet");
+var loadSequencer = require("./sequencer");
+
 
 //jQuery helpers
 $.fn.isOnScreen = function(){
@@ -473,7 +476,7 @@ $('.share').on('click', function() {
 
 
 //// SWITCH ON/OFF FX
-$('.menu').on("click",function switchFX(){
+$('.menu li.bypass-fx').on("click",function switchFX(){
     if (!g.getInstru().empty){
         var instrument = g.getInstru();
         if (instrument.fxOn) {
@@ -498,13 +501,13 @@ function clear(){
     }
 }
 
-$(".btn-fx").on("click",function clearSeq(){
+$(".menu li.clear-sequencer").on("click",function clearSeq(){
     if (matrix1) matrix1.clear();
 })
 
 
 
-/// SELECT ANOTHER SOUND SET
+/// DISPLAY TRACK NAMES
 function displayTrackNames(instrument){
     var $trackBlock = $(".track-names");
     var trackNames = instrument.getTrackSetArray();
@@ -514,19 +517,27 @@ function displayTrackNames(instrument){
     })
 }
 
-function loadNewTrackSet(sampleSet){
+
+/// SELECT ANOTHER SOUND SET
+function loadNewTrackSet(Set){
+    
+    Tone.Transport.stop();
+    // Tone.Transport.clearTimelines();
+    Tone.Buffer.dispose();
+    
     var instrument = g.getInstru();
     var weather = g.getWeather();
     
     instrument.disconnectFX();
-    instrument.setNewSynth(sampleSet);
+    instrument.setNewSynth(Set);
     instrument.directToMaster();
     if (!g.getWeather().empty) {instrument.connectFX(weather);}
     displayTrackNames(instrument);
+    loadSequencer(instrument);
 }
 
-$("title").on("click",function(){
-    console.log("test");
+$(".menu li.change-sounds").on("click",function(){
+    loadNewTrackSet(sampleSet["Casio"]);
 })
 
 

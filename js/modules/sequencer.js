@@ -6,6 +6,7 @@ function sequencer(Instrument){
 	//keep track of steps and notes
 	var stepNumber = 0;
 	var noteNames = Instrument.getTrackSetArray();
+	console.log(noteNames);
 	
 	//the repeated callback
 	Tone.Transport.setInterval(function(time){
@@ -14,7 +15,8 @@ function sequencer(Instrument){
 		var column = matrix1.matrix[stepNumber];
 		for (var i = 0; i < 8; i++){
 			if (column[i] === 1){
-				Instrument.toneSynth.triggerAttackRelease(noteNames[i], "64n", time);
+				console.log(noteNames[i]);
+				Instrument.toneSynth.triggerAttackRelease(noteNames[i], "32n", time);
 			}
 		}
 		
