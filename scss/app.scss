@@ -7,31 +7,35 @@ $raleway: 'Raleway', sans-serif; $lombok: 'Lombok', sans-serif; $abel: 'Abel', s
 *, *:before, *:after { box-sizing: border-box; }
 
 body { width:auto; margin:0; background-color:$black; }
-.q { color:$green; }
+.q   { color:$green; }
 .pac-item { text-align:center; font-family:$abel; }
 .pac-icon, .nodisplay, .mobile { display:none; }
+.display { display: block !important; }
 
-header { display:flex; flex-direction:column; height:100vh; color:$white;
-    .ws { height:90vh; padding:0 2em;
-        h1 { font:10em $lombok; text-align:center; margin:0; padding-top:0.1em; user-select:none;  }
-        p { font:2em $raleway; text-align:justify; margin:0; padding:1.5em 0; user-select:none;  } }
-}    
-.slider { height:10vh; padding:0.2em; user-select:none; 
-    img { display: block; margin:auto; height:100%; position:relative; animation:bounce 750ms infinite; user-select:none;  } 
-}
+header  { height:100vh; display:flex; flex-direction:column; color:$white;
+    .ws { height:90vh;  padding:0 2em;
+        h1 { font:10em $lombok; text-align: center; margin:0; padding-top:0.1em; user-select:none; }
+        p  { font:2em $raleway; text-align:justify; margin:0; padding:  1.5em 0; user-select:none; } } }
+        
+.slider { height:10vh; padding:0.2em;  user-select:none; 
+    img { height:100%; display: block; user-select:none; margin:auto; position:relative; animation:bounce 750ms infinite; } }
             
 buffer { display:flex; height:50vh; }
 
+.overlay {  position: fixed; top: 0; left: 0; width:100vw; height: 100vh; display: flex; background-color: rgba(0, 0, 0, 0.75); align-items: center; 
+            justify-content: center; flex-direction: column; cursor: pointer;
+    *     { cursor: default; }
+    input { font-family: $raleway; font-weight: bold; font-size: 1.2em; padding:1em; width:50vw; } }
 
 #container { display:flex; height:100vh; flex-direction:column;
-    .head { display:flex; height:10vh; padding:0.5em 2em;
+    .head  { display:flex; height:10vh; padding:0.5em 2em;
         .title { width:65vw; user-select:none; 
-            h1{ font:2.5em $lombok; color:$white; margin:0; opacity:0; user-select:none; } }
+            h1 { font:2.5em $lombok; color:$white; margin:0; opacity:0; user-select:none; } }
             
-        .input { width:35vw; text-align:right; display:block; user-select:none; 
+        .input  { width:35vw; text-align:right; display:block; user-select:none; 
             div { display:block; }
-            p { font:0.8em $raleway; color:$lgray; margin:0; display:inline; user-select:none; }
-            .system, .share { &:hover { opacity:0.5; cursor:pointer; } } 
+            p   { font:0.8em $raleway; color:$lgray; margin:0; display:inline; user-select:none; }
+            .system, .share  { &:hover { opacity:0.5; cursor:pointer; } } 
             #searchTextField { font-family:$abel; text-align:center; width:0px; height:2em; border:0px; &:focus { outline: none; } } } }
                 
     .settings, .sequencer, footer { width:auto; }
@@ -39,118 +43,136 @@ buffer { display:flex; height:50vh; }
         .console { display:flex; font-family:$abel; color:$lgray; width:80%; margin:auto; padding-top:0.5em;
             .effect { margin:auto;
                 canvas { margin:0.2em 0 0 0; height:100px; width:100px; cursor:default; user-select:none; }
-                p { margin:0; text-align:center; user-select:none; } } } }
+                p      { margin:0; text-align:center; user-select:none; } } } }
                 
     .sequencer { display:flex; height:50vh; margin:0 0.5em;
         .track-names { display:flex; flex-direction:column; max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border:2px solid $dgray;
             p { font-family:$abel; font-weight:bold; color:$green; text-align:center; margin:0; height:calc(100% / 8); padding:0.5em; opacity:0; user-select:none; } } }
-        
+    
+    .toggle-size, .matrix-size { width:100%; height:100%;
+        canvas { width:100%; height:100%; cursor:pointer; border-radius:0; } }    
+   
     footer { display:flex; height:10vh; margin:0; padding:0.5em;
         .go-up { display:none; }
         .go-up, .menu { max-width:100px; min-width:100px; height:100%; margin-right:0.5em; border:2px solid $dgray;
                 a { text-decoration:none; }
                 i { font-size:2.9em; color:$green; text-align:center; padding:0 0.55em; cursor:pointer; user-select:none; } }  
                 
-        .menu {
-            * { padding:0; margin:0; list-style-type:none; }
+        .menu { * { padding:0; margin:0; list-style-type:none; user-select:none; }
             li { position:relative; }
-            ul li ul { display:block; width:200px; position: absolute; margin-left:-2px; bottom:100%; background-color:$black; }
-            ul li .nodisplay { display:none; }
-            ul li ul li { font-size:1em; font-family:$raleway; padding:1em; text-align:center; color:$lgray; cursor:pointer; } } }
-    
-    .toggle-size, .matrix-size { width:100%; height:100%;
-        canvas { width:100%; height:100%; cursor:pointer; border-radius:0; } }
+            ul li ul { width:200px; background-color:$black; }
+            ul li ul li { font-size:1em; font-family:$raleway; padding:1em; text-align:center; color:$lgray; cursor:pointer; &:hover { background-color:$lgray; color:$black; } } } }
+        
+        .menu ul li ul, .menu:hover ul li ul, .menu:hover ul li:hover ul li ul{ display:none; }
+        .menu:hover ul, .menu:hover ul li:hover ul, .menu:hover ul li:hover ul li:hover ul { display:block; }
+        .menu:hover ul li:hover ul li:hover ul { position: absolute; margin-left: 184px; margin-bottom: -51px; }
+        .menu:hover ul li:hover ul { position: absolute; margin-left:-2px; bottom:100%; margin-bottom:2px; }
 }
 
 @media only screen and (max-width: 640px) and (orientation:landscape){
-    body { width:auto; height:auto; }
+    body   { width:auto; height:auto; }
     header {
         .ws { height:85vh; padding:0 1em;
             h1 { font-size:5em; padding:0; }
-            p { font-size:1em; padding:0.75em 0; } } }        
+            p  { font-size:1em; padding:0.75em 0; } } }        
     
-    .slider { height:15vh; padding:0.2em; }
-    .mobile { display:inline; }
+    .slider  { height:15vh; padding:0.2em; }
+    .mobile  { display:inline; }
+    .overlay { input { font-size: 1em; padding:1em; width:65vw; } }
     
     #container { height:auto;
-        .head { padding:0 0.5em; height:15vh;
-            .title {
-                h1{ font-size:2em; margin-top:0.1em;} }
-            .input { width:30vw;
+        .head  { padding:0 0.5em; height:15vh;
+            .title  {
+                h1  { font-size:2em; margin-top:0.1em;} }
+            .input  { width:30vw;
                 div { margin-top:-4px; }
-                p { font-size:0.5em; }
+                p   { font-size:0.5em; }
                 #searchTextField { font-size:0.5em; } } }
                     
         .settings { height:70vh;
-            .console { width:100vw; margin: 2.5em 0; padding:0;
+            .console { width:100vw; margin:2.5em 0; padding:0;
                 .effect { &:first-child { margin-left:1em; } &:last-child { margin-right:1em; }
                     canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
-                    p { font-size:0.75em;} } } }
+                    p      { font-size:0.75em;} } } }
                     
         .sequencer { margin:0; padding:0 0.25em; height:90vh;
             .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px;
                 p { font-size:0.6em; padding:1em 0;} } }
-            
-        footer { padding: 0.25em 0.5em 0.25em 0.25em;
-            .go-up, .menu { display:inline; max-width:50px; min-width:50px; margin-right:0; border-width:1px;
-                a { i { font-size:1.2em; padding:1px 0.75em; } } } }
         
         .toggle-size, .matrix-size { padding:0 0.25em;
-            canvas { width:100% !important; height:100% !important;} }
+            canvas { width:100% !important; height:100% !important;} }    
+        
+        footer { padding: 0.25em 0.5em 0.25em 0.25em;
+            .go-up, .menu { display:inline; max-width:50px; min-width:50px; margin-right:0; border-width:1px;
+                i { font-size:1.2em; padding:1px 0.75em; } } 
+        
+            .menu {
+                ul li ul    { width:150px; }
+                ul li ul li { font-size:1em; padding:0.8em; } }
+            
+            .menu:hover ul li:hover ul li:hover ul { margin-left:137px; margin-bottom:-44px; }
+            .menu:hover ul li:hover ul { margin-left:-1px; margin-bottom:1px; } } 
     }
 }
 
 @media only screen and (max-width: 640px) and (orientation:portrait){
-    body { width:auto; height:auto; }
+    body   { width:auto; height:auto; }
     header { 
-        .ws { height:85vh; padding:0 1em;
+        .ws    { height:85vh; padding:0 1em;
             h1 { font-size:3.4em; padding-top:0.2em; }
-            p { font-size:1.5em; padding:0.75em 0;} } }
+            p  { font-size:1.5em; padding:0.75em 0; } } }
     
-    .slider { height:15vh; padding:0.2em; }
-    .mobile { display:inline; }
+    .slider  { height:15vh; padding:0.2em; }
+    .mobile  { display:inline; }
+    .overlay { input { font-size: 0.75em; padding:1em; width:80vw; } }
     
     #container { height:auto;
-        .head { padding:0 0.5em; height:15vh;
-            .title { width:60vw;
-                h1{ font-size:2em; margin-top:0.1em;} }
-            .input { width:40vw;
+        .head  { padding:0 0.5em; height:15vh;
+            .title  { width:60vw;
+                h1  { font-size:2em; margin-top:0.1em;} }
+            .input  { width:40vw;
                 div { margin-top:-6px; }
-                p { font-size:0.4em; }
-                #searchTextField { font-size:0.5em; } } }
+                p   { font-size:0.4em; }
+                #searchTextField { font-size:0.6em; height:2em; } } }
                     
-        .settings { height:70vh;
-            .console { width:90vw; margin: auto; flex-wrap:wrap; height: 60vh; padding-top:1em;
-                .effect { display:block;
+        .settings    { height:70vh;
+            .console { width:90vw; margin: auto; flex-wrap:wrap; height:60vh; padding-top:1em;
+                .effect    { display:block;
                     canvas { margin:0.1em 0.25em 0 0.25em; height:70px; width:70px; }
-                    p { font-size:0.75em; &:last-child { padding-bottom:2em; } } } } }
+                    p      { font-size:0.75em; &:last-child { padding-bottom:2em; } } } } }
                     
         .sequencer { margin:0; padding:0 0.25em; height:90vh;
             .track-names { max-width:50px; min-width:50px; margin-right:0; border-width:1px;
-                p { font-size:1.1em; padding:0.5em 0; &:nth-child(3) { padding:0.525em; } } } }   
-
-        footer { padding: 0.25em 0.5em 0.25em 0.25em;
-            .go-up, .menu { display:inline; max-width:50px; min-width:50px; margin-right:0; border-width:1px; 
-                a { i { font-size:2.5em; padding:3px 0.1em; } } } }
+                p { font-size:1.1em; padding:1em 0; &:nth-child(3) { padding:0.525em; } } } }   
         
         .toggle-size, .matrix-size { padding:0 0.25em;
             canvas { width:100% !important; height:100% !important;} }
+            
+        footer { padding:0.25em 0.5em 0.25em 0.25em;
+            .go-up, .menu { display:block; max-width:50px; min-width:50px; margin-right:0; border-width:1px; 
+                i { font-size:2.5em; padding:3px 0.1em; } }  
+        
+            .menu {
+                ul li ul    { width:150px; }
+                ul li ul li { font-size:1em; padding:0.8em; } }
+            
+            .menu:hover ul li:hover ul li:hover ul { margin-left: 137px; margin-bottom: -45px; }
+            .menu:hover ul li:hover ul { margin-left:-1px; margin-bottom:2px; } }
     }
 }
 
-
 @media only screen and (min-width: 641px) and (max-width: 800px){
-    header { 
+    header  { 
         .ws { padding:0 1.5em;
             h1 { font-size:6em; } } }    
     
     #container { 
-        .head { padding:0.25em 1em;
+        .head  { padding:0.25em 1em;
             .title { width:60vw;
-                h1{ font-size:2em; } }
+                h1 { font-size:2em; } }
                 
             .input { width:40vw;
-                p { font-size:0.7em; } } }
+                p  { font-size:0.7em; } } }
                     
         .settings { 
             .console { width:100%; padding-top:0.75em;
@@ -163,60 +185,24 @@ buffer { display:flex; height:50vh; }
 
 
 @media only screen and (min-width: 801px) and (max-width: 1024px){
-
-    header { 
+    header  { 
         .ws { 
             h1 { font-size:7.5em; } } }    
 
     #container { 
-        .head {
+        .head  {
             .title { width:65vw; }
             .input { width:35vw;
-                p { font-size:0.75em; } } }
+                p  { font-size:0.75em; } } }
                     
         .settings {
             .console { width:90%;
                 .effect {
                     canvas { height:90px; width:90px; } } } }
     }
+
 }
 
-
-
-///////////////POPUP
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width:100vw;
-  height: 35vh;
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.75);
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.overlay * {
-    cursor: default;
-}
-
-.overlay input {
-    font-family: "Raleway",sans-serif;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding:1em;
-    width:50vw;
-}
-
-.overlay p {
-    font-family: "Raleway",sans-serif;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding:1em;
-    color:white;
-}
 
 
 
@@ -255,4 +241,3 @@ buffer { display:flex; height:50vh; }
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 
-}

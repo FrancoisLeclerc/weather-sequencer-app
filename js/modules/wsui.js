@@ -40,6 +40,7 @@ function nexusSetting() {
     onResize();
 
     $nxReady.resolve();
+    decoder();
 }
 
 
@@ -96,19 +97,10 @@ function loadPlayButtonHandler() {
     };
     
     function bufferNotification(){
-        var $overlay = $('<div class="overlay"></div>');
-        var $p = $('<p>');
+        var $message = messageToUser("Loading sounds");
         
-        $overlay.append($p);
-        $('body').append($overlay);
-        $overlay.hide();
-        
-        
-        $p.text("The sound samples are loading");
-        $overlay.fadeIn(100);
-     
         setInterval(function(){
-            if (g.getBuffer()) $overlay.fadeOut(100);
+            if (g.getBuffer()) $message.fadeOut(100);
         },500);
        
     }
@@ -391,7 +383,6 @@ function dialAnimation(data) {
     }
 }
 
-
 function mainDisplayAnimation() {
 
     var $title = $(".title h1");
@@ -441,9 +432,6 @@ $(".input").on("click", ".system", function() {
     ($(".system").text() === "Switch to metric system") ? $(".system").text("Switch to imperial system"): $(".system").text("Switch to metric system");
 });
 
-
-
-
 //// ON RESIZE
 function onResize(){
     var widthWinInit = $(window).width();
@@ -460,8 +448,6 @@ function onResize(){
         toggle1.resize(toggle1.width-widthMove,toggle1.height);
     });
 }
-
-
 
 //// SCROLL EFFECT
 $('a[href*=#]:not([href=#])').click(function() {
@@ -484,7 +470,7 @@ $('.share').on('click', function() {
     var link = getLink();
     
     var $overlay = $('<div class="overlay"></div>');
-    var $input = $('<input>');
+    var $input = $('<input />');
     
     $overlay.append($input);
     $('body').append($overlay);
@@ -493,6 +479,10 @@ $('.share').on('click', function() {
     
     $input.attr("value", link);
     $overlay.fadeIn(100);
+    
+    $(".overlay input").on("click", function(){
+        this.select();
+    });
 
     $overlay.on('click', function(evt) {
         if (evt.target === evt.currentTarget) {
@@ -500,8 +490,6 @@ $('.share').on('click', function() {
         }
     });
 });
-
-
 
 //// SWITCH ON/OFF FX
 $('.onoffswitch-checkbox').on("click",function switchFX(){
@@ -531,7 +519,7 @@ function clear(){
 
 $(".menu li.clear-sequencer").on("click",function clearSeq(){
     if (matrix1) matrix1.clear();
-})
+});
 
 
 
@@ -542,7 +530,7 @@ function displayTrackNames(instrument){
 
     $trackBlock.children().each(function(index,track){
         $(track).text(trackNames[index]);
-    })
+    });
 }
 
 
@@ -565,27 +553,47 @@ function loadNewTrackSet(Set){
     loadSequencer(instrument);
 }
 
-$(".menu li.change-sounds").on("click",function(){
-    loadNewTrackSet(sampleSet["Casio"]);
+$(".menu .m2 li").on("click",function(){
+    var $this = $(this);
+    var soundSet = $this.text();
+    if (sampleSet.hasOwnProperty(soundSet)) loadNewTrackSet(sampleSet[soundSet]);
+    else {
+        var $message = messageToUser("Sorry this soundset does not exist");
+        $message.on('click', function(evt) {
+            $message.fadeOut(100);
+        });
+    }
 })
 
 
 //// RELOAD URL ON ORIENTATION CHANGE
 $(window).on('orientationchange', function(e) {
+    var link = getLink();
+    window.location.href = link;
     window.location.reload();
 });
 
-$(".menu").on("click", "i", function(){
-  $( ".menu ul li ul" ).toggleClass("nodisplay");
-});
-
-$(".menu ul li ul").on("click", "li", function(){
-  $( ".menu ul li ul" ).toggleClass("nodisplay");
-});
-
+//// AUTOMATIC SELECT SEARCH INPUT
 $("#searchTextField").on("click", function(){
     this.select();
 });
+
+
+//// Message to user with overlay
+function messageToUser(textToDisplay){
+    var $overlay = $('<div class="overlay"></div>');
+    var $p = $('<p>');
+    
+    $overlay.append($p);
+    $('body').append($overlay);
+    $overlay.hide();
+    
+    
+    $p.text(textToDisplay);
+    $overlay.fadeIn(100);
+    
+    return $overlay;
+}
 
 module.exports = {
     nexusSetting: nexusSetting,
