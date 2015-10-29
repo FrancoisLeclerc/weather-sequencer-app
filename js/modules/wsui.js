@@ -243,9 +243,7 @@ function dialAnimationLauncher(weather){
     }
 }
 
-
 function dialAnimation(data) {
-
     var $console = $(".console");
     if ($console.isOnScreen())
     {
@@ -283,8 +281,8 @@ function dialAnimation(data) {
         }, 20);
         
         //PRECIPITATION
-        var val2 = (data.precipIntensity * 10) / 4;
-        if (data.precipIntensity > 0.4) {
+        var val2 = (data.precipIntensity * 10) / 2;
+        if (data.precipIntensity > 0.2) {
             val2 = 1;
         }
         else if (typeof data.precipIntensity !== "number") {
@@ -340,7 +338,7 @@ function dialAnimation(data) {
         }, 20);
         
         //VISIBILITY
-        var val5 = data.visibility / 10;
+        var val5 = (data.visibility-10)/-10;
         if (typeof data.visibility !== "number") {
             val5 = 0;
             dial5.val.value = 0;

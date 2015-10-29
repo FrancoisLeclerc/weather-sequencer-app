@@ -68,7 +68,16 @@ buffer { display:flex; height:50vh; }
         .menu ul li ul, .menu:hover ul li ul, .menu:hover ul li:hover ul li ul{ display:none; }
         .menu:hover ul, .menu:hover ul li:hover ul, .menu:hover ul li:hover ul li:hover ul { display:block; }
         .menu:hover ul li:hover ul li:hover ul { position: absolute; margin-left: 184px; margin-bottom: -51px; }
-        .menu:hover ul li:hover ul { position: absolute; margin-left:-2px; bottom:100%; margin-bottom:2px; }
+        .menu:hover ul li:hover ul { position: absolute; margin-left:-2px; bottom:100%; margin-bottom:1px; }
+        
+        .onoffswitch { display:inline-block; position:relative; width:74px; user-select:none; top:0.35em; left:0.5em; }
+        .onoffswitch-checkbox { display:none; }
+        .onoffswitch-label { display:block; overflow:hidden; cursor:pointer; height:26px; padding:0; line-height:26px; border:2px solid #999; border-radius:26px; 
+                             background-color:$dgray; transition:background-color 0.3s ease-in; }
+        .onoffswitch-label:before { content:""; display:block; width:26px; margin:0px; background:$dgray; position:absolute; top:0; bottom:0; right:47px; 
+                                    border:2px solid #999; border-radius:50%; transition: all 0.3s ease-in 0s; }
+        .onoffswitch-checkbox:checked + .onoffswitch-label { background-color:$lgray; }
+        .onoffswitch-checkbox:checked + .onoffswitch-label:before { right:0px; }
 }
 
 @media only screen and (max-width: 640px) and (orientation:landscape){
@@ -184,8 +193,6 @@ buffer { display:flex; height:50vh; }
     }
 }
 
-
-
 @media only screen and (min-width: 801px) and (max-width: 1024px){
     header  { 
         .ws { 
@@ -202,48 +209,4 @@ buffer { display:flex; height:50vh; }
                 .effect {
                     canvas { height:90px; width:90px; } } } }
     }
-
-}
-
-
-
-
-////SWITCH BYPASS FX
-.onoffswitch {
-    display: inline-block;
-    position: relative; width: 74px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-    top:0.35em;
-    left: 0.5em;
-}
-.onoffswitch-checkbox {
-    display: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    height: 26px; padding: 0; line-height: 26px;
-    border: 2px solid #999999; 
-    border-radius: 26px;
-    background-color: $dgray;
-    transition: background-color 0.3s ease-in;
-}
-.onoffswitch-label:before {
-    content: "";
-    display: block; width: 26px; margin: 0px;
-    background: $dgray;
-    position: absolute; top: 0; bottom: 0;
-    right: 47px;
-    border: 2px solid #999999; 
-    border-radius: 50%;
-    transition: all 0.3s ease-in 0s; 
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label {
-    // border-color: $dgray;
-    background-color: $lgray;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-//   border-color: $lgray;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px; 
 }
