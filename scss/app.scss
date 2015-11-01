@@ -17,8 +17,10 @@ header  { height:100vh; display:flex; flex-direction:column; color:$white;
         h1 { font:10em $lombok; text-align: center; margin:0; padding-top:0.1em; user-select:none; }
         p  { font:2em $raleway; text-align:justify; margin:0; padding:  1.5em 0; user-select:none; } } }
         
-.slider { height:10vh; padding:0.2em;  user-select:none; 
-    img { height:100%; display: block; user-select:none; margin:auto; position:relative; animation:bounce 750ms infinite; } }
+.slider { height:10vh; padding:0.2em;  user-select:none; position:relative;
+    img { height:100%; display: block; user-select:none; margin:auto; position:relative; animation:bounce 750ms infinite; }
+    .team {position: absolute; right: 0; bottom:0; padding:1em;font:0.8em $raleway; color:$lgray;user-select:none; 
+    &:hover { opacity:0.5;} } }
             
 buffer { display:flex; height:50vh; }
 
