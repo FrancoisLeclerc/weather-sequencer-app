@@ -18,7 +18,7 @@ function getLink() {
     }
     
     //create link for popup
-    var link = window.location.origin+"/#"+urlHash; 
+    var link = window.location+"/#"+urlHash; 
     return link;   
 }
 
